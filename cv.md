@@ -5,7 +5,7 @@
 
 ## Contact information: 
 E-mail: Rostn91@mail.ru  
-Telegram: @Aremill_Crauze
+Telegram: [@Aremill_Crauze](https://t.me/aremill_crauze)
 
 ### Briefly About Myself:
 
