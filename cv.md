@@ -1,7 +1,7 @@
 # Rostislav Keush
 
- * Junior Android Developer
- * Junior Frontend Developer
+ * __Junior Android Developer__
+ * __Junior Frontend Developer__
 
 ## Contact information: 
 E-mail: Rostn91@mail.ru  
