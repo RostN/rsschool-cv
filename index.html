@@ -6,32 +6,140 @@
         <title>Rostislav Keush CV</title>
         <link rel="stylesheet" href="style.css">
     </head>
-    <body>
-        <!-- Заголовок -->
+    <body class="page-body">
+        <!-- Заголовок с навигацией-->
         <header>
             <nav class="nav">
-                <ul>
-                    <li>
+                <ul class="nav_list">
+                    <li class="nav_item">
                         <a href="#about_me">About me</a>
+                    </li>
+                    <li class="nav_item">
+                        <a href="#contacts">Contacts</a>
+                    </li>
+                    <li class="nav_item">
+                        <a href="#skills">Skills</a>
+                    </li>
+                    <li class="nav_item">
+                        <a href="#Courses">Courses</a>
+                    </li>
+                    <li class="nav_item">
+                        <a href="#Languages">Languages</a>
                     </li>
                 </ul>
             </nav>
         </header>
         
         <!-- Основное -->
-        <main>
+        <main class="container">
+            <div class="left-side">
+                <center>
+                    <img src="img/My_photo.jpg" width="300 px" vspace="15" hspace="5">
+                </center>                
+            </div>
+            <div class="right-side">
+                <center>
+            <h1>Rostislav Keush</h1>
+            </center>
+            
+                <h3>
+                    <ul>
+                        <li>
+                            Junior Android Developer
+                        </li>
+                        <li>
+                            Junior Frontend Developer
+                        </li>
+                    </ul>
+                </h3>
+            
             <selection class="about_me" id="about_me">
                 <h2> About me</h2>
                 <p>
-                    Начал своё обучение по разработке на языке HTML ещё в школе, по удаленной системе образования от Томского университета. Со школьной скаьи мне нравились технические науки, в том числе различные языки программирования, которые я изучал: Pascal, HTML, CSS, JS, C++, Kotlin. Под конец своего обучения в школе, создал сайт для своей школы. 
-                    <br>
-                    Окончил школу в 2009 году, и поступил в СибГАУ на специальность: Специалист по защите информационной безопасности. В процессе обучения пришлось немного обучиться языку программирования С++, более на данном языке я не программировал. Пока обучался в институте, переодически подрабатывал HTML разработкой (создание не сложных сайтов).
-                    <br>
-                    В конце 2022 года начал обучение на Android разработчика, в надежде, что после окончания обучения, смогу сменить род своей деятельности на техническое направление. Летом 2023 года закончил своё обучение по специалисть Android разработчик, но к сожалению, работу найти по данному направлению крайне проблематично.
+                    I started my HTML development training at school, through the remote education system from Tomsk University. From school, I liked technical sciences, including various programming languages that I studied: Pascal, HTML, CSS, JS, C++, Kotlin. At the end of my schooling, I created a website for my school.
+                    </p><p>
+                    I graduated from high school in 2009 and enrolled in SibSAU to study information security. During my studies, I had to learn a bit of C++ programming, but I haven't programmed in this language since. While I was in college, I occasionally worked as an HTML developer (creating simple websites).
+                    </p><p>
+                    At the end of 2022, I started studying to become an Android developer, hoping that after completing my studies, I would be able to switch my career to a technical field. In the summer of 2023, I completed my studies as an Android developer, but unfortunately, finding a job in this field has been extremely challenging.
                 </p>
             </selection>
+
+            <selection class="contacts" id="contacts">
+                <h2>
+                    Contacts:
+                </h2>
+                <ul>
+                    <li>
+                    E-mail: <a href="mailto:RostN91@mail.ru">Rostn91@mail.ru</a>
+                </li>
+                <li>
+                    Telegram: <a href="https://t.me/aremill_crauze">@Aremill_Crauze</a> 
+                </li>
+                </ul>
+                
+            </selection>
+
+            <selection class="skills" id="skills">
+                <h2>Skils:</h2>
+                <ul>
+                    <li>
+                        Photoshop
+                    </li>
+                    <li>
+                        HTML
+                    </li>
+                    <li>
+                        Kotlin (Android)
+                    </li>
+                    <li>
+                        Git/GitHub
+                    </li>
+                </ul>
+            </selection>
+
+            <selection class="Courses" id="Courses">
+                <h2>
+                    Courses:
+                </h2>
+                <ul>
+                    <li>
+                        Tomsk University (Photoshop, HTML, CSS, JS)
+                    </li>
+                    <li>
+                        Android Developer (Skillbox)
+                    </li>
+                </ul>
+            </selection>
+
+            <selection class="Languages" id="Languages">
+                <h2>
+                    Languages:
+                </h2>
+                <ul>
+                    <li>
+                        Russian - Native
+                    </li>
+                    <li>
+                        Ukranian - Intermediate
+                    </li>
+                    <li>
+                        English - Intermediate
+                    </li>
+                </ul>
+
+            </selection>
+
+            </div>
+                        
         </main> 
         
         <!-- Низ -->
+         <footer class="footer">
+            <a href="https://github.com/RostN" target="_blank">My GitHub</a>
+            <p>2026</p>
+            <a href="https://rs.school/courses/javascript-preschool-ru" target="_blank">
+                <img src="img/rs_school_js.svg" width="90" alt="RS school">
+            </a>
+         </footer>
     </body>
 </html>
