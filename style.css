@@ -1,6 +1,21 @@
 /* Основная */
 :root {
-    background-color: #e6e6e6;
+   background: linear-gradient(
+    45deg,
+    rgba(146, 228, 111, 0.6) 0%,
+    rgba(72, 108, 191, 0.6) 50%,
+    rgba(177, 48, 169, 0.6) 100%
+  );
+  animation: gradientShift 5s ease infinite;
+
+  margin: 0;
+  padding: 0;
+  --bR: 25px;
+}
+@keyframes gradientShift {
+  0% {background-position: 0%; opacity: 0%;}
+  50% { background-position: 50%;  opacity: 50%;}
+  100% { background-position: 100%;  opacity: 100%; }
 }
 
 A {
@@ -11,20 +26,52 @@ A :visited {
   color: white;
 }
 
+.aHead:hover {
+  background: linear-gradient(
+    45deg,
+    rgba(210, 228, 111, 0.6) 0%,
+    rgba(72, 163, 191, 0.614) 50%,
+    rgba(177, 48, 48, 0.6) 100%
+  );
+  padding: 10px 10px;
+  margin: -10px -10px;
+  border-radius: 20px;
+}
+
+/* Основной блок*/
 .container {
-  display: grid;
-  grid-template-columns: 400px 2fr;
+  display: none;
+  grid-template-columns: 310px 2fr;
+  background-color: #2c323d;
 }
 
 p {
   text-indent: 3ch;
 }
 
+/* Блок с основным текстом */
+.right-side{
+  background-color: rgba(255,255,255,0.7);
+  border-top-left-radius: var(--bR);
+  border-top-right-radius: var(--bR);
+  border-bottom-left-radius: var(--bR);
+  padding: 0 20px;
+  margin-right: 5px;
+  text-align: justify; 
+}
+
 /* Левая сторона */
 .left-side {
   width: 80%;
   color: white;
-  background-color: #2c323d;
+}
+
+/*Фото*/
+.myPhoto{
+  width: 300px;
+  border-radius: 15px;
+  margin: 15px 5px;
+  padding: 0;
 }
 
 /* Верхнее меню */
@@ -34,6 +81,8 @@ header {
   background-color: #2c323d;
   line-height: 50px;
   text-align: center;
+  border-top-right-radius: var(--bR);
+  border-top-left-radius: var(--bR);
 }
 
 .nav_list {
@@ -54,6 +103,17 @@ header {
   color: white;
   text-align: center;
   background-color: #232831;
+}
+
+.svgImg {
+  stroke: white;
+  fill: white;
+  transform: translateY(10px);
+  margin-right: 5px;
+}
+
+.svgText {
+  transform: translateY(-10px);
 }
 
 /* Контакт */
