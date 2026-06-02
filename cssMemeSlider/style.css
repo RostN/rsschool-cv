@@ -1,0 +1,46 @@
+/* Общее */
+*{
+    margin: 0;
+    scroll-behavior: smooth;
+    overflow-x: hidden;
+}
+
+p{
+   font-size: 180%;
+}
+
+/* Свои цвета */
+:root{
+    --MainColor: rgb(44, 50, 61);
+}
+
+/* Голова */
+header {}
+
+/* Основное тело */
+main {}
+
+/* Футер\Низ */
+footer {
+    display: flex;
+    justify-content:space-between;
+    width: 100vw - 6vw;
+    height: 4rem;
+    padding: 0 3vw;
+    background-color: var(--MainColor);
+    align-items: center;
+    color: white;
+    text-align: center;
+    overflow-y: hidden;
+
+    /* Картинка Гитхаба + текст */
+    .svgText {
+        color: white;
+    }
+
+    /* Картинка Гитхаба */
+    .svgImg {
+        stroke: white;
+        fill: white;
+    }
+}
