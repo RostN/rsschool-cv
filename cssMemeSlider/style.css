@@ -8,6 +8,7 @@
 /* Свои цвета */
 :root{
     --MainColor: rgb(44, 50, 61);
+    --pointSize: 1.2em;
 }
 
 /* Голова */
@@ -31,7 +32,6 @@ main {
 
     /* Слайд */
     .slide {
-        border: 3px solid yellow;
         width: 100%;
     }
 
@@ -41,7 +41,7 @@ main {
     }
     .slide2{
         
-        background-color: gray;
+        background-color: pink;
     }
     .slide3{
         
@@ -66,23 +66,27 @@ main {
 
     /* Контейнер для точек управления (индикаторов) */
     .controls {
-        text-align: center; /* Размещаем точки по центру */
+        text-align: center;
     }
 
     /* Стиль для точек переключения */
     .controls label {
-        display: inline-block; /* Размещаем точки в строку */
-        width: 20px; /* Размер точки */
-        height: 20px;
-        background: gray; /* Серый цвет точки */
-        border-radius: 50%; /* Делаем точки круглыми */
-        margin: 5px; /* Добавляем небольшой отступ между ними */
-        cursor: pointer; /* Делаем курсор в виде руки при наведении */
+        display: inline-block;
+        width: var(--pointSize);
+        height: var(--pointSize);
+        background: gray;
+        border-radius: 50%;
+        margin: 0.26em;
+        cursor: pointer;
+
+        &:hover{
+            background: green;
+        }
     }
 
-    /* Меняем цвет активной точки при выборе слайда */
-    input:checked + label {
-        background: black;
+    /* Изменение цвета активной точки (не работает почему-то) */
+    input:checked + label{
+        background: red;
     }
 }
 
