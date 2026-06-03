@@ -5,10 +5,6 @@
     overflow-x: hidden;
 }
 
-p{
-   font-size: 180%;
-}
-
 /* Свои цвета */
 :root{
     --MainColor: rgb(44, 50, 61);
@@ -18,7 +14,74 @@ p{
 header {}
 
 /* Основное тело */
-main {}
+main {
+    /* Контейнер слайдера */
+    .slider {
+        width: 100%;
+        overflow: hidden;
+        position: relative;
+    }
+
+    /* Контейнер со слайдами */
+    .slides {
+        display: flex;
+        width: 300%;
+        transition: transform 0.5s ease-in-out; 
+    }
+
+    /* Слайд */
+    .slide {
+        width: 100%;
+        flex-shrink: 1;
+    }
+
+    .slide1{
+        background-color: aqua;
+    }
+    .slide2{
+        background-color: blueviolet;
+    }
+    .slide3{
+        background-color: brown;
+    }
+
+    /* Контроль размера картинки слайда */
+    .imgSlide{
+        /*height: 40%;
+        width: 300px;*/
+    }
+
+    /* Скрытие радиокнопок */
+    input[type="radio"] {
+        display: none;
+    }
+ 
+    /* Переключение слайдов при выборе радиокнопки */
+    #slide1:checked ~ .slides { transform: translateX(0%); }   /* Первый слайд */
+    #slide2:checked ~ .slides { transform: translateX(-30%); } /* Второй слайд */
+    #slide3:checked ~ .slides { transform: translateX(-60%); } /* Третий слайд */
+
+    /* Контейнер для точек управления (индикаторов) */
+    .controls {
+        text-align: center; /* Размещаем точки по центру */
+    }
+
+    /* Стиль для точек переключения */
+    .controls label {
+        display: inline-block; /* Размещаем точки в строку */
+        width: 20px; /* Размер точки */
+        height: 20px;
+        background: gray; /* Серый цвет точки */
+        border-radius: 50%; /* Делаем точки круглыми */
+        margin: 5px; /* Добавляем небольшой отступ между ними */
+        cursor: pointer; /* Делаем курсор в виде руки при наведении */
+    }
+
+    /* Меняем цвет активной точки при выборе слайда */
+    input:checked + label {
+        background: black;
+    }
+}
 
 /* Футер\Низ */
 footer {
@@ -32,6 +95,11 @@ footer {
     color: white;
     text-align: center;
     overflow-y: hidden;
+
+    /* Шрифт года */
+    p{
+        font-size: 180%;
+    }
 
     /* Картинка Гитхаба + текст */
     .svgText {
