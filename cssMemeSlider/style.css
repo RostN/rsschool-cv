@@ -5,26 +5,34 @@
     overflow-x: hidden;
 }
 
-/* Свои цвета */
+/* Свои цвета и переменные */
 :root{
+    /* Цвета */
     --MainColor: rgb(44, 50, 61);
+    --MainColorLight: rgb(70, 80, 97);
+
+    /* Переменные */
     --pointSize: 1.2em;
 }
 
 /* Голова */
-header {}
+/* header {} */
 
 /* Основное тело */
 main {
+    background-color: var(--MainColorLight);
+    height: calc(100vh - 4rem);
+
     /* Контейнер слайдера */
     .slider {
+        margin-top: 1%;
         width: 100vw;
         overflow: hidden;
     }
 
     /* Контейнер со слайдами */
     .slides {
-        height: 300px;
+        height: 100%;
         display: flex;
         width: 300%;
         transition: transform 0.5s ease-in-out; 
@@ -32,26 +40,16 @@ main {
 
     /* Слайд */
     .slide {
+        overflow-y: hidden;
         width: 100%;
-    }
-
-    .slide1{
-        background-color: aqua;
-        
-    }
-    .slide2{
-        
-        background-color: pink;
-    }
-    .slide3{
-        
-        background-color: brown;
+        text-align: center;
     }
 
     /* Контроль размера картинки слайда */
     .imgSlide{
-        /*height: 40%;
-        width: 300px;*/
+        max-width: 70vw;
+        max-height: 70vh;
+        border-radius: 1em ;
     }
 
     /* Скрытие радиокнопок */
@@ -72,12 +70,14 @@ main {
     /* Стиль для точек переключения */
     .controls label {
         display: inline-block;
+        cursor: pointer;
         width: var(--pointSize);
         height: var(--pointSize);
-        background: gray;
+        background: lightgray;
         border-radius: 50%;
-        margin: 0.26em;
-        cursor: pointer;
+        margin: 0.5em;
+        margin-top: 2em;
+        margin-bottom: 2em;
 
         &:hover{
             background: green;
@@ -85,7 +85,7 @@ main {
     }
 
     /* Изменение цвета активной точки (не работает почему-то) */
-    input:checked + label{
+    input:checked + label {
         background: red;
     }
 }
