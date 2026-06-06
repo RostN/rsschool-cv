@@ -6,10 +6,11 @@
 }
 
 /* Свои цвета и переменные */
-:root{
+:root {
     /* Цвета */
     --MainColor: rgb(44, 50, 61);
     --MainColorLight: rgb(70, 80, 97);
+    --ChekedPoint: rgb(255, 0, 0);
 
     /* Переменные */
     --pointSize: 1.2em;
@@ -32,19 +33,21 @@ main {
 
     /* Контейнер со слайдами */
     .slides {
-        max-height: 70vh;
+        overflow-y: hidden;        
         display: flex;
         width: 300%;
+        color: white;
         transition: transform 0.5s ease-in-out; 
     }
 
     /* Слайд */
     .slide {
-        overflow-y: hidden;
         width: 100%;
+        height: 100%;
         align-self: center;
         text-align: center;
-    }
+        justify-items: center;
+    } 
 
     /* Контроль размера картинки слайда */
     .imgSlide{
@@ -54,11 +57,23 @@ main {
         border-radius: 1em ;
     }
 
-    /* Скрытие радиокнопок */
-    input[type="radio"] {
-        display: none;
+    .slideText{
+        font-size: 1.5em;
+        margin-top: 0.2rem;
+        width: 70vw;
+        text-align: left;
     }
  
+    /* Скрытие радиокнопок */
+    input {
+        display: none;
+    }
+
+    /* Изменение цвета активной точки (не работает почему-то) */
+    #slide1:checked ~ .controls .slideP1{background: var(--ChekedPoint);}
+    #slide2:checked ~ .controls .slideP2{background: var(--ChekedPoint);}
+    #slide3:checked ~ .controls .slideP3{background: var(--ChekedPoint);}
+
     /* Переключение слайдов при выборе радиокнопки */
     #slide1:checked ~ .slides { transform: translateX(0%);}
     #slide2:checked ~ .slides { transform: translateX(calc(-100%/3));}
@@ -71,24 +86,19 @@ main {
 
     /* Стиль для точек переключения */
     .controls label {
-        display: inline-block;
+        display: inline-flex;
         cursor: pointer;
         width: var(--pointSize);
         height: var(--pointSize);
-        background: lightgray;
+        background-color: rgba(211, 211, 211, 0.6);
         border-radius: 50%;
         margin: 0.5em;
-        margin-top: 2em;
-        margin-bottom: 2em;
-
+        margin-top: 1em;
+        margin-bottom: 1em;
+        
         &:hover{
-            background: green;
+            background: white;
         }
-    }
-
-    /* Изменение цвета активной точки (не работает почему-то) */
-    input:checked + label {
-        background: red;
     }
 }
 
