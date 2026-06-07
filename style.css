@@ -26,6 +26,8 @@
 }
 
 /* Анимация заднего фона*/
+/*
+*/
 @keyframes BackgroundGradient {
   0% {background-position: 0% 50%;}
   50% {background-position: 100% 50%;}
@@ -150,4 +152,14 @@ header {
 .contacts a:visited{
   color: black;
   text-decoration: none;
+}
+
+/* Формат ссылок в проекте*/
+.projects a{
+  color: black;
+}
+
+/* Картинка ссылки*/
+.linkImg{
+  width: 0.7em;
 }
