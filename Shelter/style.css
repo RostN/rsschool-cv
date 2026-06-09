@@ -1,13 +1,38 @@
 /* Общее */
 *{
+        font-family: Georgia;
+
     scroll-behavior: smooth;
     /*scrollbar-width: none;*/
+    margin: 0 auto;
 }
 
-/* Свои цвета */
+/* Свои цвета и переменные */
 :root{
-    --MainColor: rgb(44, 50, 61);
+    /* Цвета */
+    --footerGradientColor: linear-gradient(90deg, #513D2F, #1A1A1C);
+    --color-light-xl: #FFFFFF;
+    --color-primary: #F1CDB3;
+
+    /* Переменные */
     --maxHeight: calc(100vh - 110px);
+}
+
+/* Шрифты */
+h3 {
+    color: var(--color-light-xl);
+    font-size: 35px;
+    font-weight: 400;
+    line-height: 130%;
+    letter-spacing: 6%;
+    
+}
+
+h4 {
+    font-size: 20px;
+    font-weight: 400;
+    line-height: 115%;
+    letter-spacing: 6%;
 }
 
 /*Сокрытие ненужных элементов*/
@@ -24,27 +49,104 @@ main {}
 
 /* Футер\Низ */
 footer {
-    margin-top: 7px;
-    background-color: var(--MainColor);
-    display: grid;
-    grid-template-columns: 1fr 1fr 1fr;
-    align-items: center;
-    padding: 20px 60px 20px 60px;
-    color: white;
-    text-align: center;
-    border-bottom-right-radius: 20px;
+    display: flex;
+    height: 350px;
+    max-width: 1280px;
+    min-width: 1280px;
+    background: url(img/footer-background.svg);
+    background-image: var(--footerGradientColor);
+    
+    .footer-content{
+        display: inline-flex;
+        min-width: 1200px;
+        max-width: 1200px;
+        height: 310px;
+        align-self: flex-end;
+        color: var(--color-primary);
 
-    /* Картинка Гитхаба + текст */
-    .svgText {
-        transform: translateY(-10px);
-        color: white;
-    }
+        .footer-contacts{
+            min-width: 278px;
+            max-width: 278px;
+            height: 234px;
+            margin-top: 16px;
+            display: flex;
+            flex-direction: column;
 
-    /* Картинка Гитхаба */
-    .svgImg {
-        stroke: white;
-        fill: white;
-        transform: translateY(10px);
-        margin-right: 5px;
+            .footer-contacts-title{
+                width: 278px;
+                height: 90px;
+                h3{
+                    font-size: 34.98px;
+                }
+            }
+
+            .footer-contacts-mail {
+                display: flex;
+                height: 32px;
+                width: 100%;
+                margin-top: 40px;
+            }
+                        
+            .footer-contacts-phone{
+                display: flex;
+                width: 100%;
+                height: 32px;
+                margin-top: 40px;
+            }
+
+            .footer-contacts-img{
+                width: 40px;
+                height: 32px;
+            }
+
+            .footer-contacts-text{
+                width: 100%;
+                height: 32px;
+                margin-left: 20px;
+                align-content: center;
+            }
+        }
+
+        /* Блок с локацией */
+        .footer-locations{
+            display: flex;
+            flex-direction: column;
+            min-width: 302px;
+            max-width: 302px;
+            height: 234px;
+            margin-top: 16px;
+            
+            /* Футер локация Бостон */
+            .footer-locations-boston{
+                height: 46px;
+                margin-top: 34px;
+                min-width: 302px;
+                max-width: 302px;
+                display: flex;
+            }
+
+            /* Футер локация Лондон */
+            .footer-locations-london{
+                height: 32px;
+                margin-top: 32px;
+                min-width: 302px;
+                max-width: 302px;
+                display: flex;
+            }
+
+            /* Картинка локации футера */
+            .footer-locations-img{
+                width: 22px;
+                height: 32px;
+            }
+
+            /* Текст локации футера */
+            .footer-locations-text{
+                margin-left: 20px;
+                align-content: center;
+                height: 32px;
+                width: 100%;
+            }
+        }
     }
 }
