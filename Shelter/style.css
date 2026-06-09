@@ -1,0 +1,50 @@
+/* Общее */
+*{
+    scroll-behavior: smooth;
+    /*scrollbar-width: none;*/
+}
+
+/* Свои цвета */
+:root{
+    --MainColor: rgb(44, 50, 61);
+    --maxHeight: calc(100vh - 110px);
+}
+
+/*Сокрытие ненужных элементов*/
+.hide {
+    display: none;
+    transition: 0.4s;
+}
+
+/* Голова */
+header {}
+
+/* Основное тело */
+main {}
+
+/* Футер\Низ */
+footer {
+    margin-top: 7px;
+    background-color: var(--MainColor);
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    align-items: center;
+    padding: 20px 60px 20px 60px;
+    color: white;
+    text-align: center;
+    border-bottom-right-radius: 20px;
+
+    /* Картинка Гитхаба + текст */
+    .svgText {
+        transform: translateY(-10px);
+        color: white;
+    }
+
+    /* Картинка Гитхаба */
+    .svgImg {
+        stroke: white;
+        fill: white;
+        transform: translateY(10px);
+        margin-right: 5px;
+    }
+}
