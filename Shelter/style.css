@@ -55,6 +55,54 @@ header {}
 
 /* Основное тело */
 main {
+    /* Блок Help*/
+    .help{
+        background: var(--color-light-xl);
+        min-width: 1280px;
+        max-width: 1280px;
+        height: 611px;
+
+        /* Контент блока Help */
+        .help-content{
+            margin-top: 80px;
+            min-width: 1200px;
+            max-width: 1200px;
+            height: 431px;
+
+            /* Заголовок */
+            .help-content-head{
+                width: 380px;
+                height: 90px;
+                text-align: center;
+            }
+
+            /* Поле со списком */
+            .help-content-list{
+                width: 1026px;
+                height: 281px;
+                margin-top: 60px;
+
+                /* Список */
+                .nav_list {
+                    height: 100%;
+                    margin: 0;
+                    padding: 0;                    
+                    list-style: none;
+                    display: flex;
+                    box-sizing: border-box;
+                    text-align: center;
+                    align-items: center;
+                    justify-content: space-between;
+                    flex-wrap: wrap;
+                }
+
+                /* Элемент списка */
+                .nav_item {
+                    width: calc(1026px/5);
+                }
+            }
+        }
+    }
 
     /* Блок Donation */
     .donation{        
@@ -70,16 +118,19 @@ main {
             height: 282px;
             margin-top: 80px;
 
+            /* Тектовое поле блока Donation */
             .donation-content-text{
                 width: 380px;
                 height: 282px;
 
+                /* Заголовок */
                 .donation-content-text-head1{
                     margin: 0;
                     width: 300px;
                     height: 90px;
                 }
 
+                /* Подзаголовок */
                 .donation-content-text-head2{
                     width: 308px; 
                     height: 17px;
@@ -87,6 +138,7 @@ main {
                     margin-top: 20px;
                 }
                 
+                /* Блок карты */
                 .donation-content-cart{
                     display: flex;
                     margin: 0;
@@ -97,17 +149,20 @@ main {
                     background: var(--color-primary);
                     align-items: center;
 
+                    /* Картинка с картой */
                     .donation-content-cart-img{
                         width: 30px;
                         height: 23px;
                         margin-inline: 15px;
                     }
 
+                    /* Номер карты */
                     .donation-content-cart-text{
                        width: 100%;
                     }
                 }
 
+                /* Текст после номера карты */
                 .donation-content-text-after-cart{
                     margin-top: 20px;
                     font-family: Arial, sans-serif;
@@ -130,10 +185,12 @@ footer {
     background: url(img/footer-background.svg);
     background-image: var(--footerGradientColor);
     
+    /* Исключитльный цвет для заголовка*/
     h3{
         color: var(--color-light-xl);
     }
     
+    /* Блок контента футера */
     .footer-content{
         display: inline-flex;
         min-width: 1200px;
@@ -142,6 +199,7 @@ footer {
         align-self: flex-end;
         color: var(--color-primary);
 
+        /* Блок контактов в футере */
         .footer-contacts{
             min-width: 278px;
             max-width: 278px;
