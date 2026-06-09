@@ -12,7 +12,10 @@
     /* Цвета */
     --footerGradientColor: linear-gradient(90deg, #513D2F, #1A1A1C);
     --color-light-xl: #FFFFFF;
+    --color-light-l: #F6F6F6;
     --color-primary: #F1CDB3;
+    --color-dark-l: #545454;
+    --color-dark-m: #B2B2B2;
 
     /* Переменные */
     --maxHeight: calc(100vh - 110px);
@@ -20,18 +23,24 @@
 
 /* Шрифты */
 h3 {
-    color: var(--color-light-xl);
     font-size: 35px;
     font-weight: 400;
     line-height: 130%;
     letter-spacing: 6%;
-    
+    color: var(--color-dark-l);
 }
 
 h4 {
     font-size: 20px;
     font-weight: 400;
     line-height: 115%;
+    letter-spacing: 6%;
+}
+
+h5 {
+    font-size: 15px;
+    font-weight: 400;
+    line-height: 110%;
     letter-spacing: 6%;
 }
 
@@ -45,7 +54,72 @@ h4 {
 header {}
 
 /* Основное тело */
-main {}
+main {
+
+    /* Блок Donation */
+    .donation{        
+        display: flex;
+        background-color: var(--color-light-l);
+        min-width: 1280px;
+        max-width: 1280px;
+        height: 462px;
+
+        .donation-content{
+            display: flex;
+            width: 915px;
+            height: 282px;
+            margin-top: 80px;
+
+            .donation-content-text{
+                width: 380px;
+                height: 282px;
+
+                .donation-content-text-head1{
+                    margin: 0;
+                    width: 300px;
+                    height: 90px;
+                }
+
+                .donation-content-text-head2{
+                    width: 308px; 
+                    height: 17px;
+                    margin: 0;
+                    margin-top: 20px;
+                }
+                
+                .donation-content-cart{
+                    display: flex;
+                    margin: 0;
+                    margin-top: 20px;
+                    width: 349px;
+                    height: 43px;
+                    border-radius: 9px;
+                    background: var(--color-primary);
+                    align-items: center;
+
+                    .donation-content-cart-img{
+                        width: 30px;
+                        height: 23px;
+                        margin-inline: 15px;
+                    }
+
+                    .donation-content-cart-text{
+                       width: 100%;
+                    }
+                }
+
+                .donation-content-text-after-cart{
+                    margin-top: 20px;
+                    font-family: Arial, sans-serif;
+                    color: var(--color-dark-m);
+                    font-style: italic;
+                    font-size: 12px;
+                    line-height: 18px;
+                }
+            }
+        }
+    }
+}
 
 /* Футер\Низ */
 footer {
@@ -55,6 +129,10 @@ footer {
     min-width: 1280px;
     background: url(img/footer-background.svg);
     background-image: var(--footerGradientColor);
+    
+    h3{
+        color: var(--color-light-xl);
+    }
     
     .footer-content{
         display: inline-flex;
@@ -76,7 +154,7 @@ footer {
                 width: 278px;
                 height: 90px;
                 h3{
-                    font-size: 34.98px;
+                    font-size: 34.9px;
                 }
             }
 
