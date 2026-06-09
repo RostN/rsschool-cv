@@ -11,8 +11,10 @@
 :root{
     /* Цвета */
     --footerGradientColor: linear-gradient(90deg, #513D2F, #1A1A1C);
+    
     --color-light-xl: #FFFFFF;
     --color-light-l: #F6F6F6;
+    --color-light-s: #FAFAFA;
     --color-primary: #F1CDB3;
     --color-dark-l: #545454;
     --color-dark-m: #B2B2B2;
@@ -55,7 +57,106 @@ header {}
 
 /* Основное тело */
 main {
-    /* Блок Help*/
+    /* Блок Pets */
+    .pets{
+        display: flex;
+        background: var(--color-light-l);
+        min-width: 1280px;
+        max-width: 1280px;
+        height: 877px;
+
+        /* Контент блока Pets*/
+        .pets-content{
+            width: 1200px;
+            height: 697px;
+            margin-top: 80px;
+            text-align: center;
+
+            /* Заголовок блока Pets*/
+            .pets-content-head{
+                width: 400px;
+                height: 90px;
+                text-align: center;
+            }
+
+            /* Слайдер блока Pets */
+            .pets-content-slider{
+                height: 435px;
+                width: 1200px;
+                margin-top: 60px;
+                display: flex;
+                
+                /* Оболочка кнопки слайдера */
+                .pets-content-slider-arrow{
+                    border: 2px solid var(--color-primary);
+                    border-radius: 100px;
+                    height: 50px;
+                    width: 52px;
+                    align-self: center;
+                    align-content: center;
+                    box-sizing: border-box;
+                }
+
+                /* Сдвиг стрелки */
+                .arrow {
+                    transform: translateY(-3px);
+                }
+                
+                /* Поворот стрелки направо и сдвиг */
+                .arrow-rigth{
+                    transform: translateY(-3px) rotate(180deg);
+                }
+                
+                /* Данные в самом слайде */
+                .pets-content-slider-data{
+                    height: 100%;
+                    width: 100%;
+                    display: flex;
+                    margin-inline: 53px;
+                    justify-content: space-between;
+
+                    .pets-content-slider-data-cart{
+                        background: var(--color-light-s);
+                        width: 270px;
+                        height: 435px;
+                        margin: 0;
+                        padding: 0;
+                
+                        .pets-cart-text{
+                            margin-top: 30px;
+                            width: 100%;
+                            height: 23px;
+                        }
+
+                        .pets-cart-button{
+                            border: 2px solid var(--color-primary);
+                            background: none;
+                            width: 187px;
+                            height: 52px;
+                            margin-top: 30px;
+                            margin-bottom: 30px;
+                            border-radius: 100px;
+                        }
+                    }
+                }
+            }
+
+            /* кнопка под слайдером*/
+            .pets-button-under-slider{
+                border: 0;
+                width: 261px;
+                height: 52px;
+                margin-top: 60px;
+                border-radius: 100px;
+                background: var(--color-primary);
+                font-size: 17px;
+                line-height: 130%;
+                letter-spacing: 6%;
+            }
+        }
+    }
+
+    /* Блок Help */
     .help{
         background: var(--color-light-xl);
         min-width: 1280px;
