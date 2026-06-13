@@ -459,7 +459,8 @@ main {
 
             /* Прошлые страницы (неактивные) */
             .prev-page{
-                border: 2px solid var(--color-dark-s);   
+                border: 2px solid var(--color-dark-s);
+                color: var(--color-dark-s);
             }
 
             /* Следующие страницы */
