@@ -17,6 +17,7 @@
     --color-light-l: #F6F6F6;
     --color-light-s: #FAFAFA;
     --color-primary: #F1CDB3;
+    --color-primary-light: #FDDCC4;
     --color-dark-s: #CDCDCD;
     --color-dark-l: #545454;
     --color-dark-m: #B2B2B2;
@@ -57,6 +58,15 @@ h5 {
     letter-spacing: 6%;
 }
 
+button:hover{
+    background: var(--color-primary-light) !important;
+}
+
+a{
+    all: unset;
+    cursor: pointer;
+}
+
 /*Сокрытие ненужных элементов*/
 .hide {
     display: none;
@@ -82,8 +92,7 @@ header {
         color: var(--color-primary);
         box-sizing: border-box;
         padding: 0;
-        margin: 0;
-        
+        margin: 0;        
 
         /* Заголовок */
         .header-logo-title{
@@ -126,8 +135,31 @@ header {
     }
 }
 
+/* Голова страницы OurPets */
+.our-pets-header{
+
+    /* Логотип */
+    .header-logo{
+        /* Логотип */
+        .header-logo-title{
+            color: var(--color-dark-l);
+        }
+
+        /* Подзаголовок логотипа */
+        .header-logo-text{
+            color: var(--color-dark-3xl);
+        }
+    }
+
+    /* Элементы навигации */
+    .header-nav{
+        color: var(--color-dark-l);
+    }
+}
+
 /* Основное тело */
 main {
+    /* Главная страница */
     /* Блок Start screen */
     .start-screen{
         min-width: 1280px;
@@ -254,7 +286,7 @@ main {
         max-width: 1280px;
         height: 877px;
 
-        /* Контент блока Pets*/
+        /* Контент блока Pets*/        
         .pets-content{
             width: 1200px;
             height: 697px;
@@ -270,10 +302,9 @@ main {
 
             /* Слайдер блока Pets */
             .pets-content-slider{
-                height: 435px;
-                width: 1200px;
-                margin-top: 60px;
                 display: flex;
+                height: 435px;
+                width: 1200px;              
                 
                 /* Оболочка кнопки слайдера */
                 .pets-content-slider-arrow{
@@ -301,9 +332,16 @@ main {
                     height: 100%;
                     width: 100%;
                     display: flex;
-                    margin-inline: 53px;
                     justify-content: space-between;
+                    align-items: center;
+                    flex-wrap: wrap;
 
+                    /* Отступ */
+                    .pets-content-slider-data-index{
+                        margin-inline: 53px;
+                    }
+
+                    /* Карточка с питомцем */
                     .pets-content-slider-data-cart{
                         background: var(--color-light-s);
                         width: 270px;
@@ -332,6 +370,11 @@ main {
                 }
             }
 
+            /* Отступ для стартовой страницы */
+            .pets-content-slider-index{
+                margin-top: 60px;
+            }
+            
             /* кнопка под слайдером*/
             .pets-button-under-slider{
                 border: 0;
@@ -345,9 +388,67 @@ main {
                 letter-spacing: 6%;
                 color: var(--color-dark-3xl);
             }
-        }
+        }     
     }
 
+    /* Страница Our Pets */
+    /* Блок pets страницы our pets */
+    .our-pets {
+        height: 1342px;
+        margin-top: 120px;
+        
+        /* Контент блока Pets */
+        .our-pets-content{
+            height: 1162px;
+            display: flex;
+            flex-direction: column;
+            flex-shrink: 0;
+            
+            /* Слайдер в Our Pets */
+            .our-pets-content-slider{
+                height: 930px;
+                margin-top: 45px;
+                flex-shrink: 0;
+            }
+            
+            /* Навигация */
+            .our-pets-content-nav{
+                margin-top: 45px;
+                width: 100%;
+                height: 100%;
+            }
+
+            /* Кнопки навигации */
+            /* Общая */
+            .nav-btn{
+                background-color: var(--color-light-l);
+                margin-inline: 10px;
+                height: 52px;
+                width: 52px;
+                border-radius: 100px;
+                box-sizing: border-box;
+                color: var(--color-dark-3xl);
+                cursor: pointer;
+            }
+
+            /* Кнопка с номером страницы */
+            .page-numb{
+                background: var(--color-primary);
+                border: 0;
+            }
+
+            /* Прошлые страницы (неактивные) */
+            .prev-page{
+                border: 2px solid var(--color-dark-s);   
+            }
+
+            /* Следующие страницы */
+            .next-page{
+                border: 2px solid var(--color-primary);
+            }
+        }
+    }    
+    
     /* Блок Help */
     .help{
         background: var(--color-light-xl);

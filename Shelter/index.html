@@ -12,7 +12,7 @@
     
     <!-- Голова --> 
     <header>
-      
+
       <!-- Логотип в заголовке -->
       <div class="header-logo">
         <div class="header-logo-title">Cozy House</div>
@@ -22,10 +22,10 @@
       <!-- Навигация в заголовке -->
       <div class="header-nav">
         <ul class="header-nav-list">
-          <li>About the shelter</li>
-          <li>Our pets</li>
-          <li>Help the shelter</li>
-          <li>Contacts</li>
+          <li><a href="#about">About the shelter</a></li>
+          <li><a href="#our-pets">Our pets</a></li>
+          <li><a href="#help">Help the shelter</a></li>
+          <li><a href="#footer">Contacts</a></li>
         </ul>
       </div>
 
@@ -59,7 +59,7 @@
       </div>
 
       <!-- Блок About -->
-      <div class="about">
+      <div class="about" id="about">
         <div class="about-content">
           
           <img src="img/about-pets.svg" alt="" class="about-content-img">
@@ -73,7 +73,7 @@
       </div>
       
       <!-- Блок Pets -->
-      <div class="pets">
+      <div class="pets" id="our-pets">
 
         <div class="pets-content">
 
@@ -81,7 +81,7 @@
           <div class="pets-content-head"><h3>Our friends who<br>are looking for a house</h3></div>
 
           <!-- Слайдер -->
-          <div class="pets-content-slider">
+          <div class="pets-content-slider pets-content-slider-index">
             
             <!-- Стрелка налево -->
             <div class="pets-content-slider-arrow">
@@ -89,7 +89,7 @@
             </div>
   
             <!-- Карточки с собаками -->
-            <div class="pets-content-slider-data">
+            <div class="pets-content-slider-data pets-content-slider-data-index">
               <div class="pets-content-slider-data-cart">
                 <img src="img/pets-katrine.svg" alt="">
                 <div class="pets-cart-text">Katrine</div>
@@ -118,14 +118,16 @@
           </div>
 
           <!-- Кнопка под слайдером -->
-          <button class="pets-button-under-slider">Get to know the rest</button>
+          <form action="pets.html">
+            <button class="pets-button-under-slider">Get to know the rest</button>
+          </form>
 
         </div>
 
       </div>
       
       <!-- Блок Help -->
-      <div class="help">
+      <div class="help" id="help">
         <div class="help-content">
           
           <!-- Заголовок -->
@@ -185,7 +187,7 @@
     </main>
 
     <!-- Низ -->
-    <footer>
+    <footer id="footer">
       <div class="footer-content">
 
         <!-- Блок с контактами -->
