@@ -22,8 +22,8 @@
       <!-- Навигация в заголовке -->
       <div class="header-nav">
         <ul class="header-nav-list">
-          <li><a href="#about">About the shelter</a></li>
-          <li><a href="#our-pets">Our pets</a></li>
+          <li><a href="#about" class="chekedLink index-page">About the shelter</a></li>
+          <li><a href="pets.html">Our pets</a></li>
           <li><a href="#help">Help the shelter</a></li>
           <li><a href="#footer">Contacts</a></li>
         </ul>
@@ -49,8 +49,9 @@
               We offer to give a chance to a little and nice puppy with an extremely wide and open heart. He or she will love you more than anybody else in the world, you will see!
             </div>
 
-            <button class="start-screen-content-text-button">Make a friend</button>
-          </div>
+            <form action="#our-pets">
+              <button class="start-screen-content-text-button">Make a friend</button>          </div>
+            </form>
 
           <!-- Изображение собаки -->
           <img src="img/start-screen-puppy.svg" alt="" class="start-screen-content-img">
@@ -84,12 +85,13 @@
           <div class="pets-content-slider pets-content-slider-index">
             
             <!-- Стрелка налево -->
-            <div class="pets-content-slider-arrow">
+            <button class="pets-content-slider-arrow">
               <img src="img/Arrow.svg" alt="" class="arrow">
-            </div>
+            </button>
   
             <!-- Карточки с собаками -->
             <div class="pets-content-slider-data pets-content-slider-data-index">
+              
               <div class="pets-content-slider-data-cart">
                 <img src="img/pets-katrine.svg" alt="">
                 <div class="pets-cart-text">Katrine</div>
@@ -111,9 +113,9 @@
             </div>
 
             <!-- Стрелка вправо -->
-            <div class="pets-content-slider-arrow">
+            <button class="pets-content-slider-arrow">
               <img src="img/Arrow.svg" alt="" class="arrow-rigth">
-            </div>
+            </button>
 
           </div>
 
@@ -197,29 +199,33 @@
           </div>
 
           <!-- Почта -->
-          <div class="footer-contacts-mail">
-            <div class="footer-contacts-img">
-              <img src="img/icon-email.svg" alt="">
+          <a href="mailto:email@shelter.com">
+            <div class="footer-contacts-mail">
+              <div class="footer-contacts-img">
+                <img src="img/icon-email.svg" alt="">
+              </div>
+              <div class="footer-contacts-text">
+                <h4>
+                  email@shelter.com
+                </h4>
+              </div>
             </div>
-            <div class="footer-contacts-text">
-              <h4>
-                email@shelter.com
-              </h4>
-            </div>
-          </div>
+          </a>
 
           <!-- Телефон -->
-          <div class="footer-contacts-phone">
-            <div class="footer-contacts-img">
-              <img src="img/icon-phone.svg" alt="">
-            </div>
-            <div class="footer-contacts-text">
-              <h4>
-                +13 674 567 75 54
-              </h4>
+          <a href="tel:+136745677554">
+            <div class="footer-contacts-phone">
+              <div class="footer-contacts-img">
+                <img src="img/icon-phone.svg" alt="">
+              </div>
+              <div class="footer-contacts-text">
+                <h4>
+                  +13 674 567 75 54
+                </h4>
+              </div>
             </div>
           </div>
-        </div>
+          </a>
         
         <!-- Блок с локацией -->
         <div class="footer-locations">
@@ -228,29 +234,33 @@
           </div>
           
           <!-- Бостон -->
-          <div class="footer-locations-boston">
-            <div class="footer-locations-img">
-              <img src="img/icon-marker.svg" alt="">
+          <a href="https://maps.app.goo.gl/f1RLYVy4JUC5yHrG6" target="_blank">
+            <div class="footer-locations-boston">
+              <div class="footer-locations-img">
+                <img src="img/icon-marker.svg" alt="">
+              </div>
+              <div class="footer-locations-text">
+                <h4>
+                  1 Central Street, Boston <br> (entrance from the store)
+                </h4>
+              </div>
             </div>
-            <div class="footer-locations-text">
-              <h4>
-                1 Central Street, Boston <br> (entrance from the store)
-              </h4>
-            </div>
-          </div>
+          </a>
           
           <!-- Лондон -->
-          <div class="footer-locations-london">
-            <div class="footer-locations-img">
-              <img src="img/icon-marker.svg" alt="">
-            </div>
-            <div class="footer-locations-text">
-              <h4>
-                18 South Park, London
-              </h4>
+          <a href="https://maps.app.goo.gl/sE7t9uBdePo3GfaH6" target="_blank">
+            <div class="footer-locations-london">
+              <div class="footer-locations-img">
+                <img src="img/icon-marker.svg" alt="">
+              </div>
+              <div class="footer-locations-text">
+                <h4>
+                  18 South Park, London
+                </h4>
+              </div>
             </div>
           </div>
-        </div>
+          </a>
         
         <!-- Картинка собачки -->
         <img src="img/footer-puppy.svg" alt="">
