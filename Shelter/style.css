@@ -1,0 +1,707 @@
+/* Общее */
+*{
+    margin: 0 auto;
+    font-family: Georgia;
+    scroll-behavior: smooth;
+    scrollbar-width: none;
+}
+
+/* Свои цвета и переменные */
+:root{
+    /* Цвета */
+    --footerGradientColor: linear-gradient(90deg, #513D2F, #1A1A1C);
+    --startGradientColor: linear-gradient(135deg, #5B483A, #262425);
+
+    --color-light-s: #FAFAFA;
+    --color-light-l: #F6F6F6;
+    --color-light-xl: #FFFFFF;
+    --color-primary: #F1CDB3;
+    --color-primary-light: #FDDCC4;
+    --color-dark-s: #CDCDCD;
+    --color-dark-l: #545454;
+    --color-dark-m: #B2B2B2;
+    --color-dark-xl: #4C4C4C;
+    --color-dark-3xl: #292929;
+
+    /* Переменные */
+    /* --maxHeight: calc(100vh - 110px); */
+}
+
+/* Шрифты */
+h2{
+    font-size: 44px;
+    font-weight: 400;
+    line-height: 130%;
+    letter-spacing: 0%;
+}
+
+h3 {
+    font-size: 35px;
+    font-weight: 400;
+    line-height: 130%;
+    letter-spacing: 6%;
+    color: var(--color-dark-l);
+}
+
+h4, .h4 {
+    font-size: 20px;
+    font-weight: 400;
+    line-height: 115%;
+    letter-spacing: 6%;
+}
+
+h5 {
+    font-size: 15px;
+    font-weight: 400;
+    line-height: 110%;
+    letter-spacing: 6%;
+}
+
+/* Кнопки */
+button:not(.prev-page):hover{
+    background: var(--color-primary-light) !important;
+    border: 0 !important;
+}
+
+/* Ссылки */
+a{
+    all: unset;
+    cursor: pointer;
+}
+
+/* Открытая ссылка */
+.chekedLink{
+    text-decoration: underline;
+    text-decoration-color: var(--color-primary);
+    text-underline-offset: 8px;
+    cursor: default;
+}
+
+/*Сокрытие ненужных элементов*/
+.hide {
+    display: none;
+    transition: 0.4s;
+}
+
+/* Голова */
+header {
+    display: flex;
+    justify-self: center;
+    min-width: 1200px;
+    max-width: 1200px;
+    height: 60px;
+    position: absolute;
+    top: 30px;
+    align-items: center;
+    justify-content: space-between;
+
+    /* Логотип */
+    .header-logo{
+        width: 191px;
+        height: 100%;
+        color: var(--color-primary);
+        box-sizing: border-box;
+        padding: 0;
+        margin: 0;        
+
+        /* Заголовок */
+        .header-logo-title{
+            height: 35px;
+            width: 100%;
+            font-size: 32px;
+            line-height: 110%;
+            letter-spacing: 6%;
+            font-weight: 400;
+        }
+
+        /* Подзаголовок логотипа */
+        .header-logo-text{
+            color: var(--color-light-xl);
+            font-size: 13px;
+            letter-spacing: 10%;
+            font-family: Arial, sans-serif;
+            text-align: center;
+            margin-top: 10px;
+        }
+    }
+
+    .header-nav{
+        width: 443px;
+        height: 27px;
+        margin: 0;
+        color: var(--color-dark-s);
+
+        .header-nav-list{    
+            margin: 0;
+            padding: 0;        
+            list-style: none;
+            display: flex;
+            box-sizing: border-box;
+            text-align: center;
+            align-items: center;
+            justify-content: space-between;
+            flex-wrap: wrap;
+        }
+
+        /* Выделенная ссылка на основной странице */
+        .index-page{
+            color: var(--color-light-s);
+        }
+        
+        /* Выделенная ссылка на Pets странице */
+        .pets-page{
+            color: var(--color-dark-3xl);
+        }
+    }
+}
+
+/* Голова страницы OurPets */
+.our-pets-header{
+
+    /* Логотип */
+    .header-logo{
+        /* Логотип */
+        .header-logo-title{
+            color: var(--color-dark-l);
+        }
+
+        /* Подзаголовок логотипа */
+        .header-logo-text{
+            color: var(--color-dark-3xl);
+        }
+    }
+
+    /* Элементы навигации */
+    .header-nav{
+        color: var(--color-dark-l);
+    }
+}
+
+/* Основное тело */
+main {
+    /* Главная страница */
+    /* Блок Start screen */
+    .start-screen{
+        min-width: 1280px;
+        max-width: 1280px;
+        height: 908px;
+        background: var(--startGradientColor);
+        display: flex;
+
+        /* Контент Start screen */
+        .start-screen-content{
+            width: 1200px;
+            height: 728px;
+            margin-top: 180px;
+            display: flex;
+
+            /* Тектовое поле Start screen*/
+            .start-screen-content-text{
+                margin-top: 163px;
+                width: 460px;
+                height: 322px;
+
+                /* Заголовок */
+                .start-screen-content-text-head{
+                    width: 310px;
+                    height: 114px;
+                    margin: 0;
+                    color: var(--color-light-xl);
+                }
+
+                /* Параграф */
+                .start-screen-content-text-p{
+                    width: 460px;
+                    height: 72px;
+                    font-size: 15px;
+                    color: var(--color-dark-s);
+                    line-height: 160%;
+                    font-family: Arial, sans-serif;
+                    margin-top: 42px;
+                }
+                
+                /* Кнопка */
+                .start-screen-content-text-button{
+                    width: 207px;
+                    height: 52px;
+                    border-radius: 100px;
+                    background: var(--color-primary);
+                    margin-top: 42px;
+                    border: 0;
+                    font-size: 17px;
+                    letter-spacing: 6%;
+                    line-height: 130%;
+                    color: var(--color-dark-3xl);
+                }
+            }
+
+            /* Изображение Start screen */
+            .start-screen-content-img{
+                margin-left: 42px;
+            }
+        }
+    }
+
+    /* Блок About */
+    .about{
+        display: flex;
+        min-width: 1280px;
+        max-width: 1280px;
+        height: 588px;
+        background: var(--color-light-xl);
+
+        /* Контент About */
+        .about-content{
+            margin-top: 80px;
+            width: 1200px;
+            height: 408px;
+            display: flex;
+            align-items: center;
+
+            /* Картинка About */
+            .about-content-img{
+                margin-left: 175px;
+            }
+
+            /* Текстовое поле About */
+            .about-content-text{
+                width: 430px;
+                height: 380px;
+                margin-right: 175px;
+                color: var(--color-dark-xl);
+                font-size: 15px;
+                line-height: 160%;
+                letter-spacing: 0%;
+                
+                /* Заголовок в блоке About */
+                .about-content-text-head{
+                    width: 370px;
+                    height: 90px;
+                    color: var(--color-dark-l);
+                    margin: 0;
+                }
+
+                /* Первое параграф в тектовом поле About */
+                .about-content-text-p1{
+                    width: 100%;
+                    height: 96px;
+                    margin-top: 25px;
+                }
+                
+                /* Второй параграф в тектовом поле About */
+                .about-content-text-p2{
+                    height: 144px;
+                    width: 100%;
+                    margin-top: 25px;
+                }
+            }
+        }
+    }
+
+    /* Блок Pets */
+    .pets{
+        display: flex;
+        background: var(--color-light-l);
+        min-width: 1280px;
+        max-width: 1280px;
+        height: 877px;
+
+        /* Контент блока Pets*/        
+        .pets-content{
+            width: 1200px;
+            height: 697px;
+            margin-top: 80px;
+            text-align: center;
+
+            /* Заголовок блока Pets*/
+            .pets-content-head{
+                width: 400px;
+                height: 90px;
+                text-align: center;
+            }
+
+            /* Слайдер блока Pets */
+            .pets-content-slider{
+                display: flex;
+                height: 435px;
+                width: 1200px;              
+                
+                /* Оболочка кнопки слайдера */
+                .pets-content-slider-arrow{
+                    /* border: 2px solid var(--color-primary); */
+                    border: 2px solid var(--color-dark-s);
+                    border-radius: 100px;
+                    height: 50px;
+                    width: 52px;
+                    align-self: center;
+                    align-content: center;
+                    box-sizing: border-box;
+                }
+
+                /* Сдвиг стрелки */
+                .arrow {
+                    transform: translateY(-3px);
+                }
+                
+                /* Поворот стрелки направо и сдвиг */
+                .arrow-rigth{
+                    transform: translateY(-3px) rotate(180deg);
+                }
+                
+                /* Данные в самом слайде */
+                .pets-content-slider-data{
+                    height: 100%;
+                    width: 100%;
+                    display: flex;
+                    justify-content: space-between;
+                    align-items: center;
+                    flex-wrap: wrap;
+
+                    /* Отступ */
+                    .pets-content-slider-data-index{
+                        margin-inline: 53px;
+                    }
+
+                    /* Карточка с питомцем */
+                    .pets-content-slider-data-cart{
+                        cursor: pointer;
+                        background: var(--color-light-s);
+                        width: 270px;
+                        height: 435px;
+                        margin: 0;
+                        padding: 0;
+                
+                        .pets-cart-text{
+                            margin-top: 30px;
+                            width: 100%;
+                            height: 23px;
+                            color: var(--color-dark-l);
+                        }
+
+                        .pets-cart-button{
+                            border: 2px solid var(--color-primary);
+                            background: none;
+                            width: 187px;
+                            height: 52px;
+                            margin-top: 30px;
+                            margin-bottom: 30px;
+                            border-radius: 100px;
+                            color: var(--color-dark-3xl);
+                        }
+                    }
+                }
+            }
+
+            /* Отступ для стартовой страницы */
+            .pets-content-slider-index{
+                margin-top: 60px;
+            }
+            
+            /* кнопка под слайдером*/
+            .pets-button-under-slider{
+                border: 0;
+                width: 261px;
+                height: 52px;
+                margin-top: 60px;
+                border-radius: 100px;
+                background: var(--color-primary);
+                font-size: 17px;
+                line-height: 130%;
+                letter-spacing: 6%;
+                color: var(--color-dark-3xl);
+            }
+        }     
+    }
+
+    /* Страница Our Pets */
+    /* Блок pets страницы our pets */
+    .our-pets {
+        height: 1342px;
+        margin-top: 120px;
+        
+        /* Контент блока Pets */
+        .our-pets-content{
+            height: 1162px;
+            display: flex;
+            flex-direction: column;
+            flex-shrink: 0;
+            
+            /* Слайдер в Our Pets */
+            .our-pets-content-slider{
+                height: 930px;
+                margin-top: 45px;
+                flex-shrink: 0;
+            }
+            
+            /* Навигация */
+            .our-pets-content-nav{
+                margin-top: 45px;
+                width: 100%;
+                height: 100%;
+            }
+
+            /* Кнопки навигации */
+            /* Общая */
+            .nav-btn{
+                background-color: var(--color-light-l);
+                margin-inline: 10px;
+                height: 52px;
+                width: 52px;
+                border-radius: 100px;
+                box-sizing: border-box;
+                color: var(--color-dark-3xl);
+                cursor: pointer;
+            }
+
+            /* Кнопка с номером страницы */
+            .page-numb{
+                background: var(--color-primary);
+                border: 0;
+            }
+
+            /* Прошлые страницы (неактивные) */
+            .prev-page{
+                border: 2px solid var(--color-dark-s);
+                color: var(--color-dark-s);
+            }
+
+            /* Следующие страницы */
+            .next-page{
+                border: 2px solid var(--color-primary);
+            }
+        }
+    }    
+    
+    /* Блок Help */
+    .help{
+        background: var(--color-light-xl);
+        min-width: 1280px;
+        max-width: 1280px;
+        height: 611px;
+        color: var(--color-dark-l);
+        display: flex;
+
+        /* Контент блока Help */
+        .help-content{
+            margin-top: 80px;
+            min-width: 1200px;
+            max-width: 1200px;
+            height: 431px;
+
+            /* Заголовок */
+            .help-content-head{
+                width: 380px;
+                height: 90px;
+                text-align: center;
+            }
+
+            /* Поле со списком */
+            .help-content-list{
+                width: 1026px;
+                height: 281px;
+                margin-top: 60px;
+
+                /* Список */
+                .nav_list {
+                    height: 100%;
+                    margin: 0;
+                    padding: 0;                    
+                    list-style: none;
+                    display: flex;
+                    box-sizing: border-box;
+                    text-align: center;
+                    align-items: center;
+                    justify-content: space-between;
+                    flex-wrap: wrap;
+                }
+
+                /* Элемент списка */
+                .nav_item {
+                    width: calc(1026px/5);
+                }
+            }
+        }
+    }
+
+    /* Блок Donation */
+    .donation{        
+        display: flex;
+        background-color: var(--color-light-l);
+        min-width: 1280px;
+        max-width: 1280px;
+        height: 462px;
+
+        .donation-content{
+            display: flex;
+            width: 915px;
+            height: 282px;
+            margin-top: 80px;
+
+            /* Тектовое поле блока Donation */
+            .donation-content-text{
+                width: 380px;
+                height: 282px;
+
+                /* Заголовок */
+                .donation-content-text-head1{
+                    margin: 0;
+                    width: 300px;
+                    height: 90px;
+                }
+
+                /* Подзаголовок */
+                .donation-content-text-head2{
+                    width: 308px; 
+                    height: 17px;
+                    margin: 0;
+                    margin-top: 20px;
+                }
+                
+                /* Блок карты */
+                .donation-content-cart{
+                    display: flex;
+                    margin: 0;
+                    margin-top: 20px;
+                    width: 349px;
+                    height: 43px;
+                    border-radius: 9px;
+                    background: var(--color-primary);
+                    align-items: center;
+
+                    /* Картинка с картой */
+                    .donation-content-cart-img{
+                        width: 30px;
+                        height: 23px;
+                        margin-inline: 15px;
+                    }
+
+                    /* Номер карты */
+                    .donation-content-cart-text{
+                       width: 100%;
+                    }
+                }
+
+                /* Текст после номера карты */
+                .donation-content-text-after-cart{
+                    margin-top: 20px;
+                    font-family: Arial, sans-serif;
+                    color: var(--color-dark-m);
+                    font-style: italic;
+                    font-size: 12px;
+                    line-height: 18px;
+                }
+            }
+        }
+    }
+}
+
+/* Футер\Низ */
+footer {
+    display: flex;
+    height: 350px;
+    max-width: 1280px;
+    min-width: 1280px;
+    background: url(img/footer-background.svg);
+    background-image: var(--footerGradientColor);
+    
+    /* Исключитльный цвет для заголовка*/
+    h3{
+        color: var(--color-light-xl);
+    }
+    
+    /* Блок контента футера */
+    .footer-content{
+        display: inline-flex;
+        min-width: 1200px;
+        max-width: 1200px;
+        height: 310px;
+        align-self: flex-end;
+        color: var(--color-primary);
+
+        /* Блок контактов в футере */
+        .footer-contacts{
+            min-width: 278px;
+            max-width: 278px;
+            height: 234px;
+            margin-top: 16px;
+            display: flex;
+            flex-direction: column;
+
+            .footer-contacts-title{
+                width: 278px;
+                height: 90px;
+                h3{
+                    font-size: 34.9px;
+                }
+            }
+
+            .footer-contacts-mail {
+                display: flex;
+                height: 32px;
+                width: 100%;
+                margin-top: 40px;
+            }
+                        
+            .footer-contacts-phone{
+                display: flex;
+                width: 100%;
+                height: 32px;
+                margin-top: 40px;
+            }
+
+            .footer-contacts-img{
+                width: 40px;
+                height: 32px;
+            }
+
+            .footer-contacts-text{
+                width: 100%;
+                height: 32px;
+                margin-left: 20px;
+                align-content: center;
+            }
+        }
+
+        /* Блок с локацией */
+        .footer-locations{
+            display: flex;
+            flex-direction: column;
+            min-width: 302px;
+            max-width: 302px;
+            height: 234px;
+            margin-top: 16px;
+            
+            /* Футер локация Бостон */
+            .footer-locations-boston{
+                height: 46px;
+                margin-top: 34px;
+                min-width: 302px;
+                max-width: 302px;
+                display: flex;
+            }
+
+            /* Футер локация Лондон */
+            .footer-locations-london{
+                height: 32px;
+                margin-top: 32px;
+                min-width: 302px;
+                max-width: 302px;
+                display: flex;
+            }
+
+            /* Картинка локации футера */
+            .footer-locations-img{
+                width: 22px;
+                height: 32px;
+            }
+
+            /* Текст локации футера */
+            .footer-locations-text{
+                margin-left: 20px;
+                align-content: center;
+                height: 32px;
+                width: 100%;
+            }
+        }
+    }
+}
