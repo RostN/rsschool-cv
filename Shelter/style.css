@@ -364,6 +364,7 @@ main {
 
                     /* Карточка с питомцем */
                     .pets-content-slider-data-cart{
+                        cursor: pointer;
                         background: var(--color-light-s);
                         width: 270px;
                         height: 435px;
