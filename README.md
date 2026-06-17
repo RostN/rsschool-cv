@@ -3,3 +3,4 @@ html: https://RostN.github.io/rsschool-cv/
 
 Projects:
 *  cssMemeSlider: https://RostN.github.io/rsschool-cv/cssMemeSlider  
+*  Shelter: [https://RostN.github.io/rsschool-cv/cssMemeSlider](https://RostN.github.io/rsschool-cv/Shelter)
