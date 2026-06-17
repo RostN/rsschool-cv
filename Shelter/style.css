@@ -1062,50 +1062,21 @@ footer {
         
         /* Блок Help */
         .help{
-            border: 1px solid red;
             min-width: 768px;
             max-width: 100vw;
-            height: 611px;
-            display: none;
+            height: 779px;
 
             /* Контент блока Help */
             .help-content{
-                margin-top: 80px;
-                min-width: 1200px;
-                max-width: 1200px;
-                height: 431px;
-
-                /* Заголовок */
-                .help-content-head{
-                    width: 380px;
-                    height: 90px;
-                    text-align: center;
-                }
+                min-width: 381px;
+                width: 100%;
+                height: calc(100% - 180px);
+                margin: 80px 69px 100px 69px;
 
                 /* Поле со списком */
                 .help-content-list{
-                    width: 1026px;
-                    height: 281px;
-                    margin-top: 60px;
-
-                    /* Список */
-                    .nav_list {
-                        height: 100%;
-                        margin: 0;
-                        padding: 0;                    
-                        list-style: none;
-                        display: flex;
-                        box-sizing: border-box;
-                        text-align: center;
-                        align-items: center;
-                        justify-content: space-between;
-                        flex-wrap: wrap;
-                    }
-
-                    /* Элемент списка */
-                    .nav_item {
-                        width: calc(1026px/5);
-                    }
+                    width: 100%;
+                    height: 449px;
                 }
             }
         }
