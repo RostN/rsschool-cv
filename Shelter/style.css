@@ -621,8 +621,8 @@ main {
 footer {
     display: flex;
     height: 350px;
-    max-width: 100vw;
-    min-width: 1280px;
+    /* max-width: 100vw; */
+    max-width: 1280px;
     background: url(img/footer-background.svg);
     background-image: var(--footerGradientColor);
     
@@ -634,7 +634,6 @@ footer {
     /* Блок контента футера */
     .footer-content{
         display: inline-flex;
-        min-width: 1200px;
         max-width: 1200px;
         height: 310px;
         align-self: flex-end;
@@ -868,135 +867,46 @@ footer {
 
         /* Блок Pets */
         .pets{
-            display: flex;
-            display: none;
-            background: var(--color-light-l);
-            min-width: 1280px;
-            max-width: 100vw;
+            min-width: 100%;
+            max-width: 768px;
             height: 877px;
 
             /* Контент блока Pets*/        
             .pets-content{
-                width: 1200px;
+                max-width: 708px;
                 height: 697px;
-                margin-top: 80px;
-                text-align: center;
-
-                /* Заголовок блока Pets*/
-                .pets-content-head{
-                    width: 400px;
-                    height: 90px;
-                    text-align: center;
-                }
+                width: 100%;
+                margin: 80px 30px 100px 30px;
 
                 /* Слайдер блока Pets */
                 .pets-content-slider{
-                    display: flex;
-                    height: 435px;
-                    width: 1200px;              
-                    
+                    flex-shrink: 0;
+                    width: 100%;
+                    max-width: 708px;
+
                     /* Оболочка кнопки слайдера */
                     .pets-content-slider-arrow{
-                        /* border: 2px solid var(--color-primary); */
-                        border: 2px solid var(--color-dark-s);
-                        border-radius: 100px;
-                        height: 50px;
-                        width: 52px;
-                        align-self: center;
-                        align-content: center;
-                        box-sizing: border-box;
-                        margin-inline: calc(53px/2);
-                    }
-
-                    /* Сдвиг стрелки */
-                    .arrow {
-                        transform: translateY(-3px);
-                    }
-                    
-                    /* Поворот стрелки направо и сдвиг */
-                    .arrow-rigth{
-                        transform: translateY(-3px) rotate(180deg);
+                        margin-inline: calc(12px/2);
+                        flex-shrink: 0; 
                     }
                     
                     /* Данные в самом слайде */
                     .pets-content-slider-data{
                         height: 100%;
                         width: 100%;
-                        display: flex;
-                        justify-content: space-between;
-                        align-items: center;
-                        flex-wrap: wrap;
+                        max-width: 580px;
+                        flex-wrap: nowrap;
 
                         /* Отступ */
                         .pets-content-slider-data-index{
-                            margin-inline: 53px;
+                            margin-inline: 12px;/
                         }
 
                         /* Карточка с питомцем */
                         .pets-content-slider-data-cart{
-                            cursor: pointer;
-                            background: var(--color-light-s);
-                            width: 270px;
-                            height: 435px;
-                            border-radius: 9px;
-                            margin: 0;
-                            padding: 0;
-                    
-                            /* Имя питомца в карточке */
-                            .pets-cart-text{
-                                margin-top: 30px;
-                                width: 100%;
-                                height: 23px;
-                                color: var(--color-dark-l);
-                            }
-                            
-                            /* Кнопка на карточке питомца */
-                            .pets-cart-button{
-                                border: 2px solid var(--color-primary);
-                                background: none;
-                                width: 187px;
-                                height: 52px;
-                                margin-top: 30px;
-                                margin-bottom: 30px;
-                                border-radius: 100px;
-                                color: var(--color-dark-3xl);
-                            }
-                        }
-
-                        /* Ховер для карточки питамца */
-                        .pets-content-slider-data-cart:hover{
-                            background: var(--color-light-xl);
-                            box-shadow: 
-                            -5px -5px 50px var(--color-shadow),
-                            5px 5px 50px var(--color-shadow),
-                            -5px 5px 50px var(--color-shadow),
-                            5px -5px 50px var(--color-shadow);
-
-                            .pets-cart-button{
-                                background: var(--color-primary-light) !important;
-                                border: 5px !important;
-                            }
+                            margin-right: 40px;
                         }
                     }
-                }
-
-                /* Отступ для стартовой страницы */
-                .pets-content-slider-index{
-                    margin-top: 60px;
-                }
-                
-                /* кнопка под слайдером*/
-                .pets-button-under-slider{
-                    border: 0;
-                    width: 261px;
-                    height: 52px;
-                    margin-top: 60px;
-                    border-radius: 100px;
-                    background: var(--color-primary);
-                    font-size: 17px;
-                    line-height: 130%;
-                    letter-spacing: 6%;
-                    color: var(--color-dark-3xl);
                 }
             }     
         }
@@ -1004,6 +914,7 @@ footer {
         /* Страница Our Pets */
         /* Блок pets страницы our pets */
         .our-pets {
+            display: none;
             height: 1342px;
             margin-top: 120px;
             
@@ -1062,8 +973,8 @@ footer {
         
         /* Блок Help */
         .help{
-            min-width: 768px;
-            max-width: 100vw;
+            min-width: 100%;
+            max-width: 768px;
             height: 779px;
 
             /* Контент блока Help */
@@ -1082,9 +993,9 @@ footer {
         }
 
         /* Блок Donation */
-        .donation{        
-            min-width: 768px;
-            max-width: 100vw;
+        .donation{
+            min-width: 100%;
+            max-width: 768px;
             height: 783px;
 
             .donation-content{
@@ -1103,29 +1014,33 @@ footer {
         }
     }
 
+    /* Футер */
     footer{
         max-width: 768px;
-        min-width: 768px;
+        min-width: 100%;
         height: 639px;
+        display: flex;
         flex-wrap: wrap;
         align-content: space-between; 
         
         /* Блок контента футера */
         .footer-content{
-            justify-content: space-between; 
             display: flex;
+            width: 100%;
+            margin: 30px 30px 0 30px;
+            box-sizing: border-box;
+            justify-content: space-between; 
             align-self: flex-start;
             max-width: 708px;
-            min-width: 708px;
             height: 234px;
-            margin-inline: 30px;
-            margin-top: 30px;
             
+            /* Футер - контакты */
             .footer-contacts{
                 margin: 0;
                 margin-left: 34px;
             }
 
+            /* Футер - локация */
             .footer-locations{
                 margin: 0;
                 margin-right: 34px;
