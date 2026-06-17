@@ -23,6 +23,9 @@
     --color-dark-xl: #4C4C4C;
     --color-dark-3xl: #292929;
 
+    /* Тень */
+    --color-shadow: rgba(106, 106, 106, 0.2);
+
     /* Переменные */
     /* --maxHeight: calc(100vh - 110px); */
 }
@@ -368,6 +371,7 @@ main {
                         background: var(--color-light-s);
                         width: 270px;
                         height: 435px;
+                        border-radius: 9px;
                         margin: 0;
                         padding: 0;
                 
@@ -388,6 +392,16 @@ main {
                             border-radius: 100px;
                             color: var(--color-dark-3xl);
                         }
+                    }
+
+                    /* Ховер для карточки питамца */
+                    .pets-content-slider-data-cart:hover{
+                        background: var(--color-light-xl);
+                        box-shadow: 
+                        -5px -5px 50px var(--color-shadow),
+                        5px 5px 50px var(--color-shadow),
+                        -5px 5px 50px var(--color-shadow),
+                        5px -5px 50px var(--color-shadow);
                     }
                 }
             }
