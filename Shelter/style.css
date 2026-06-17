@@ -897,6 +897,11 @@ footer {
                         max-width: 580px;
                         flex-wrap: nowrap;
 
+                        /* Скрытие лишней карты временно */
+                        .index-card-hide{
+                            display: none;
+                        }
+
                         /* Отступ */
                         .pets-content-slider-data-index{
                             margin-inline: 12px;/
@@ -904,7 +909,16 @@ footer {
 
                         /* Карточка с питомцем */
                         .pets-content-slider-data-cart{
-                            margin-right: 40px;
+                            margin-right: 40px;                           
+                        }
+
+                        /* Ховер (тень) для карточки питамца */
+                        .pets-content-slider-data-cart:hover{
+                            box-shadow: 
+                            -5px -5px 20px var(--color-shadow),
+                            5px 5px 20px var(--color-shadow),
+                            -5px 5px 20px var(--color-shadow),
+                            5px -5px 20px var(--color-shadow);
                         }
                     }
                 }
@@ -914,59 +928,34 @@ footer {
         /* Страница Our Pets */
         /* Блок pets страницы our pets */
         .our-pets {
-            display: none;
-            height: 1342px;
-            margin-top: 120px;
+            height: 1733px;
             
             /* Контент блока Pets */
             .our-pets-content{
-                height: 1162px;
-                display: flex;
-                flex-direction: column;
-                flex-shrink: 0;
-                
+                height: 1603px;
+                width: 100%;
+
                 /* Слайдер в Our Pets */
                 .our-pets-content-slider{
-                    height: 930px;
-                    margin-top: 45px;
-                    flex-shrink: 0;
-                }
-                
-                /* Навигация */
-                .our-pets-content-nav{
-                    margin-top: 45px;
                     width: 100%;
-                    height: 100%;
-                }
+                    height: 1365px;
+                    margin-top: 30px;
+                    flex-shrink: 0;
+                    
+                    /* Слайдер */
+                    .pets-content-slider-data{
+                        flex-wrap: wrap;
+                        max-width: 100%;
+                        justify-content: center;
+                        overflow-y: hidden;
+                        padding-top: 10px;
+                        padding-bottom: 10px;
 
-                /* Кнопки навигации */
-                /* Общая */
-                .nav-btn{
-                    background-color: var(--color-light-l);
-                    margin-inline: 10px;
-                    height: 52px;
-                    width: 52px;
-                    border-radius: 100px;
-                    box-sizing: border-box;
-                    color: var(--color-dark-3xl);
-                    cursor: pointer;
-                }
-
-                /* Кнопка с номером страницы */
-                .page-numb{
-                    background: var(--color-primary);
-                    border: 0;
-                }
-
-                /* Прошлые страницы (неактивные) */
-                .prev-page{
-                    border: 2px solid var(--color-dark-s);
-                    color: var(--color-dark-s);
-                }
-
-                /* Следующие страницы */
-                .next-page{
-                    border: 2px solid var(--color-primary);
+                        /* Карточка с питомцем */
+                        .pets-content-slider-data-cart{
+                            margin: 10px;
+                        }
+                    }
                 }
             }
         }    
