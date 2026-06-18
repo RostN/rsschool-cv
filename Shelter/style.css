@@ -810,57 +810,32 @@ footer {
 
         /* Блок About */
         .about{
-            display: flex;
-            display: none;
-            min-width: 1280px;
-            max-width: 100vw;
-            height: 588px;
-            background: var(--color-light-xl);
+            min-width: 100%;
+            max-width: 768px;
+            height: 1048px;
 
             /* Контент About */
             .about-content{
-                margin-top: 80px;
-                width: 1200px;
-                height: 408px;
-                display: flex;
-                align-items: center;
-
+                width: 100%;
+                height: 100%;
+                max-height: 868px;
+                max-width: 437px;
+                margin: 80px 165px 100px 165px;
+                flex-wrap: wrap;
+                align-content: space-between;
+                align-items: flex-start;
+                justify-content: center;
+                
                 /* Картинка About */
                 .about-content-img{
-                    margin-left: 175px;
+                    order: 1;
+                    margin: 0;
                 }
 
                 /* Текстовое поле About */
                 .about-content-text{
-                    width: 430px;
-                    height: 380px;
-                    margin-right: 175px;
-                    color: var(--color-dark-xl);
-                    font-size: 15px;
-                    line-height: 160%;
-                    letter-spacing: 0%;
-                    
-                    /* Заголовок в блоке About */
-                    .about-content-text-head{
-                        width: 370px;
-                        height: 90px;
-                        color: var(--color-dark-l);
-                        margin: 0;
-                    }
-
-                    /* Первое параграф в тектовом поле About */
-                    .about-content-text-p1{
-                        width: 100%;
-                        height: 96px;
-                        margin-top: 25px;
-                    }
-                    
-                    /* Второй параграф в тектовом поле About */
-                    .about-content-text-p2{
-                        height: 144px;
-                        width: 100%;
-                        margin-top: 25px;
-                    }
+                    margin-right: 0px;
+                    width: 100%;                    
                 }
             }
         }
