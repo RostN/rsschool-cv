@@ -1041,7 +1041,6 @@ footer {
             width: 100%;
             max-width: 320px;
             height: 823px;
-            display: none;
 
             /* Контент Start screen */
             .start-screen-content{
@@ -1098,7 +1097,6 @@ footer {
             width: 100%;
             min-width: 320px;
             height: 974px;
-            display: none;
 
             /* Контент About */
             .about-content{
