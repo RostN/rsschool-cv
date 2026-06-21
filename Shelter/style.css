@@ -80,6 +80,19 @@ a{
     cursor: default;
 }
 
+/* Бургер */
+.burger{
+    height: 30px;
+}
+
+.bar1, .bar2, .bar3 {
+    width: 22px;
+    height: 1px;
+    background-color: var(--color-primary);
+    margin: 9px 0px;
+    transition: 0.4s;
+}
+
 /*Сокрытие ненужных элементов*/
 .hide {
     display: none;
@@ -155,6 +168,11 @@ header {
         .pets-page{
             color: var(--color-dark-3xl);
         }
+    }
+
+    /* Бургер */
+    .burger {
+        display: none;
     }
 }
 
@@ -1074,9 +1092,10 @@ footer {
 
     /* Голова */
     header{
-        display: none;
-        min-width: 100%;
+        /* display: none; */
+        min-width: 260px;
         max-width: 708px;
+        width: 100%;        
         
         /* Заголовок */
         .header-logo{
@@ -1085,6 +1104,22 @@ footer {
 
         .header-nav{
             margin-right: 30px;
+            display: none;
+        }
+
+        .burger{
+            display: inline;
+            margin-right: 30px;
+        }
+    }
+
+    /* Голова страницы OurPets */
+    .our-pets-header{
+        /* Покраска бургера */
+        .burger{
+            .bar1, .bar2, .bar3{
+                background-color: black;
+            }
         }
     }
 
@@ -1157,6 +1192,7 @@ footer {
                 width: 100%;
                 height: 100%;
                 max-height: 890px;
+                min-width: 300px;
                 margin: 42px 10px 0px 10px;
                 
                 /* Картинка About */
@@ -1173,7 +1209,7 @@ footer {
                     
                     /* Заголовок в блоке About */
                     .about-content-text-head{
-                        width: 95%;
+                        width: 300px;
                         text-align: center;
                         justify-self: center;
                     }
