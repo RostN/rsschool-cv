@@ -526,7 +526,9 @@ main {
                 /* Список */
                 .nav_list {
                     height: 100%;
-                    width: 100%;
+                    width: calc(130px * 5);
+                    /* width: 100%; */
+                    justify-self: center;
                     margin: 0;
                     padding: 0;                    
                     list-style: none;
@@ -540,7 +542,7 @@ main {
                 /* Элемент списка */
                 .nav_item {
                     width: 130px;
-                    height: 87px; 
+                    height: 87px;
                 }
             }
         }
@@ -600,7 +602,8 @@ main {
 
                     /* Номер карты */
                     .donation-content-cart-text{
-                       width: 100%;
+                        color: var(--color-dark-l);
+                        width: 100%;
                     }
                 }
 
@@ -737,13 +740,14 @@ footer {
     }
 }
 
+/* Доработать */
 /* Адаптивный для планшетов */
-@media screen and (max-width: 768px){
+@media screen and (max-width: 1279px) {
 
     /* Голова */
     header{
-        min-width: 100%;
-        max-width: 708px;
+        min-width: 768px;
+        width: 100%;
         
         /* Заголовок */
         .header-logo{
@@ -759,14 +763,14 @@ footer {
         /* Главная страница */
         /* Блок Start screen */
         .start-screen{
-            min-width: 100%;
-            max-width: 768px;
+            width: 100%;
+            min-width: 768px;
             height: 1165px;
 
             /* Контент Start screen */
             .start-screen-content{
                 width: 100%;
-                max-width: 569px;
+                min-width: 569px;
                 height: 1015px;
                 margin: 150px 100px 0 99px;
                 flex-wrap: wrap;
@@ -775,10 +779,25 @@ footer {
                 /* Тектовое поле Start screen*/
                 .start-screen-content-text{
                     margin: 0px 54px 0px 53px;
+                    width: 100%;
+
+                    /* Заголовок */
+                    .start-screen-content-text-head{
+                        width: 310px;
+                        height: 114px;                        
+                    }
+
+                    /* Текст под заголовком */
+                    .start-screen-content-text-p{
+                        width: 100%;
+                        height: 72px;
+                        margin-top: 42px;
+                    }
                     
                     /* Кнопка */
                     .start-screen-content-text-button{
-                        margin: 42px 127px 0 126px;
+                        margin-top: 42px;
+                        margin-inline: calc((100% - 207px)/2);
                     }
                 }
 
@@ -786,15 +805,15 @@ footer {
                 .start-screen-content-img{
                     width: 569px;
                     height: 593px;
-                    margin: 100px 0px 0px 70px;
+                    margin: 100px 0px 0px calc(100vw - 698px);
                 }
             }
         }
 
         /* Блок About */
         .about{
-            min-width: 100%;
-            max-width: 768px;
+            width: 100%;
+            min-width: 768px;
             height: 1048px;
 
             /* Контент About */
@@ -802,7 +821,7 @@ footer {
                 width: 100%;
                 height: 100%;
                 max-height: 868px;
-                max-width: 437px;
+                min-width: 437px;
                 margin: 80px 165px 100px 165px;
                 flex-wrap: wrap;
                 align-content: space-between;
@@ -825,13 +844,13 @@ footer {
 
         /* Блок Pets */
         .pets{
-            min-width: 100%;
-            max-width: 768px;
+            width: 100%;
+            min-width: 768px;
             height: 877px;
 
             /* Контент блока Pets*/        
             .pets-content{
-                max-width: 708px;
+                min-width: 708px;
                 height: 697px;
                 width: 100%;
                 margin: 80px 30px 100px 30px;
@@ -920,35 +939,69 @@ footer {
         
         /* Блок Help */
         .help{
-            min-width: 100%;
-            max-width: 768px;
+            width: 100%;
+            min-width: 768px;
             height: 779px;
 
             /* Контент блока Help */
             .help-content{
-                min-width: 381px;
+                min-width: 321px;
                 width: 100%;
+                /* max-width: 768px; */
                 height: calc(100% - 180px);
                 margin: 80px 69px 100px 69px;
-
+                
                 /* Поле со списком */
                 .help-content-list{
                     width: 100%;
                     height: 449px;
+
+                    .nav_list{
+                        width: 100%;
+                    }
                 }
             }
         }
 
         /* Блок Donation */
         .donation{
-            min-width: 100%;
-            max-width: 768px;
+            width: 100%;
+            min-width: 768px;
             height: 783px;
 
             .donation-content{
                 flex-wrap: wrap;
                 width: 100%;
                 margin-top: 80px;
+
+                /* Тектовое поле блока Donation */
+                .donation-content-text{
+                    width: 100%;
+                    height: 282px;
+                    margin-inline: 194px;
+
+                    /* Заголовок */
+                    .donation-content-text-head1{
+                        height: 90px;
+                    }
+
+                    /* Подзаголовок */
+                    .donation-content-text-head2{
+                        height: 17px;
+                        width: 308px;
+                    }
+                    
+                    /* Блок карты */
+                    .donation-content-cart{
+                        margin-top: 20px;
+                        width: 349px;
+                    }
+
+                    /* Текст под картой */
+                    .donation-content-text-after-cart{
+                        text-align: justify;
+                    }
+                }
 
                 /* Картинка в блоке Donation - Собачка */
                 .donation-content-img{
@@ -963,8 +1016,8 @@ footer {
 
     /* Футер */
     footer{
-        max-width: 768px;
-        min-width: 100%;
+        min-width: 768px;
+        width: 100%;
         height: 639px;
         display: flex;
         flex-wrap: wrap;
@@ -974,13 +1027,14 @@ footer {
         .footer-content{
             display: flex;
             width: 100%;
-            margin: 30px 30px 0 30px;
             box-sizing: border-box;
             justify-content: space-between; 
             align-self: flex-start;
-            max-width: 708px;
+            min-width: 708px;
             height: 234px;
-            
+            margin-top: 30px;
+            margin-inline: calc((100% - 708px)/2);
+
             /* Футер - контакты */
             .footer-contacts{
                 margin: 0;
@@ -1038,13 +1092,14 @@ footer {
         /* Главная страница */
         /* Блок Start screen */
         .start-screen{
+            min-width: 320px;
             width: 100%;
-            max-width: 320px;
             height: 823px;
 
             /* Контент Start screen */
             .start-screen-content{
                 width: 100%;
+                min-width: 320px;
                 height: 673px;
                 margin: 150px 10px 0 10px;
 
@@ -1053,7 +1108,7 @@ footer {
                     width: 100%;
                     height: 296px;
                     margin: 0px 0px 0px 0px;
-
+                    
                     /* Заголовок */
                     .start-screen-content-text-head{
                         justify-self: center;
@@ -1061,7 +1116,6 @@ footer {
                         text-align: center;
                         height: 64px;
                         padding-inline: 50px;
-                        box-sizing: border-box;
                         
                         h2{
                             font-size: 25px;
@@ -1146,13 +1200,13 @@ footer {
         /* Блок Pets */
         .pets{
             width: 100%;
-            max-width: 320px;
+            min-width: 320px;
             height: 791px;
             box-sizing: border-box;
 
             /* Контент блока Pets*/        
             .pets-content{
-                max-width: 300px;
+                min-width: 300px;
                 height: 707px;
                 width: 100%;
                 margin: 42px 10px 0px 10px;
@@ -1235,21 +1289,21 @@ footer {
         
         /* Блок Help */
         .help{
-            min-width: 100%;
-            max-width: 320px;
+            width: 100%;
+            min-width: 320px;
             height: 745px;
 
             /* Контент блока Help */
             .help-content{
                 margin: 42px 0 0 0;
-                min-width: 100%;
-                max-width: 320px;
+                width: 100%;
+                min-width: 320px;
                 height: 100%;
 
                 /* Заголовок */
                 .help-content-head{
-                    max-width: 320px;
-                    min-width: 100%;
+                    min-width: 320px;
+                    width: 100%;
                 }
 
                 /* Поле со списком */
@@ -1264,10 +1318,10 @@ footer {
 
         /* Блок Donation */
         .donation{
-            min-width: 100%;
-            max-width: 320px;
+            width: 100%;
+            min-width: 320px;
             height: 542.2px;
-
+            
             h3{
                 text-align: center;
             }
@@ -1281,6 +1335,7 @@ footer {
                     width: 100%;
                     height: 281px;
                     justify-items: center;
+                    margin-inline: 10px;
 
                     /* Заголовок */
                     .donation-content-text-head1{
@@ -1324,9 +1379,8 @@ footer {
 
     /* Футер */
     footer{
-        /* max-width: 320px; */
         width: 100%;
-        /* width: 100vw; */
+        min-width: 320px;
         height: 809px;
 
         h3{
@@ -1335,6 +1389,8 @@ footer {
         
         /* Блок контента футера */
         .footer-content{
+            max-width: 767px;
+            min-width: 320px;
             width: 100%;
             margin: 30px 10px 0 10px;
             height: 470px;
@@ -1354,7 +1410,6 @@ footer {
                         font-size: 25px;
                     }
                 }
-
             }
             
             /* Футер - локация */
