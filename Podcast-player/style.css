@@ -1,0 +1,31 @@
+/* Общее */
+*{
+    scroll-behavior: smooth;
+    /*scrollbar-width: none;*/
+    margin: 0 auto;
+}
+
+/* Свои цвета и переменные */
+:root{
+    /* Цвета */
+    --MainColor: rgb(44, 50, 61);
+
+    /* Переменные */
+    --maxHeight: calc(100vh - 110px);
+}
+
+/*Сокрытие ненужных элементов*/
+.hide {
+    display: none;
+    transition: 0.4s;
+}
+
+/* Голова */
+header {}
+
+/* Основное тело */
+main {}
+
+/* Футер\Низ */
+footer {
+}
