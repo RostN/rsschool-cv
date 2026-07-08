@@ -41,7 +41,7 @@ main {
     width: var(--maxWidth);
     background-color: var(--MainCloudColor);
     display: flex;
-
+    
     /* Блок с основным контентом */
     .main-content{
         background: none;
@@ -49,17 +49,19 @@ main {
         max-width: 100%;
         max-height: 100%;
         display: flex;
-        align-items: flex-start;
+        align-content: flex-start;
         justify-content: flex-start;
         flex-wrap: wrap;
     
-        border: 1px solid red;
+        /* border: 1px solid red; */
 
         .carts{
             background: none;
             width: 300px;
             height: 330px;
             margin: 20px;
+
+            /* border: 1px solid blue; */
 
             /* Заголовок */
             .title{
