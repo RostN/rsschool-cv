@@ -6,6 +6,8 @@ let cartP1 = '<div class="carts"><div class="cart-img"><img src=';
 let cartP2 = ' alt="" class="cart-img"></div><div class="title">';
 // + Заголовок
 let cartP3 = '</div></div>';
+let cartWidth = 200; // Ширина карточки
+let cartMarge = 10; // Отступ карточки
 let cart ='';
 const apiKey = 'bbe5ada707654d74b9e00c740f19dbff';
 
@@ -72,12 +74,10 @@ async function fetchUserData() {
   }
 }
 
-
 // Корректировка отступа блока с карточками, чтобы было красиво
 function autoMarge(){
-    console.log('Margin: ', (mainBlock.offsetWidth % (40 + 200))/2);
-    container.style.marginRight = `${(mainBlock.offsetWidth % (40 + 200))/2}px`;
-    container.style.marginLeft = `${(mainBlock.offsetWidth % (40 + 200))/2}px`;
+    container.style.marginRight = `${(mainBlock.offsetWidth % (cartMarge * 2 + cartWidth))/2 - 1}px`;
+    container.style.marginLeft = `${(mainBlock.offsetWidth % (cartMarge * 2 + cartWidth))/2 - 1}px`;
 }
 
 /* Контроль изменения размера окна */
