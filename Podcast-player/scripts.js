@@ -9,7 +9,6 @@ let cartP3 = '</div></div>';
 let cart ='';
 const apiKey = 'bbe5ada707654d74b9e00c740f19dbff';
 
-
 // script.js
 // const loader = document.getElementById('loader');
 // const userCard = document.getElementById('user-card');
@@ -50,7 +49,7 @@ async function fetchUserData() {
     console.log(data.podcasts[0].thumbnail);
 
     // data.podcasts.length - 1
-    
+
     for (i = 0; i < data.podcasts.length - 1; i++){
         cart = cart + cartP1 + data.podcasts[i].thumbnail + cartP2 + data.podcasts[i].title + cartP3;
     }
@@ -76,7 +75,9 @@ async function fetchUserData() {
 
 // Корректировка отступа блока с карточками, чтобы было красиво
 function autoMarge(){
-    container.style.marginInline = `${(mainBlock.offsetWidth % (40 + 200))/2}px`;
+    console.log('Margin: ', (mainBlock.offsetWidth % (40 + 200))/2);
+    container.style.marginRight = `${(mainBlock.offsetWidth % (40 + 200))/2}px`;
+    container.style.marginLeft = `${(mainBlock.offsetWidth % (40 + 200))/2}px`;
 }
 
 /* Контроль изменения размера окна */
