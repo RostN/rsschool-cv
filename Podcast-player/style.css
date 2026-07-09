@@ -1,0 +1,119 @@
+/* Общее */
+*{
+    background-color: var(--MainColor);
+    scroll-behavior: smooth;
+    margin: 0 auto;
+}
+
+/* Свои цвета и переменные */
+:root{
+    /* Цвета */
+    --MainColor: rgb(44, 50, 61);
+    --MainCloudColor: rgba(255, 255, 255, 0.6);
+
+    /* Переменные */
+    --radiusPR: 15px; /* Единый радиус */
+    --maxWidth: 90vw; /* Максимальная ширина элементов интерфейса */
+}
+
+/* Сокрытие ненужных элементов */
+.hide {
+    display: none;
+    transition: 0.4s;
+}
+
+/* Голова */
+header {
+    margin-top: 10px;
+    height: 70px;
+    border-radius: var(--radiusPR);
+    background-color: var(--MainCloudColor);
+    width: var(--maxWidth);
+}
+
+/* Основное тело */
+main {
+    margin-top: 30px;
+    min-height: 200px;
+    max-height: calc(100vh - 140px - 130px);
+    height: calc(100vh - 140px - 130px);
+    border-radius: var(--radiusPR);
+    width: var(--maxWidth);
+    background-color: var(--MainCloudColor);
+    display: flex;
+    
+    /* Блок с основным контентом */
+    .main-content{
+        background: none;
+        margin: 0;
+        max-width: 100%;
+        max-height: 100%;
+        display: flex;
+        align-content: flex-start;
+        justify-content: flex-start;
+        flex-wrap: wrap;
+    
+        /* border: 1px solid red; */
+
+        .carts{
+            background: none;
+            width: 200px;
+            height: 230px;
+            margin: 20px;
+
+            /* border: 1px solid blue; */
+
+            /* Заголовок */
+            .title{
+                margin-top: 10px;
+                background: none;
+            }
+
+            /* Картинка */
+            .cart-img{
+                background: none;
+                width: 200px;
+                height: 200px;
+            }
+        }
+    }
+}
+
+/* Футер */
+footer {
+    display: flex;
+    margin-top: 30px;
+    height: 100px;
+    align-items: center;
+    border-radius: var(--radiusPR);
+    width: var(--maxWidth);
+    background-color: var(--MainCloudColor);
+
+    /* Логотип школы */
+    .school-logo{
+        width: 100px;
+        background: none;
+    }
+
+    /* Год */
+    .footerText{
+        background: none;
+    }
+
+    /* Картинка GitHub */
+    .svgImg {
+        stroke: black;
+        fill: white;
+        transform: translateY(10px);
+        margin-right: 5px;
+        background: none;
+    }
+
+    /* Текст MyGitHub */
+    .svgText {
+        background: none;
+        text-decoration: none;
+        color: black;
+        transform: translateY(-10px);
+    }
+}
