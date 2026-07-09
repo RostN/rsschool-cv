@@ -3,14 +3,12 @@ let mainBlock = document.querySelector('main');
 /* HTML Карточка */
 let cartP1 = '<div class="carts"><div class="cart-img"><img src=';
 // + Ccылка на картинку
-let cartP2 = ' crossorigin="anonymous" alt=""></div><div class="title">';
+let cartP2 = ' alt="" class="cart-img"></div><div class="title">';
 // + Заголовок
 let cartP3 = '</div></div>';
 let cart ='';
 const apiKey = 'bbe5ada707654d74b9e00c740f19dbff';
 
-// Корректировка отступа блока с карточками, чтобы было красиво
-container.style.marginInline = `${(mainBlock.offsetWidth % 340)/2}px`;
 
 // script.js
 // const loader = document.getElementById('loader');
@@ -28,7 +26,7 @@ async function fetchUserData() {
     container.insertAdjacentHTML('beforeend', cart);
   try {
     // Тестовый
-    let url = 'https://jsonplaceholder.typicode.com/users/';
+    // let url = 'https://jsonplaceholder.typicode.com/users/';
     // let response = await fetch(url);
     let response = await fetch('podcast.json');
     
@@ -49,8 +47,10 @@ async function fetchUserData() {
 
     // Ответ в JSON
     let data = await response.json();
-    console.log(data.podcasts[3].thumbnail);
+    console.log(data.podcasts[0].thumbnail);
 
+    // data.podcasts.length - 1
+    
     for (i = 0; i < data.podcasts.length - 1; i++){
         cart = cart + cartP1 + data.podcasts[i].thumbnail + cartP2 + data.podcasts[i].title + cartP3;
     }
@@ -58,7 +58,7 @@ async function fetchUserData() {
     
     
     // Добавление карточки в контейнер
-    await container.insertAdjacentHTML('beforeend', cart);
+    container.insertAdjacentHTML('beforeend', cart);
 
     // 6. Показываем карточку, скрываем загрузку
     // userCard.style.display = 'block';
@@ -73,7 +73,18 @@ async function fetchUserData() {
   }
 }
 
-fetchUserData();
 
+// Корректировка отступа блока с карточками, чтобы было красиво
+function autoMarge(){
+    container.style.marginInline = `${(mainBlock.offsetWidth % (40 + 200))/2}px`;
+}
+
+/* Контроль изменения размера окна */
+window.addEventListener('resize', () => {
+    autoMarge();
+});
+
+fetchUserData();
+autoMarge();
 // Вешаем обработчик на кнопку
 // loadBtn.addEventListener('click', fetchUserData);

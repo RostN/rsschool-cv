@@ -57,8 +57,8 @@ main {
 
         .carts{
             background: none;
-            width: 300px;
-            height: 330px;
+            width: 200px;
+            height: 230px;
             margin: 20px;
 
             /* border: 1px solid blue; */
@@ -71,7 +71,9 @@ main {
 
             /* Картинка */
             .cart-img{
-                width: 300px;
+                background: none;
+                width: 200px;
+                height: 200px;
             }
         }
     }
