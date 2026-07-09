@@ -9,7 +9,6 @@ let cartP3 = '</div></div>';
 let cart ='';
 const apiKey = 'bbe5ada707654d74b9e00c740f19dbff';
 
-
 // script.js
 // const loader = document.getElementById('loader');
 // const userCard = document.getElementById('user-card');
