@@ -35,8 +35,8 @@ header {
 main {
     margin-top: 30px;
     min-height: 200px;
-    max-height: calc(100vh - 140px - 130px);
-    height: calc(100vh - 140px - 130px);
+    /* max-height: calc(100vh - 140px - 130px); */
+    /* height: 100%; */
     border-radius: var(--radiusPR);
     width: var(--maxWidth);
     background-color: var(--MainCloudColor);
