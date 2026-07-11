@@ -140,7 +140,7 @@ window.addEventListener('resize', () => {
     autoMarge();
 });
 
-fetchUserData('t2');
+fetchUserData('t1');
 autoMarge();
 // Вешаем обработчик на кнопку
 // loadBtn.addEventListener('click', fetchUserData);

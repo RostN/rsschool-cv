@@ -76,8 +76,6 @@ header {
 main {
     margin-top: 30px;
     min-height: 200px;
-    /* max-height: calc(100vh - 140px - 130px); */
-    /* height: 100%; */
     border-radius: var(--radiusPR);
     width: var(--maxWidth);
     background-color: var(--MainCloudColor);
@@ -100,7 +98,8 @@ main {
         .carts{
             background: none;
             width: 200px;
-            height: 260px;
+            min-height: 260px;
+            max-height: 400px;
             margin: 10px;
 
             /* border: 1px solid blue; */
