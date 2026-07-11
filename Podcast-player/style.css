@@ -47,6 +47,8 @@ header {
             color: white;
             padding: 0px 10px;
             font-size: 1.3em;
+            transition: 0.4s;
+            margin-left: 0px;
         }
 
         /* Картинка лупы */
@@ -54,6 +56,19 @@ header {
             height: 40px;
             background: none;
         }
+    }
+
+    /* Стрелка */
+    .back {
+        display: none;
+        transform: scaleX(50%);
+        color: black;
+        font-size: 4em; 
+        font-weight: bold;
+        position: absolute;
+        background: none;
+        cursor: pointer;
+        transition: 0.4s;
     }
 }
 
@@ -78,6 +93,7 @@ main {
         align-content: flex-start;
         justify-content: flex-start;
         flex-wrap: wrap;
+        margin-top: 10px;
     
         /* border: 1px solid red; */
 
