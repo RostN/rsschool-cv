@@ -29,6 +29,32 @@ header {
     border-radius: var(--radiusPR);
     background-color: var(--MainCloudColor);
     width: var(--maxWidth);
+    display: flex;
+
+    /* Блок поиска */
+    .search{
+        width: 100%;
+        margin: 10px;
+        background: none;
+        display: flex;
+        
+        /* Поле ввода */
+        input {    
+            width: calc(100% - 40px - 30px);
+            height: 45px;
+            border: 2px solid white;
+            border-radius: var(--radiusPR);
+            color: white;
+            padding: 0px 10px;
+            font-size: 1.3em;
+        }
+
+        /* Картинка лупы */
+        .headerImg{
+            height: 40px;
+            background: none;
+        }
+    }
 }
 
 /* Основное тело */
@@ -58,7 +84,7 @@ main {
         .carts{
             background: none;
             width: 200px;
-            height: 230px;
+            height: 260px;
             margin: 10px;
 
             /* border: 1px solid blue; */
@@ -67,6 +93,13 @@ main {
             .title{
                 margin-top: 10px;
                 background: none;
+            }
+
+            /* Заголовок с именем */
+            .title2{
+                margin-top: 5px;
+                background: none;
+                font-weight: bold
             }
 
             /* Картинка */
