@@ -5,11 +5,28 @@ let cartP1 = '<div class="carts"><div class="cart-img"><img src=';
 // + Ccылка на картинку
 let cartP2 = ' alt="" class="cart-img"></div><div class="title">';
 // + Заголовок
-let cartP3 = '</div></div>';
+let cartP3 = '</div><div class="title2">';
+// + имя испонителя
+let cartP4 = '</div></div>';
 let cartWidth = 200; // Ширина карточки
 let cartMarge = 10; // Отступ карточки
 let cart ='';
 const apiKey = 'bbe5ada707654d74b9e00c740f19dbff';
+let input = document.querySelector('input');
+let search = '';
+let response ='';
+
+// Отслеживание нажатия Enter в строке поиска
+input.addEventListener('keydown', function(){
+    if (event.key === 'Enter'){
+        // Заменя пробелов на спецсимвол пробела
+        input.value = input.value.replaceAll(' ','%20');
+        search = input.value;
+        console.log(search);
+        input.value='';
+        fetchUserData('t2');
+    }
+})
 
 // script.js
 // const loader = document.getElementById('loader');
@@ -17,7 +34,19 @@ const apiKey = 'bbe5ada707654d74b9e00c740f19dbff';
 // const errorDiv = document.getElementById('error');
 
 // Функция для получения данных
-async function fetchUserData() {
+async function fetchUserData(t) {
+    
+    let url ='';
+    // Режим загрузки карточек
+    if (t === 't1') {url = 'podcast.json'; console.log ('podcast.json');};
+    if (t === 't2') {url = 'search.json'; console.log('search.json')};
+    // Стартовая загрузка
+    if (t === '1') {url = 'https://listen-api.listennotes.com/api/v2/best_podcasts?sort=recent_published_first&page=1'};
+    // Поисковой запрос
+    if (t === '2') {url = `https://listen-api.listennotes.com/api/v2/search?q=${search}&type=podcast`};
+
+    
+
   // 1. Показываем загрузку, скрываем карточку и ошибки
 //   loader.style.display = 'block';
 //   userCard.style.display = 'none';
@@ -26,35 +55,41 @@ async function fetchUserData() {
     // Добавление карточки в контейнер
     container.insertAdjacentHTML('beforeend', cart);
   try {
-    // Тестовый
-    // let url = 'https://jsonplaceholder.typicode.com/users/';
-    // let response = await fetch(url);
-    let response = await fetch('podcast.json');
-    
-    // Реальный
-    // let url = 'https://listen-api.listennotes.com/api/v2/best_podcasts?sort=recent_published_first&page=1';
-    // let response = await fetch(url,{
-    //     method: "GET",
-    //     headers: {
-    //         Accept: "application/json",
-    //         "X-ListenAPI-Key": apiKey,
-    //     },
-    // });
+    if (t === 't1' || t === 't2'){
+        console.log ('test file');
+        response = await fetch(url);
+    }
+
+    if (t === '1' || t === '2'){
+        console.log ('online');
+        console.log (url);
+        // Реальный
+        response = await fetch(url,{
+            method: "GET",
+            headers: {
+                Accept: "application/json",
+                "X-ListenAPI-Key": apiKey,
+            },
+        });
+    }
  
     // Проверка статуса запроса
     if (!response.ok) {
       throw new Error(`Ошибка HTTP: ${response.status}`);
     }
 
-    // Ответ в JSON
+    // Ответ пребразуем в JSON
     let data = await response.json();
-    console.log(data.podcasts[0].thumbnail);
+    
+    console.log(data);
 
-    // data.podcasts.length - 1
-
-    for (i = 0; i < data.podcasts.length - 1; i++){
-        cart = cart + cartP1 + data.podcasts[i].thumbnail + cartP2 + data.podcasts[i].title + cartP3;
+    // Загрузка карточек при стартовой загрузке
+    if (t === 't1' || t === '1'){
+        for (i = 0; i < data.podcasts.length - 1; i++){
+            cart = cart + cartP1 + data.podcasts[i].thumbnail + cartP2 + data.podcasts[i].title + cartP3 + data.podcasts[i].publisher + cartP4 ;
+        }
     }
+
     // console.log (cart);
     
     
@@ -85,7 +120,7 @@ window.addEventListener('resize', () => {
     autoMarge();
 });
 
-fetchUserData();
+fetchUserData('t1');
 autoMarge();
 // Вешаем обработчик на кнопку
 // loadBtn.addEventListener('click', fetchUserData);
