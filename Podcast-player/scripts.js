@@ -40,13 +40,15 @@ let episodesDescription = document.querySelector('.episodes-description');
 /* Аудио */ 
 let audio = document.getElementById('audio');
 let audioPlayer = document.querySelector('.audioPlayer');
-// ссылка для аудио
-// audio.src = ...
 
 
-// dialog.showModal();
-
-
+// Включение подкаста
+dialog.addEventListener('click', (e) => {
+    audio.src = e.target.closest('.episodes').querySelector('.hide').innerText;
+    audio.load();
+    audioPlayer.style.display = 'block';
+    audio.play();
+})
 
 // Закрытие модального окна
 btnCloseModal.addEventListener('click', function(){
@@ -156,8 +158,8 @@ async function fetchUserData(t) {
         modatTextDescription.innerHTML = data.description;
 
         // Эпизоды в модальном окне
-        for (i = 0; i < data.episodes.length; i++){
-            let episodesHTML = `<div class="episodes"><div class="hide episodes-id">${data.episodes[i].id}</div><div class="episodes-img"><img src="${data.episodes[i].thumbnail}" class="episodes-img"></div><div class="episodes-text"><div class="episodes-title">${data.episodes[i].title}</div><div class="episodes-description">${data.episodes[i].description}</div></div></div>`;
+        for (i = 0; i < data.episodes.length ; i++){
+            let episodesHTML = `<div class="episodes"><div class="hide episodesAudio">${data.episodes[i].audio}</div><div class="episodes-img"><img src="${data.episodes[i].thumbnail}" class="episodes-img"><img src="img/play_32x32.svg" class="episodesPlay"></div><div class="episodes-text"><div class="episodes-title">${data.episodes[i].title}</div><div class="episodes-description">${data.episodes[i].description}</div></div></div>`;
             dialog.insertAdjacentHTML('beforeend', episodesHTML);
         }
     }

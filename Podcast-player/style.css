@@ -164,7 +164,7 @@ dialog{
     border: 5px solid var(--MainColor);
     border-radius: var(--radiusPR);
     width: var(--maxWidthModal);
-    height: 80vh;
+    height: 85vh;
     position: fixed;
     top: 20px;
     background: var(--MainCloudColorModal);
@@ -260,7 +260,14 @@ dialog{
         width: 100%;
         justify-content: flex-start;
         background-color: var(--MainCloudColorModal);
-        /* border: 1px solid red; */
+
+        /* Кнопка плей */
+        .episodesPlay{
+            background: none;
+            width: 150px;
+            opacity: 30%;
+            z-index: 5;
+        }
         
         /* Картинка в эпизоде */
         .episodes-img{
