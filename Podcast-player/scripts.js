@@ -58,6 +58,7 @@ btnCloseModal.addEventListener('click', function(){
 // Клик на каждую карточку
 container.addEventListener('click', (e) => {
     cartID = e.target.closest('.carts').querySelector('.hide').innerText;
+    console.log(e.target.closest('.carts').querySelector('.hide').innerText);
     fetchUserData('3');
     dialog.showModal();
 })
@@ -151,7 +152,7 @@ async function fetchUserData(t) {
     }
 
     // Модальное окно
-    if (t === 't3') {
+    if (t === 't3' || t === '3') {
         modalImg.innerHTML = `<img src = "${data.thumbnail}" alt="">`;
         modatTextAuthor.innerHTML = data.publisher;
         modalTextName.innerHTML = data.title;

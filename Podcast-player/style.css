@@ -300,6 +300,7 @@ dialog{
                 font-style: italic;
                 text-align: justify;
                 background: none;
+                overflow: hidden;
             }
         }
     }
