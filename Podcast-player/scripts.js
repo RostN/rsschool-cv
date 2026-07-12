@@ -32,7 +32,7 @@ let btnCloseModal = document.querySelector('.btnCloseModal');
 let modalContent = document.querySelector('.modalContent');
 
 /* Эпизоды */
-
+let episodes = document.querySelector('.episodes');
 let episodesImg = document.querySelector('.episodes-img');
 let episodesTitle = document.querySelector('.episodes-title');
 let episodesDescription = document.querySelector('.episodes-description');
@@ -45,6 +45,7 @@ let audioPlayer = document.querySelector('.audioPlayer');
 // Включение подкаста
 dialog.addEventListener('click', (e) => {
     audio.src = e.target.closest('.episodes').querySelector('.hide').innerText;
+    console.log('audio link:', e.target.closest('.episodes').querySelector('.hide').innerText);
     audio.load();
     audioPlayer.style.display = 'block';
     audio.play();
@@ -157,6 +158,10 @@ async function fetchUserData(t) {
         modatTextAuthor.innerHTML = data.publisher;
         modalTextName.innerHTML = data.title;
         modatTextDescription.innerHTML = data.description;
+        
+        document.querySelectorAll('.episodes').forEach(el => {
+            el.remove();
+        });
 
         // Эпизоды в модальном окне
         for (i = 0; i < data.episodes.length ; i++){
