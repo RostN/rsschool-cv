@@ -259,6 +259,8 @@ dialog{
         display: flex;
         width: 100%;
         justify-content: flex-start;
+        background-color: var(--MainCloudColorModal);
+        /* border: 1px solid red; */
         
         /* Картинка в эпизоде */
         .episodes-img{
@@ -280,6 +282,7 @@ dialog{
                 width: 100%;
                 height: 1.2em;
                 background: none;
+                font-weight: bold;
             }
 
             /* Описани эпизода */

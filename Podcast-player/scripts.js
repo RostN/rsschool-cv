@@ -56,7 +56,7 @@ btnCloseModal.addEventListener('click', function(){
 // Клик на каждую карточку
 container.addEventListener('click', (e) => {
     cartID = e.target.closest('.carts').querySelector('.hide').innerText;
-    fetchUserData('t3');
+    fetchUserData('3');
     dialog.showModal();
 })
 
@@ -68,7 +68,7 @@ input.addEventListener('keydown', function(){
         search = input.value;
         console.log(search);
         input.value='';
-        fetchUserData('t2');
+        fetchUserData('2');
         btnBack.style.display = 'block';
         input.style.marginLeft = '30px';
     }
@@ -79,7 +79,7 @@ btnBack.addEventListener('click', function(){
     btnBack.style.display = 'none';
     input.style.marginLeft = '0px';
     
-    fetchUserData('t1');
+    fetchUserData('1');
 })
 
 // Функция для получения данных
@@ -183,5 +183,5 @@ window.addEventListener('resize', () => {
 });
 
 /* Стартовые функции */
-fetchUserData('t1');
+fetchUserData('1');
 autoMarge();
