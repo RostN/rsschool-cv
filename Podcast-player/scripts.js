@@ -29,8 +29,22 @@ let modatTextAuthor = document.querySelector('.modatTextAuthor');
 let modalTextName = document.querySelector('.modalTextName');
 let modatTextDescription = document.querySelector('.modatTextDescription');
 let btnCloseModal = document.querySelector('.btnCloseModal');
+let modalContent = document.querySelector('.modalContent');
 
-dialog.showModal();
+/* Эпизоды */
+
+let episodesImg = document.querySelector('.episodes-img');
+let episodesTitle = document.querySelector('.episodes-title');
+let episodesDescription = document.querySelector('.episodes-description');
+
+/* Аудио */ 
+let audio = document.getElementById('audio');
+let audioPlayer = document.querySelector('.audioPlayer');
+// ссылка для аудио
+// audio.src = ...
+
+
+// dialog.showModal();
 
 
 
@@ -140,6 +154,12 @@ async function fetchUserData(t) {
         modatTextAuthor.innerHTML = data.publisher;
         modalTextName.innerHTML = data.title;
         modatTextDescription.innerHTML = data.description;
+
+        // Эпизоды в модальном окне
+        for (i = 0; i < data.episodes.length; i++){
+            let episodesHTML = `<div class="episodes"><div class="hide episodes-id">${data.episodes[i].id}</div><div class="episodes-img"><img src="${data.episodes[i].thumbnail}" class="episodes-img"></div><div class="episodes-text"><div class="episodes-title">${data.episodes[i].title}</div><div class="episodes-description">${data.episodes[i].description}</div></div></div>`;
+            dialog.insertAdjacentHTML('beforeend', episodesHTML);
+        }
     }
     
     // Добавление карточки в контейнер
