@@ -1,38 +1,47 @@
 let container = document.querySelector('.main-content');
 let mainBlock = document.querySelector('main');
+
 /* HTML Карточка */
 let cartP1 = `<div class="carts"><div class="cart-img"><img src=`;
-// + Ccылка на картинку
+    // + Ccылка на картинку
 let cartP2 = ' alt="" class="cart-img"></div><div class="title">';
-// + Заголовок
+    // + Заголовок
 let cartP3 = '</div><div class="title2">';
-// + имя испонителя
+    // + имя испонителя
 let cartP4 = '</div><div class="hide">';
 let cartP5 = '</div></div>';
 let cartWidth = 200; // Ширина карточки
 let cartMarge = 10; // Отступ карточки
 let cart ='';
 const apiKey = 'bbe5ada707654d74b9e00c740f19dbff';
+
 /* Поле поиска */ 
 let input = document.querySelector('input');
 let search = '';
 let response ='';
 let btnBack = document.querySelector('.back');
 let cartID = '';
-// Модальное окно
+
+/* Модальное окно */
 let dialog = document.getElementById('dialog');
 let modalImg = document.querySelector('.modalImg');
 let modatTextAuthor = document.querySelector('.modatTextAuthor');
 let modalTextName = document.querySelector('.modalTextName');
 let modatTextDescription = document.querySelector('.modatTextDescription');
+let btnCloseModal = document.querySelector('.btnCloseModal');
+
+dialog.showModal();
 
 
 
+// Закрытие модального окна
+btnCloseModal.addEventListener('click', function(){
+    dialog.close();
+})
 
 // Клик на каждую карточку
 container.addEventListener('click', (e) => {
     cartID = e.target.closest('.carts').querySelector('.hide').innerText;
-    console.log(cartID);
     fetchUserData('t3');
     dialog.showModal();
 })
@@ -59,16 +68,17 @@ btnBack.addEventListener('click', function(){
     fetchUserData('t1');
 })
 
-// script.js
-// const loader = document.getElementById('loader');
-// const userCard = document.getElementById('user-card');
-// const errorDiv = document.getElementById('error');
-
 // Функция для получения данных
 async function fetchUserData(t) {
-    container.innerHTML='';
-    cart = '';
     let url ='';
+    cart = '';
+
+    // НЕ чистить поле, если открывается модальное окно
+    if (t !== 't3' && t !== '3'){
+        container.innerHTML = '';
+        console.log('Чистка', t);
+    }
+    
     // Режим загрузки карточек
     if (t === 't1') {url = 'podcast.json'; console.log ('podcast.json');};
     if (t === 't2') {url = 'search.json'; console.log('search.json')};
@@ -79,13 +89,6 @@ async function fetchUserData(t) {
     if (t === '2') {url = `https://listen-api.listennotes.com/api/v2/search?q=${search}&type=podcast`};
     // Поиск по ID
     if (t === '3') {url = `https://listen-api.listennotes.com/api/v2//podcasts/${cartID}`};
-
-    
-
-  // 1. Показываем загрузку, скрываем карточку и ошибки
-//   loader.style.display = 'block';
-//   userCard.style.display = 'none';
-//   errorDiv.style.display = 'none';    
     
     // Добавление карточки в контейнер
     container.insertAdjacentHTML('beforeend', cart);
@@ -97,7 +100,6 @@ async function fetchUserData(t) {
 
     if (t === '1' || t === '2' || t === '3'){
         console.log ('online');
-        console.log (url);
         // Реальный
         response = await fetch(url,{
             method: "GET",
@@ -117,7 +119,6 @@ async function fetchUserData(t) {
     let data = await response.json();
     
     console.log(data);
-    // console.log(data.results[0]);
 
     // Загрузка карточек при стартовой загрузке
     if (t === 't1' || t === '1'){
@@ -125,7 +126,7 @@ async function fetchUserData(t) {
             cart = cart + cartP1 + data.podcasts[i].thumbnail + cartP2 + data.podcasts[i].title + cartP3 + data.podcasts[i].publisher + cartP4 + data.podcasts[i].id + cartP5;
         }
     }
-// console.log(cart);
+    
     // Карточки для поиска
     if (t === 't2' || t === '2'){
         for (i = 0; i < data.results.length; i++){
@@ -140,22 +141,13 @@ async function fetchUserData(t) {
         modalTextName.innerHTML = data.title;
         modatTextDescription.innerHTML = data.description;
     }
-    // console.log (cart);
-    
     
     // Добавление карточки в контейнер
     container.insertAdjacentHTML('beforeend', cart);
 
-    // 6. Показываем карточку, скрываем загрузку
-    // userCard.style.display = 'block';
-    // loader.style.display = 'none';
-
   } catch (error) {
     // Если что-то пошло не так (нет сети, ошибка сервера)
     console.error('Произошла ошибка:', error);
-    // errorDiv.textContent = 'Не удалось загрузить данные. Проверьте консоль.';
-    // errorDiv.style.display = 'block';
-    // loader.style.display = 'none';
   }
 }
 
@@ -170,7 +162,6 @@ window.addEventListener('resize', () => {
     autoMarge();
 });
 
+/* Стартовые функции */
 fetchUserData('t1');
 autoMarge();
-// Вешаем обработчик на кнопку
-// loadBtn.addEventListener('click', fetchUserData);

@@ -94,8 +94,6 @@ main {
         justify-content: flex-start;
         flex-wrap: wrap;
         margin-top: 10px;
-    
-        /* border: 1px solid red; */
 
         .carts{
             background: none;
@@ -103,8 +101,6 @@ main {
             min-height: 260px;
             max-height: 400px;
             margin: 10px;
-
-            /* border: 1px solid blue; */
 
             /* Заголовок */
             .title{
@@ -169,11 +165,11 @@ dialog{
     /* Блок контента модального окна */
     .modalContent{
         width: 100%;
-        height: 100%;
         background: none;
         display: flex;
         justify-content: flex-start;
         justify-items: flex-start;
+
         
         /* Картинка в модальном окне */
         .modalImg{
@@ -218,6 +214,48 @@ dialog{
                 font-style: italic;
                 margin-top: 1em;
                 background: none;
+            }
+        }   
+    }
+
+    /* Эпизоды */
+    .episodes{
+        background: none;
+        margin-top: 10px;
+        display: flex;
+        width: 100%;
+        justify-content: flex-start;
+        border: 1px solid red;
+
+        /* Картинка в эпизоде */
+        .episodes-img{
+            margin: 0;
+            width: 200px;
+            height: 200px;
+        }
+        
+        /* Тектосовое поле в эпизоде */
+        .episodes-text{
+            width: 100%;
+            background: none;
+            border: 1px solid blue;
+
+            /* Заголовок эизода */
+            .episodes-title{
+                width: 100%;
+                height: 1.2em;
+                background: none;
+                border: 1px solid pink;
+            }
+
+            /* Описани эпизода */
+            .episodes-description{
+                width: 100%;
+                height: 0.9em;
+                font-style: italic;
+                text-align: justify;
+                background: none;
+                border: 1px solid green;
             }
         }
     }
