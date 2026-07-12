@@ -18,6 +18,16 @@
     --maxWidthModal: 85vw; /* Максимальная ширина элементов интерфейса */
 }
 
+p{
+    background: none;
+}
+
+a{
+    text-decoration: none;
+    color: black;
+    background: none;
+}
+
 /* Сокрытие ненужных элементов */
 .hide {
     display: none;
@@ -94,8 +104,6 @@ main {
         justify-content: flex-start;
         flex-wrap: wrap;
         margin-top: 10px;
-    
-        /* border: 1px solid red; */
 
         .carts{
             background: none;
@@ -103,8 +111,6 @@ main {
             min-height: 260px;
             max-height: 400px;
             margin: 10px;
-
-            /* border: 1px solid blue; */
 
             /* Заголовок */
             .title{
@@ -127,6 +133,30 @@ main {
             }
         }
     }
+
+    /* Аудио плеер */
+    .audioPlayer{
+        position: fixed;
+        width: 70vw;
+        background: var(--MainColor);
+        border-top-right-radius: 100px;
+        border-top-left-radius: 100px; 
+        border: 5px solid var(--MainCloudColor);
+        margin: 0;
+        bottom: 0;
+        right: 15vw;
+        height: 70px;
+        align-content: flex-end;
+        z-index: 10000;
+        display: none;
+        
+        audio{
+            width: calc(100% - 100px);
+            padding-left: 50px;
+            padding-right: 50px;
+            background: none;
+        }
+    }
 }
 
 /* Модальное окно */
@@ -134,7 +164,7 @@ dialog{
     border: 5px solid var(--MainColor);
     border-radius: var(--radiusPR);
     width: var(--maxWidthModal);
-    height: 85vh;
+    height: 80vh;
     position: fixed;
     top: 20px;
     background: var(--MainCloudColorModal);
@@ -169,11 +199,11 @@ dialog{
     /* Блок контента модального окна */
     .modalContent{
         width: 100%;
-        height: 100%;
         background: none;
         display: flex;
         justify-content: flex-start;
         justify-items: flex-start;
+
         
         /* Картинка в модальном окне */
         .modalImg{
@@ -217,6 +247,48 @@ dialog{
                 text-align: justify;
                 font-style: italic;
                 margin-top: 1em;
+                background: none;
+            }
+        }   
+    }
+
+    /* Эпизоды */
+    .episodes{
+        background: none;
+        margin-top: 10px;
+        display: flex;
+        width: 100%;
+        justify-content: flex-start;
+        
+        /* Картинка в эпизоде */
+        .episodes-img{
+            background: none;
+            margin: 0;
+            width: 150px;
+            height: 150px;
+        }
+        
+        /* Тектосовое поле в эпизоде */
+        .episodes-text{
+            width: 100%;
+            background: none;
+            padding-left: 10px;
+
+            /* Заголовок эизода */
+            .episodes-title{
+                margin-top: 0.2em;
+                width: 100%;
+                height: 1.2em;
+                background: none;
+            }
+
+            /* Описани эпизода */
+            .episodes-description{
+                width: 100%;
+                margin-top: 0.5em;
+                height: 0.9em;
+                font-style: italic;
+                text-align: justify;
                 background: none;
             }
         }
