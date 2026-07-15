@@ -302,14 +302,30 @@ dialog{
             background: none;
             padding-left: 10px;
 
-            /* Заголовок эизода */
-            .episodes-title{
-                margin-top: 0.2em;
-                width: 100%;
-                height: 1.2em;
+            /* Заголовок и дата */
+            .episodes-text-title-date{
                 background: none;
-                font-weight: bold;
+                justify-content: space-between;
+                display: flex;
+                
+                /* Заголовок эизода */
+                .episodes-title{
+                    margin-top: 0.2em;
+                    width: 100%;
+                    height: 1.2em;
+                    background: none;
+                    font-weight: bold;
+                }
+
+                /* Дата в эпизоде */
+                .episodes-title-date{
+                    background: none;
+                    text-align: end;
+                    flex-shrink: 0;
+                    font-weight: bold;
+                }
             }
+
 
             /* Описани эпизода */
             .episodes-description{
