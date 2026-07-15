@@ -61,16 +61,19 @@ btnCloseModal.addEventListener('click', function(){
 container.addEventListener('click', (e) => {
     cartID = e.target.closest('.carts').querySelector('.hide').innerText;
     console.log(e.target.closest('.carts').querySelector('.hide').innerText);
-    fetchUserData('3');
+    fetchUserData('t3');
+    // fetchUserData('3');
     dialog.showModal();
 })
 
 // Отслеживание нажатия Enter в строке поиска
 input.addEventListener('keydown', function(){
+    // Поиск через клавишу Enter
     if (event.key === 'Enter'){
         startSearch();        
     }
     
+    // Поиск через 3 сек
     setTimeout(()=>{
         startSearch();
     },3000);
@@ -83,7 +86,8 @@ function startSearch(){
     search = input.value;
     console.log(search);
     input.value='';
-    fetchUserData('2');
+    fetchUserData('t2');
+    // fetchUserData('2');
     btnBack.style.display = 'block';
     input.style.marginLeft = '30px';
 }
@@ -93,7 +97,8 @@ btnBack.addEventListener('click', function(){
     btnBack.style.display = 'none';
     input.style.marginLeft = '0px';
     
-    fetchUserData('1');
+    fetchUserData('t1');
+    // fetchUserData('1');
 })
 
 // Функция для получения данных
@@ -116,6 +121,7 @@ async function fetchUserData(t) {
     if (t === 't1') {url = 'podcast.json'; console.log ('podcast.json');};
     if (t === 't2') {url = 'search.json'; console.log('search.json')};
     if (t === 't3') {url = 'idans.json'; console.log('idans.json')};
+
     // Стартовая загрузка
     if (t === '1') {url = 'https://listen-api.listennotes.com/api/v2/best_podcasts?sort=recent_published_first&page=1'};
     // Поисковой запрос
@@ -173,7 +179,7 @@ async function fetchUserData(t) {
         modatTextAuthor.innerHTML = data.publisher;
         modalTextName.innerHTML = data.title;
         modatTextDescription.innerHTML = data.description;
-        
+    
         // Очистка от старых элементов
         document.querySelectorAll('.episodes').forEach(el => {
             el.remove();
@@ -181,9 +187,14 @@ async function fetchUserData(t) {
 
         // Эпизоды в модальном окне
         for (i = 0; i < data.episodes.length ; i++){
-            let episodesHTML = `<div class="episodes"><div class="hide episodesAudio">${data.episodes[i].audio}</div><div class="episodes-img"><img src="${data.episodes[i].thumbnail}" class="episodes-img"><img src="img/play_32x32.svg" class="episodesPlay"></div><div class="episodes-text"><div class="episodes-title">${data.episodes[i].title}</div><div class="episodes-description">${data.episodes[i].description}</div></div></div>`;
+            let ms = data.episodes[i].pub_date_ms;
+            let date = new Date(ms);
+            let duration = timeFormat(data.episodes[i].audio_length_sec) 
+            let epDate = date.getFullYear()+'-'+String(date.getMonth()+1).padStart(2, '0')+'-'+String(date.getDate()).padStart(2, '0') + ' (' + duration + ')';
+
+            let episodesHTML = `<div class="episodes"><div class="hide episodesAudio">${data.episodes[i].audio}</div><div class="episodes-img"><img src="${data.episodes[i].thumbnail}" class="episodes-img"><img src="img/play_32x32.svg" class="episodesPlay"></div><div class="episodes-text"><div class="episodes-text-title-date"><div class="episodes-title">${data.episodes[i].title}</div><div class="episodes-title-date">${epDate}</div></div><div class="episodes-description">${data.episodes[i].description}</div></div></div>`;
             dialog.insertAdjacentHTML('beforeend', episodesHTML);
-        }
+        }  
     }
     
     // Добавление карточки в контейнер
@@ -212,6 +223,16 @@ window.addEventListener('resize', () => {
     autoMarge();
 });
 
+// Перевод секунд в ч:м:с
+function timeFormat(sec) {
+  let h = String(Math.floor(sec / 3600)).padStart(2, '0');
+  let m = String(Math.floor((sec % 3600) / 60)).padStart(2, '0');
+  let s = String(sec % 60).padStart(2, '0');
+
+  return `${h}:${m}:${s}`;
+}
+
 /* Стартовые функции */
-fetchUserData('1');
+fetchUserData('t1');
+// fetchUserData('1');
 autoMarge();
