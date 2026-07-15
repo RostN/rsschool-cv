@@ -92,9 +92,19 @@ main {
     width: var(--maxWidth);
     background-color: var(--MainCloudColor);
     display: flex;
+    flex-wrap: wrap;
+
+    .loading{
+        font-size: 2em;
+        font-weight: 900;
+        background: none;
+        order: 1;
+        margin-top: 50px;
+    }
     
     /* Блок с основным контентом */
     .main-content{
+        order: 2;
         background: none;
         margin: 0;
         max-width: 100%;
@@ -169,6 +179,14 @@ dialog{
     top: 20px;
     background: var(--MainCloudColorModal);
     box-shadow: none;
+
+    .loadingMod{
+        font-size: 2em;
+        font-weight: 900;
+        background: none;
+        order: 1;
+        margin-top: 50px;
+    }
 
     /* Кнопка закрыть модальное окно */
     .btnCloseModal{
@@ -258,6 +276,7 @@ dialog{
         margin-top: 10px;
         display: flex;
         width: 100%;
+        min-height: 150px;
         justify-content: flex-start;
         background-color: var(--MainCloudColorModal);
 
@@ -303,6 +322,12 @@ dialog{
             }
         }
     }
+}
+
+/* Подложка модального окна */
+dialog::backdrop {
+    background-color: rgba(0, 0, 0, 0.5);
+    backdrop-filter: blur(4px);
 }
 
 /* Футер */
