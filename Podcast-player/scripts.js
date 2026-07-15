@@ -14,6 +14,7 @@ let cartWidth = 200; // Ширина карточки
 let cartMarge = 10; // Отступ карточки
 let cart ='';
 const apiKey = 'bbe5ada707654d74b9e00c740f19dbff';
+let loading = document.querySelector('.loading');
 
 /* Поле поиска */ 
 let input = document.querySelector('input');
@@ -30,6 +31,7 @@ let modalTextName = document.querySelector('.modalTextName');
 let modatTextDescription = document.querySelector('.modatTextDescription');
 let btnCloseModal = document.querySelector('.btnCloseModal');
 let modalContent = document.querySelector('.modalContent');
+let loadingMod = document.querySelector('.loadingMod');
 
 /* Эпизоды */
 let episodes = document.querySelector('.episodes');
@@ -40,7 +42,6 @@ let episodesDescription = document.querySelector('.episodes-description');
 /* Аудио */ 
 let audio = document.getElementById('audio');
 let audioPlayer = document.querySelector('.audioPlayer');
-
 
 // Включение подкаста
 dialog.addEventListener('click', (e) => {
@@ -67,16 +68,25 @@ container.addEventListener('click', (e) => {
 // Отслеживание нажатия Enter в строке поиска
 input.addEventListener('keydown', function(){
     if (event.key === 'Enter'){
-        // Заменя пробелов на спецсимвол пробела
-        input.value = input.value.replaceAll(' ','%20');
-        search = input.value;
-        console.log(search);
-        input.value='';
-        fetchUserData('2');
-        btnBack.style.display = 'block';
-        input.style.marginLeft = '30px';
+        startSearch();        
     }
+    
+    setTimeout(()=>{
+        startSearch();
+    },3000);
 })
+
+// Функция поиска
+function startSearch(){
+    // Замена пробелов на спецсимвол пробела
+    input.value = input.value.replaceAll(' ','%20');
+    search = input.value;
+    console.log(search);
+    input.value='';
+    fetchUserData('2');
+    btnBack.style.display = 'block';
+    input.style.marginLeft = '30px';
+}
 
 // Кнопка назад
 btnBack.addEventListener('click', function(){
@@ -90,6 +100,11 @@ btnBack.addEventListener('click', function(){
 async function fetchUserData(t) {
     let url ='';
     cart = '';
+
+    // Загрузчик
+    loading.style.display = 'block';
+    loadingMod.style.display = 'block';
+    container.style.display = 'none';
 
     // НЕ чистить поле, если открывается модальное окно
     if (t !== 't3' && t !== '3'){
@@ -159,6 +174,7 @@ async function fetchUserData(t) {
         modalTextName.innerHTML = data.title;
         modatTextDescription.innerHTML = data.description;
         
+        // Очистка от старых элементов
         document.querySelectorAll('.episodes').forEach(el => {
             el.remove();
         });
@@ -173,9 +189,15 @@ async function fetchUserData(t) {
     // Добавление карточки в контейнер
     container.insertAdjacentHTML('beforeend', cart);
 
+    // Загрузчик выключаем и включаем контент
+    loading.style.display = 'none';
+    loadingMod.style.display = 'none';
+    container.style.display = 'flex';
+
   } catch (error) {
     // Если что-то пошло не так (нет сети, ошибка сервера)
     console.error('Произошла ошибка:', error);
+    loading.textContent = 'Error. Please try reload page';
   }
 }
 
