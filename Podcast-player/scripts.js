@@ -61,8 +61,8 @@ btnCloseModal.addEventListener('click', function(){
 container.addEventListener('click', (e) => {
     cartID = e.target.closest('.carts').querySelector('.hide').innerText;
     console.log(e.target.closest('.carts').querySelector('.hide').innerText);
-    fetchUserData('t3');
-    // fetchUserData('3');
+    // fetchUserData('t3');
+    fetchUserData('3');
     dialog.showModal();
 })
 
@@ -86,8 +86,8 @@ function startSearch(){
     search = input.value;
     console.log(search);
     input.value='';
-    fetchUserData('t2');
-    // fetchUserData('2');
+    // fetchUserData('t2');
+    fetchUserData('2');
     btnBack.style.display = 'block';
     input.style.marginLeft = '30px';
 }
@@ -97,8 +97,8 @@ btnBack.addEventListener('click', function(){
     btnBack.style.display = 'none';
     input.style.marginLeft = '0px';
     
-    fetchUserData('t1');
-    // fetchUserData('1');
+    // fetchUserData('t1');
+    fetchUserData('1');
 })
 
 // Функция для получения данных
@@ -233,6 +233,6 @@ function timeFormat(sec) {
 }
 
 /* Стартовые функции */
-fetchUserData('t1');
-// fetchUserData('1');
+// fetchUserData('t1');
+fetchUserData('1');
 autoMarge();
