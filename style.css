@@ -1,0 +1,165 @@
+/* Основная */
+:root {
+  --MainColor: rgb(44, 50, 61, 0.9);
+
+    background: linear-gradient(
+    45deg,
+    rgba(146, 228, 111, 0.6) 0%,
+    rgba(72, 108, 191, 0.6) 50%,
+    rgba(177, 48, 169, 0.6) 100%
+  );
+  background-size: 400% 400%;
+/*
+  background: linear-gradient(132deg, 
+  #000000,
+  #00ff00,
+  #0000ff,
+  #e60073,
+  #ff0000,
+  #ffffff);
+*/
+  animation: BackgroundGradient 15s ease infinite;
+  
+  margin: 0;
+  padding: 0;
+  --bR: 25px;
+}
+
+/* Анимация заднего фона*/
+/*
+*/
+@keyframes BackgroundGradient {
+  0% {background-position: 0% 50%;}
+  50% {background-position: 100% 50%;}
+  100% {background-position: 0% 50%;}
+}
+
+A {
+  color: white;
+}
+
+A :visited {
+  color: white;
+}
+
+.aHead:hover {
+  background: linear-gradient(
+    45deg,
+    rgba(210, 228, 111, 0.6) 0%,
+    rgba(72, 163, 191, 0.614) 50%,
+    rgba(177, 48, 48, 0.6) 100%
+  );
+  padding: 10px 10px;
+  margin: -10px -10px;
+  border-radius: 20px;
+}
+
+/* Основной блок*/
+.container {
+  display: grid;
+  grid-template-columns: 310px 2fr;
+  background-color: var(--MainColor);
+}
+
+p {
+  text-indent: 3ch;
+}
+
+/* Блок с основным текстом */
+.right-side{
+  background-color: rgba(255,255,255,0.7);
+  border-top-left-radius: var(--bR);
+  border-top-right-radius: var(--bR);
+  border-bottom-left-radius: var(--bR);
+  padding: 0 20px;
+  margin-right: 5px;
+  text-align: justify; 
+}
+
+/* Левая сторона */
+.left-side {
+  width: 80%;
+  color: white;
+}
+
+/*Фото*/
+.myPhoto{
+  width: 300px;
+  border-radius: 15px;
+  margin: 10px 5px 5px 5px;
+  padding: 0;
+}
+
+/* Верхнее меню */
+header {
+  width: 100%;
+  height: 50px;
+  background-color: var(--MainColor);
+  line-height: 50px;
+  text-align: center;
+  border-top-right-radius: var(--bR);
+  border-top-left-radius: var(--bR);
+}
+
+.nav_list {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+/* Низ */
+.footer {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  align-items: center;
+  padding: 20px 60px 20px 60px;
+  color: white;
+  text-align: center;
+  background-color: var(--MainColor);
+}
+
+.svgImg {
+  stroke: white;
+  fill: white;
+  transform: translateY(10px);
+  margin-right: 5px;
+}
+
+.svgText {
+  transform: translateY(-10px);
+}
+
+/* Контакт */
+.contacts {
+  color: black;
+  line-height: 1.0;
+  height: 120px;
+  width: 285px;
+  margin: 0px 5px;
+  padding: 1px 0px 0px 15px;
+  border-radius: 15px;
+  background-color: rgba(255,255,255,0.7);
+}
+
+.contacts a{
+  color: black;
+  text-decoration: none;
+}
+
+.contacts a:visited{
+  color: black;
+  text-decoration: none;
+}
+
+/* Формат ссылок в проекте*/
+.projects a{
+  color: black;
+}
+
+/* Картинка ссылки*/
+.linkImg{
+  width: 0.7em;
+}
