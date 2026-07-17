@@ -1,0 +1,202 @@
+/* Общее */
+*{
+    scroll-behavior: smooth;
+    /*scrollbar-width: none;*/
+    margin: 0 auto;
+    background-color: var(--MainColor);
+    color: white;
+}
+
+/* Свои цвета и переменные */
+:root{
+    /* Цвета */
+    --MainColor: rgb(39, 39, 39);
+    --headColor: rgb(53, 53, 53);
+
+    /* Переменные */
+    --maxHeight: calc(100vh - 110px);
+}
+
+/*Сокрытие ненужных элементов*/
+.hide {
+    display: none;
+}
+
+/* Голова */
+header {
+    position: fixed;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100vw;
+    height: 3em;
+    background: var(--headColor);
+    box-shadow: 0 1em 2em rgba(255,255,255,0.2);
+    
+    /* Наимервание страницы */
+    .head-page-name{
+        margin: 0 3em;
+        font-size: 1.5em;
+        background: none;
+    }
+    
+    /* Кнопки справа */
+    .head-right{
+        background: none;
+        font-size: 1.5em;
+        margin: 0 3em;
+        
+        /* Картинки в заголовке */
+        svg{    
+            background: none;
+            fill: currentColor;
+            margin: 0 0.3em;
+        }
+    }
+}
+
+/* Основное тело */
+main {
+    display: flex;
+    margin: 0;
+    height: 100vh;
+    align-items: center;
+
+    /* Стартовое окно */
+    .start-page{
+        width: 100vw;
+        justify-content: center;
+
+        /* Кнопка создания */
+        .start-btn-create{
+            margin-top: 1em;
+        }
+
+        /* Заголовок стартового окна */
+        .start-title{
+            height: 2em;
+            text-align: center;
+            width: 100%;
+            align-self: center;
+            background: none;
+
+            h1{
+                font-size: 2.5em;
+            }
+        }
+        
+        /* Подись на стартовом окне */
+        .start-title-text{
+            align-self: center;
+            width: 100%;
+            height: 2em;
+            text-align: center;
+            align-content: flex-end;
+            margin: 0;
+            font-weight: 400;
+            font-size: 1.5em;
+            background: none;
+        }
+
+        /* блок для поля ввода */
+        .start-input-space{
+            width: 100%;
+            text-align: center;
+        }
+
+        /* Поле ввода */
+        .start-input{
+            margin-top: 0.5em;
+            width: 20%;
+            font-size: 1.5em;
+            border-radius: 1em;
+            padding: 0.3em 1em;
+            background: none;
+            border: 0.2em solid white;
+        }
+    }
+
+    /* Страница основная main */
+    .main-page{
+        width: 100vw;        
+    }
+
+    /* Страница аккаунт */
+    .account-page{
+        display: flex;
+        justify-content: center;
+        width: 100vw;
+
+        /* Аватарка */
+        .account-page-ava{
+            margin: 0;
+            height: 20vh;
+            width: 30vw;
+            border-radius: 5em;
+            border: 0.3em solid white;
+        }
+
+        /* Информация */
+        .account-page-info{
+            padding-left: 1em;
+            padding-top: 1em;
+            font-size: 1.5em;
+            margin: 0;
+            width: 30vw;
+            height: 20vh;
+        }
+    }
+
+    /* Страница настроек */
+    .setting-page{
+        width: 100vw;
+        
+        /* Блок с именем персонажа */
+        .setting-page-player{
+            font-size: 1.5em;
+            display: flex;
+            justify-content: center;
+            justify-items: center;
+
+            /* Заголовок Player name */
+            .setting-page-player-text{
+                margin: 0 0.3em;
+            }
+
+            /* Имя персонажа */
+            .setting-page-player-name{
+                margin: 0 0.3em;
+            }
+        }
+
+        /* Кнопка смены имени */
+        .setting-page-btn{
+            margin-top: 0.5em;
+        }
+    }
+
+    /* Все кнопки */
+    .start-btn-create, .main-page-btnFight, .setting-page-btn{
+        align-content: center;
+        color: black;
+        text-align: center;
+        border-radius: 1em;
+        background-color: white;
+        height: 1.8em;
+        font-size: 1.5em;
+        width: 15%;
+    }
+
+    /* Наведение на кнопку */
+        .start-btn-create:hover, .main-page-btnFight:hover, .setting-page-btn:hover{
+            background-color: orange;
+        }
+
+    /* Нажатие на кнопку */
+    .start-btn-create:active, .main-page-btnFight:active, .setting-page-btn:active{
+        background-color: greenyellow;
+    }
+}
+
+/* Футер\Низ */
+/* footer {} */
