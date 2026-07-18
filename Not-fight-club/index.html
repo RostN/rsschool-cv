@@ -44,7 +44,29 @@
       <!-- Страница аккаунт -->
       <div class="account-page">
         <div class="account-page-ava"></div>
-        <div class="account-page-info"></div>
+        <div class="account-page-info">
+          <div class="account-page-info-name">Account Name</div>
+          <div class="account-page-info-wins">
+            <div class="account-page-info-wins-title">Wins:</div>
+            <div class="account-page-info-wins-count"></div>
+          </div>
+          <div class="account-page-info-lose">
+            <div class="account-page-info-lose-title">Lose:</div>
+            <div class="account-page-info-lose-count"></div>
+          </div>
+        </div>
+        <!-- Моальное окно -->
+        <dialog id="dialog">
+          <div class="account-page-galary">
+            <img src="img/p1.png" alt="" class="account-page-galary-ava">
+            <img src="img/p2.png" alt="" class="account-page-galary-ava">
+            <img src="img/p3.png" alt="" class="account-page-galary-ava">
+          </div>
+          <div class="account-page-galary-btns">
+            <div class="account-page-galary-btns-exit">Exit</div>
+            <div class="account-page-galary-btns-accept">Accept</div>
+          </div>
+        </dialog>
       </div>
 
       <!-- Настройки -->
@@ -53,7 +75,14 @@
           <div class="setting-page-player-text">Player name:</div>
           <div class="setting-page-player-name">TXT</div>
         </div>
+        <div class="setting-page-player-name-inp">
+          <input type="text" class="setting-page-player-name-input">
+        </div>
         <div class="setting-page-btn">Edit name</div>
+        <div class="setting-page-change-btns">
+          <div class="setting-page-btn-exit">Cancel</div>
+          <div class="setting-page-btn-accept">Change</div>
+        </div>
       </div>
 
     </main>
