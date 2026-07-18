@@ -1,7 +1,5 @@
 /* Общее */
 *{
-    scroll-behavior: smooth;
-    /*scrollbar-width: none;*/
     margin: 0 auto;
     background-color: var(--MainColor);
     color: white;
@@ -12,9 +10,6 @@
     /* Цвета */
     --MainColor: rgb(39, 39, 39);
     --headColor: rgb(53, 53, 53);
-
-    /* Переменные */
-    --maxHeight: calc(100vh - 110px);
 }
 
 /*Сокрытие ненужных элементов*/
@@ -58,6 +53,9 @@ header {
         }
         svg:active{
             fill: greenyellow;
+        }
+        .svg-selected{
+            fill: orange;
         }
     }
 }
@@ -110,17 +108,6 @@ main{
             width: 100%;
             text-align: center;
         }
-
-        /* Поле ввода */
-        .start-input{
-            margin-top: 0.5em;
-            width: 20%;
-            font-size: 1.5em;
-            border-radius: 1em;
-            padding: 0.3em 1em;
-            background: none;
-            border: 0.2em solid white;
-        }
     }
 
     /* Страница основная main */
@@ -170,7 +157,6 @@ main{
                 margin: 1.5em  0;
                 display: flex;
                 justify-content: center;
-                justify-items: center;
                 width: 100%;
                 
                 .account-page-galary-btns-exit{
@@ -205,7 +191,7 @@ main{
             padding-top: 1em;
             font-size: 1.5em;
             margin: 0;
-            width: 30vw;
+            width: 300px;
             height: 20vh;
 
             /* Поле с победами */
@@ -270,14 +256,35 @@ main{
             }
         }
 
+        /* Поле ввода нового имени */
+        .setting-page-player-name-inp{
+            margin: 0;
+            text-align: center;
+        }
+
         /* Кнопка смены имени */
         .setting-page-btn{
             margin-top: 0.5em;
         }
+
+        /* Поле с кнопками подтверждения изменения имени */
+        .setting-page-change-btns{
+            width: 100%;
+            display: flex;
+            justify-content: center;
+            margin-top: 0.5em;
+            
+            .setting-page-btn-exit{
+                margin: 0 1em;
+            }
+            .setting-page-btn-accept{
+                margin: 0 1em;
+            }
+        }
     }
     
     /* Все кнопки */
-    .start-btn-create, .main-page-btnFight, .setting-page-btn, .account-page-galary-btns-accept, .account-page-galary-btns-exit{
+    .start-btn-create, .main-page-btnFight, .setting-page-btn, .account-page-galary-btns-accept, .account-page-galary-btns-exit, .setting-page-btn-exit, .setting-page-btn-accept{
         cursor: pointer;
         align-content: center;
         color: black;
@@ -290,13 +297,24 @@ main{
     }
 
     /* Наведение на кнопку */
-        .start-btn-create:hover, .main-page-btnFight:hover, .setting-page-btn:hover, .account-page-galary-btns-accept:hover, .account-page-galary-btns-exit:hover{
+        .start-btn-create:hover, .main-page-btnFight:hover, .setting-page-btn:hover, .account-page-galary-btns-accept:hover, .account-page-galary-btns-exit:hover, .setting-page-btn-exit:hover, .setting-page-btn-accept:hover{
             background-color: orange;
         }
 
     /* Нажатие на кнопку */
-    .start-btn-create:active, .main-page-btnFight:active, .setting-page-btn:active, .account-page-galary-btns-accept:active, .account-page-galary-btns-exit:active{
+    .start-btn-create:active, .main-page-btnFight:active, .setting-page-btn:active, .account-page-galary-btns-accept:active, .account-page-galary-btns-exit:active, .setting-page-btn-exit:active, .setting-page-btn-accept:active{
         background-color: greenyellow;
+    }
+
+    /* Поле ввода */
+    .start-input, .setting-page-player-name-input{
+        margin-top: 0.5em;
+        width: 20%;
+        font-size: 1.5em;
+        border-radius: 1em;
+        padding: 0.3em 1em;
+        background: none;
+        border: 0.2em solid white;
     }
 }
 
