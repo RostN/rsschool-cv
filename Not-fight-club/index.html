@@ -28,18 +28,53 @@
       
       <!-- Стартовая страница -->
       <div class="start-page">
+
         <div class="start-title"><h1>Create your character</h1></div>
         <div class="start-title-text">Character name</div>
         <div class="start-input-space">
           <input type="text" class="start-input">
         </div>
         <div class="start-btn-create"> Create character </div>
+
+         <!-- Всплывающее окно -->
+        <div class="modal-overlay-start">
+          <div class="modal-window">
+            <div class="modal-window-text">
+              <h1 class="modal-title">Error!</h1>
+              <h2>The input field can't be empty</h2>
+            </div>
+            <div class="btn-close-modalStart">Close</div>
+          </div>
+        </div>
+
       </div>
 
       <!-- Основная страница -->
       <div class="main-page">
         <div class="main-page-btnFight">Figth!</div>
       </div>
+
+      <!-- Страница сражений -->
+      <div class="fight-page">
+        <!-- Блок персонажа -->
+        <div class="fight-page-account">
+          <div class="fight-page-account-name">NAME</div>
+          <div class="fight-page-account-ava"></div>
+          <div class="fight-page-account-hp"></div>
+        </div>
+        <!-- Блок типа боя -->
+        <div class="fight-page-fight-zone"></div>
+        <!-- Блок с врагом -->
+        <div class="fight-page-enemy">
+          <div class="fight-page-enemy-name">NAME</div>
+          <div class="fight-page-enemy-ava"></div>
+          <div class="fight-page-enemy-hp"></div>
+        </div>
+      </div>
+
+
+
+
 
       <!-- Страница аккаунт -->
       <div class="account-page">
