@@ -215,6 +215,18 @@ main{
             width: 300px;
             height: 400px;
 
+            /* Кнопка атаки */
+            .fight-page-attack-btn{
+                margin-top: 1em;
+                width: 150px;
+            }
+
+            /* Кнопка атаки неактивная*/
+            .fight-page-attack-btn-no, .fight-page-attack-btn-no-2{
+                background-color: gray;
+                cursor: none;
+            }
+
             .fight-page-rules{
                 width: 100%;
                 display: flex;
@@ -456,7 +468,7 @@ main{
     }
     
     /* Все кнопки */
-    .start-btn-create, .main-page-btnFight, .setting-page-btn, .account-page-galary-btns-accept, .account-page-galary-btns-exit, .setting-page-btn-exit, .setting-page-btn-accept, .btn-close-modalStart{
+    .start-btn-create, .main-page-btnFight, .setting-page-btn, .account-page-galary-btns-accept, .account-page-galary-btns-exit, .setting-page-btn-exit, .setting-page-btn-accept, .btn-close-modalStart, .fight-page-attack-btn{
         cursor: pointer;
         align-content: center;
         color: black;
@@ -469,12 +481,12 @@ main{
     }
 
     /* Наведение на кнопку */
-    .start-btn-create:hover, .main-page-btnFight:hover, .setting-page-btn:hover, .account-page-galary-btns-accept:hover, .account-page-galary-btns-exit:hover, .setting-page-btn-exit:hover, .setting-page-btn-accept:hover, .btn-close-modalStart:hover{
+    .start-btn-create:hover, .main-page-btnFight:hover, .setting-page-btn:hover, .account-page-galary-btns-accept:hover, .account-page-galary-btns-exit:hover, .setting-page-btn-exit:hover, .setting-page-btn-accept:hover, .btn-close-modalStart:hover, .fight-page-attack-btn:hover{
         background-color: orange;
     }
 
     /* Нажатие на кнопку */
-    .start-btn-create:active, .main-page-btnFight:active, .setting-page-btn:active, .account-page-galary-btns-accept:active, .account-page-galary-btns-exit:active, .setting-page-btn-exit:active, .setting-page-btn-accept:active, .btn-close-modalStart:active{
+    .start-btn-create:active, .main-page-btnFight:active, .setting-page-btn:active, .account-page-galary-btns-accept:active, .account-page-galary-btns-exit:active, .setting-page-btn-exit:active, .setting-page-btn-accept:active, .btn-close-modalStart:active, .fight-page-attack-btn:active{
         background-color: greenyellow;
     }
 
