@@ -159,12 +159,10 @@ main{
     .fight-page{
         width: 100vw;
         display: flex;
-        border: 1px solid red;
-        
+
         /* Блок аккаунта */
         .fight-page-account, .fight-page-enemy{
             width: 300px;
-            border: 1px solid blue; 
 
             /* Имя персонажа */
             .fight-page-account-name, .fight-page-enemy-name{
@@ -214,8 +212,78 @@ main{
 
         /* Блок с местом атаки*/
         .fight-page-fight-zone{
-            border: 1px solid red;
             width: 300px;
+            height: 400px;
+
+            .fight-page-rules{
+                width: 100%;
+                display: flex;
+                flex-wrap: wrap;
+                
+                /* Текст */
+                .fight-page-text{
+                    width: 100%;
+                    text-align: center;
+                    font-size: 1.5em;
+                }
+
+                /* поле с выбором */
+                .fight-page-choose{
+                    width: 100%;
+                    display: flex;
+                    flex-wrap: nowrap;
+                    margin-top: 2em;
+
+                    .option {
+                        appearance: none;
+                        width: 1em;
+                        height: 1em;
+                        border-radius: 50%;
+                        border: 1px solid #fff;
+                        cursor: pointer;
+                        background-color: white;
+                        }
+                        .option:checked {
+                        background-color: #ff0000;
+                        border-color: #ff0000;
+                        }
+
+                    ul,ol{
+                        margin: 0;
+                        font-size: 1.2em;
+                        padding: 0;
+                    }
+
+                    /* Разделительная граница */
+                    .fight-page-border{
+                        width: 0.2em;
+                        height: 100%;
+                        margin: 0;
+                        background: white;
+                        flex-shrink: 0;
+                    }
+                    
+                    /* Выбор нападения */
+                    .fight-page-attack{
+                        margin: 0;
+                        flex-grow: 1;
+                        height: 100%;
+                        max-width: 50%;
+                        text-align: center;
+                        /* border: 1px solid green; */
+                    }
+                    
+                    /* Выбор защиты */
+                    .fight-page-deffence{
+                        text-align: center;
+                        margin: 0;
+                        flex-grow: 1;
+                        max-width: 50%;
+                        height: 100%;
+                        /* border: 1px solid pink; */
+                    }
+                }
+            }
         }
     }
 
