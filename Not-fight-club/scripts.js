@@ -10,10 +10,30 @@ let headerBtns = document.querySelectorAll('svg');
 let startPage = document.querySelector('.start-page');
 let startBtnCreate = document.querySelector('.start-btn-create');
 let startInput = document.querySelector('.start-input');
+let modalOverlay = document.querySelector('.modal-overlay-start')
+let modalCloseBtn = document.querySelector('.btn-close-modalStart');
+let locSt = ''; //Локальное хранилище в переменной
 
 // Основная страница
 let mainPage = document.querySelector('.main-page');
 let mainPageBtnFight = document.querySelector('.main-page-btnFight');
+
+// Страница сражений
+let fightPage = document.querySelector('.fight-page');
+let fightPlayerName = document.querySelector('.fight-page-account-name');
+let fightPicPlayer = document.querySelector('.fight-page-account-ava');
+let fightHpPlayer = document.querySelector('.fight-page-account-hp');
+let fightHpPlayerLine = document.createElement('div'); // Создание полоски жизнь
+let fightHpPlayerLineText = document.createElement('div'); // Создание полоски жизнь
+fightHpPlayerLine.classList.add('fightHpLine');
+fightHpPlayerLineText.classList.add('fightHpLineText');
+let fightPicEnemy = document.querySelector('.fight-page-enemy-ava');
+let fightEnemyName = document.querySelector('.fight-page-enemy-name');
+let fightHpEnemy = document.querySelector('.fight-page-enemy-hp');
+let fightHpEnemyLine = document.createElement('div'); // Создание полоски жизнь
+let fightHpEnemyLineText = document.createElement('div'); // Создание полоски жизнь
+fightHpEnemyLine.classList.add('fightHpLine');
+fightHpEnemyLineText.classList.add('fightHpLineText');
 
 // Страница аккаунта
 let accountPage = document.querySelector('.account-page');
@@ -41,11 +61,32 @@ let lastName = '';
 // Загруженные данные
 let namePlayer = ''; // Имя игрока
 let picPlayer = ''; // Аватарка игрока
-let winPlayer = ''; // Количество побед игрока
-let losePlayer = ''; // Количество поражений игрока
-let hpPlayer = ''; // Здоровье игрока 
+let winPlayer = 0; // Количество побед игрока
+let losePlayer = 0; // Количество поражений игрока
+let hpPlayer = 0; // Здоровье игрока 
 
 /* Исполняемый код */
+// Кнопка начала боя
+mainPageBtnFight.addEventListener('click', function(){
+    let enemyHP = 100;
+    // hpPlayer = 30;
+    fightPicPlayer.appendChild(img); // Вставка изображения
+    fightPlayerName.textContent = namePlayer; // Вписание имени персонажа
+    mainPage.classList.toggle('hide'); // Скрываем основное окно
+    
+    fightHpPlayer.appendChild(fightHpPlayerLine); // Добавление полосы здоровья
+    fightHpPlayer.appendChild(fightHpPlayerLineText); // Добавление полосы здоровья
+    fightHpPlayerLine.style.width = `${hpPlayer}%`; // Здоровье игрока
+    fightHpPlayerLineText.textContent = `${hpPlayer}%`; // Здоровье игрока
+    
+    fightHpEnemy.appendChild(fightHpEnemyLine); // Добавление полосы здоровья
+    fightHpEnemy.appendChild(fightHpEnemyLineText); // Добавление полосы здоровья
+    fightHpEnemyLine.style.width = `${enemyHP}%`; // Здоровье врага
+    fightHpEnemyLineText.textContent = `${enemyHP}%`; // Здоровье врага
+    
+    fightPage.style.display = 'flex'; // Включение окна поединков
+})
+
 // Кнопка подтверждения изменения имени
 changeAcceptBtn.addEventListener('click', function(){
     namePlayer = changeName.value; // Сохранение нового имени
@@ -53,6 +94,7 @@ changeAcceptBtn.addEventListener('click', function(){
     changeName.classList.toggle('hide'); // Скрытие поля ввода для нового имени
     settingBtn.classList.toggle('hide'); // Отображение кнопки изменение измени
     playerName.textContent = namePlayer; // Вписываем новое имя
+    saveData(); // Сохранение данных
 })
 
 // Кнопка Cancel в изменении имени
@@ -94,7 +136,8 @@ avas.forEach(e => {
 acceptBtn.addEventListener('click', function(){
     picPlayer = tmp.substring(tmp.lastIndexOf('/') - 3);
     accountWindow();
-    dialog.close();
+    dialog.close(); // Закрытие модального окна
+    saveData(); // Сохранение данных
 })
 
 // Кнопка закрытия в модалке
@@ -104,7 +147,7 @@ exitBtn.addEventListener('click', function(){
 
 // Клик на аватарку открытие модалки для изменения аватарки
 accountAva.addEventListener('click', function(){
-    dialog.showModal();
+    dialog.showModal(); // Показать модальное окно
 })
 
 // Кнопка настройки
@@ -144,21 +187,84 @@ btnHome.addEventListener('click', function(){
 
 // Кнопка создания персонажа
 startBtnCreate.addEventListener('click', function(){
+    if (!startInput.value.trim()) {
+        modalOverlay.style.display = 'flex'; // Окно с ошибкой, если пустое поле ввода
+
+        // Кнопка закрыть окно с ошибкой
+        modalCloseBtn.addEventListener('click', function(){
+            modalOverlay.style.display = 'none';
+        })
+        
+        // Закрыть по клику вне окна
+        modalOverlay.addEventListener('click', (e) => {
+            if (e.target === modalOverlay) {
+                modalOverlay.style.display = 'none';
+            }
+        })
+    } else {
+        startGame(); // Запуск старта игры
+    }
+})
+
+// Функция начала игры
+function startGame(){
     startPage.classList.toggle('hide'); // Отключить стартовую страницу
     mainPage.classList.remove('hide'); // Отображение стартовой страницы
     head.classList.toggle('hide'); // Отображение заголовка
     btnHome.classList.add('svg-selected'); // Выделение кнопки в заголовке
     
-    startGame();
-})
-
-// Функция начала игры
-function startGame(){
     namePlayer = startInput.value;
-    picPlayer = 'img/p1.png';
-    winPlayer = '0';
-    losePlayer = '0';
+    getLocSt(); // Взятие данных из локального хранилища
+    saveData(); // Сохранение
 }
+
+function saveData(){
+    //Создание JSON и заполнение данными
+    let jsonTMP = new Map ([
+        ['Pic', picPlayer],
+        ['win', winPlayer],
+        ['lose', losePlayer],
+        ['hp', hpPlayer]
+    ]);
+    let SD = Object.fromEntries(jsonTMP);
+
+    //Добавления имени в JSON
+    let finData = new Map ([
+        [namePlayer, SD]
+    ]);
+    finData = Object.fromEntries(finData);
+
+
+    // finData = {...locSt,...finData}; // Старые данные и плюс новые сделать контроль изменения имени
+
+    //Сохранение в localStorage
+    localStorage.setItem('notfightclub', JSON.stringify(finData)); 
+    console.log('saved');
+
+    //Парсинг из localStorage
+    getLocSt(); 
+}
+
+/* Взятие из localStorage */
+function getLocSt(){
+    locSt = JSON.parse(localStorage.getItem('notfightclub'));
+    console.log(locSt);
+    if (locSt){
+        console.log('Have')
+        picPlayer = locSt[namePlayer].Pic;
+        winPlayer = locSt[namePlayer].win;
+        losePlayer = locSt[namePlayer].lose;
+        hpPlayer = locSt[namePlayer].hp;
+        img.src = picPlayer;
+    } else { 
+        console.log ('first');
+        picPlayer = 'img/p1.png';
+        winPlayer = 0;
+        losePlayer = 0;
+        hpPlayer = 100;
+    }
+}
+
 // Сокрытия лишнего на старте
 head.classList.add('hide'); //Сокрытия header
 
@@ -170,5 +276,7 @@ accountPage.style.display = 'none'; // Сокрытие окна аккаунт�
 
 mainPage.classList.add('hide'); // Сокрытие основной страницы
 
+fightPage.style.display = 'none'; // Сокрытие страницы сражений 
+
 // startPage.classList.add('hide'); // Временно Сокрытие стартовой страницы
-startGame(); // Временно
+// startGame(); // Временно
