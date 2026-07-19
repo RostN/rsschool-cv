@@ -19,7 +19,9 @@ let mainPage = document.querySelector('.main-page');
 let mainPageBtnFight = document.querySelector('.main-page-btnFight');
 
 // Страница сражений
+let fightAttackBtn = document.querySelector('.fight-page-attack-btn');
 let checkboxes = document.querySelectorAll('.option');
+let checkbboxesAt = document.querySelectorAll('.optionAt');
 let fightPage = document.querySelector('.fight-page');
 let fightPlayerName = document.querySelector('.fight-page-account-name');
 let fightPicPlayer = document.querySelector('.fight-page-account-ava');
@@ -69,6 +71,16 @@ let hpPlayer = 0; // Здоровье игрока
 let enemyHP = 100; // Здоровье врага
 
 /* Исполняемый код */
+// Контроль выбранных элементов атаки
+checkbboxesAt.forEach(cb =>{
+    cb.addEventListener('change', () => {
+        if (cb.checked){
+            fightAttackBtn.classList.remove('fight-page-attack-btn-no-2');
+        } else {
+            fightAttackBtn.classList.add('fight-page-attack-btn-no-2');
+        }
+    });
+})
 
 // Контроль выбранных элементов в защите
 checkboxes.forEach(cb => {
@@ -76,6 +88,13 @@ checkboxes.forEach(cb => {
     const count = document.querySelectorAll('.option:checked').length;
     if (count > 2) {
       cb.checked = false; // Отменяем последний клик
+    }
+
+    // Проверка условий включения кнопки
+    if(count === 2){
+        fightAttackBtn.classList.remove('fight-page-attack-btn-no')
+    } else {
+        fightAttackBtn.classList.add('fight-page-attack-btn-no')
     }
   });
 });
@@ -305,6 +324,8 @@ accountPage.style.display = 'none'; // Сокрытие окна аккаунт�
 mainPage.classList.add('hide'); // Сокрытие основной страницы
 
 fightPage.style.display = 'none'; // Сокрытие страницы сражений 
+fightAttackBtn.classList.add('fight-page-attack-btn-no');
+fightAttackBtn.classList.add('fight-page-attack-btn-no-2');
 
 loadEnemy();
 // startPage.classList.add('hide'); // Временно Сокрытие стартовой страницы
