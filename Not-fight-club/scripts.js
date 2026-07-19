@@ -19,6 +19,7 @@ let mainPage = document.querySelector('.main-page');
 let mainPageBtnFight = document.querySelector('.main-page-btnFight');
 
 // Страница сражений
+let checkboxes = document.querySelectorAll('.option');
 let fightPage = document.querySelector('.fight-page');
 let fightPlayerName = document.querySelector('.fight-page-account-name');
 let fightPicPlayer = document.querySelector('.fight-page-account-ava');
@@ -28,6 +29,7 @@ let fightHpPlayerLineText = document.createElement('div'); // Создание �
 fightHpPlayerLine.classList.add('fightHpLine');
 fightHpPlayerLineText.classList.add('fightHpLineText');
 let fightPicEnemy = document.querySelector('.fight-page-enemy-ava');
+let imgEnemy = document.createElement('img');
 let fightEnemyName = document.querySelector('.fight-page-enemy-name');
 let fightHpEnemy = document.querySelector('.fight-page-enemy-hp');
 let fightHpEnemyLine = document.createElement('div'); // Создание полоски жизнь
@@ -64,12 +66,25 @@ let picPlayer = ''; // Аватарка игрока
 let winPlayer = 0; // Количество побед игрока
 let losePlayer = 0; // Количество поражений игрока
 let hpPlayer = 0; // Здоровье игрока 
+let enemyHP = 100; // Здоровье врага
 
 /* Исполняемый код */
+
+// Контроль выбранных элементов в защите
+checkboxes.forEach(cb => {
+  cb.addEventListener('change', () => {
+    const count = document.querySelectorAll('.option:checked').length;
+    if (count > 2) {
+      cb.checked = false; // Отменяем последний клик
+    }
+  });
+});
+
 // Кнопка начала боя
 mainPageBtnFight.addEventListener('click', function(){
-    let enemyHP = 100;
-    // hpPlayer = 30;
+    let R = Math.floor(Math.random() * (dataEnemy.length));
+    console.log('Random:', R);
+
     fightPicPlayer.appendChild(img); // Вставка изображения
     fightPlayerName.textContent = namePlayer; // Вписание имени персонажа
     mainPage.classList.toggle('hide'); // Скрываем основное окно
@@ -79,10 +94,13 @@ mainPageBtnFight.addEventListener('click', function(){
     fightHpPlayerLine.style.width = `${hpPlayer}%`; // Здоровье игрока
     fightHpPlayerLineText.textContent = `${hpPlayer}%`; // Здоровье игрока
     
+    imgEnemy.src = dataEnemy[R].img; // Вставка ссылки в объект изображение
+    fightPicEnemy.appendChild(imgEnemy); // Вставка изображение в блок
+    fightEnemyName.textContent = dataEnemy[R].name; // Добавление имени врага
     fightHpEnemy.appendChild(fightHpEnemyLine); // Добавление полосы здоровья
     fightHpEnemy.appendChild(fightHpEnemyLineText); // Добавление полосы здоровья
     fightHpEnemyLine.style.width = `${enemyHP}%`; // Здоровье врага
-    fightHpEnemyLineText.textContent = `${enemyHP}%`; // Здоровье врага
+    fightHpEnemyLineText.textContent = `${enemyHP}%`; // Здоровье врага   
     
     fightPage.style.display = 'flex'; // Включение окна поединков
 })
@@ -152,6 +170,7 @@ accountAva.addEventListener('click', function(){
 
 // Кнопка настройки
 btnSetting.addEventListener('click', function(){
+    fightPage.style.display = 'none'
     accountPage.style.display = 'none'; // Сокрытие страницы аккаунт
     mainPage.classList.add('hide'); // Сокрытие основной страницы
     pageName.textContent = 'Settings'; // Смена названия страницы
@@ -166,6 +185,7 @@ btnAccount.addEventListener('click', function(){
 
 // Функция окна аккаунта
 function accountWindow(){
+    fightPage.style.display = 'none'
     mainPage.classList.add('hide'); // Сокрытие основной страницы
     settingPage.classList.add('hide'); // Сокрытие страницы настроек
     pageName.textContent = 'Character'; // Смена названия страницы
@@ -179,6 +199,7 @@ function accountWindow(){
  
 // Кнопка домой
 btnHome.addEventListener('click', function(){
+    fightPage.style.display = 'none'
     accountPage.style.display = 'none'; // Сокрытие страницы аккаунт
     settingPage.classList.add('hide'); // Сокрытие страницы настроек
     pageName.textContent = 'Main'; // Смена названия страницы
@@ -265,6 +286,13 @@ function getLocSt(){
     }
 }
 
+function loadEnemy(){
+    (async () => {
+        dataEnemy = await (await fetch('enemy.json')).json()
+        console.log(dataEnemy);
+    })().catch(console.error)
+}
+
 // Сокрытия лишнего на старте
 head.classList.add('hide'); //Сокрытия header
 
@@ -278,5 +306,6 @@ mainPage.classList.add('hide'); // Сокрытие основной стран�
 
 fightPage.style.display = 'none'; // Сокрытие страницы сражений 
 
+loadEnemy();
 // startPage.classList.add('hide'); // Временно Сокрытие стартовой страницы
 // startGame(); // Временно

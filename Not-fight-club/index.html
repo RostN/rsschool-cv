@@ -56,25 +56,72 @@
 
       <!-- Страница сражений -->
       <div class="fight-page">
+
         <!-- Блок персонажа -->
         <div class="fight-page-account">
           <div class="fight-page-account-name">NAME</div>
           <div class="fight-page-account-ava"></div>
           <div class="fight-page-account-hp"></div>
         </div>
+
         <!-- Блок типа боя -->
-        <div class="fight-page-fight-zone"></div>
+        <div class="fight-page-fight-zone">
+          <div class="fight-page-rules">
+            <div class="fight-page-text">
+              Pick 1 attack zone and 2 deffense zones
+            </div>
+            <div class="fight-page-choose">
+              <div class="fight-page-attack">
+                <ul>
+                  <ol>
+                    <input type="radio" name="attack" value="Head">Head
+                  </ol>
+                  <ol>
+                    <input type="radio" name="attack" value="Neck">Neck
+                  </ol>
+                  <ol>
+                    <input type="radio" name="attack" value="Body">Body
+                  </ol>
+                  <ol>
+                    <input type="radio" name="attack" value="Belly">Belly
+                  </ol>
+                  <ol>
+                    <input type="radio" name="attack" value="Legs">Legs
+                  </ol>
+                </ul>
+              </div>
+              <div class="fight-page-border"></div>
+              <div class="fight-page-deffence">
+               <ul>
+                  <ol>
+                    <input type="checkbox" class="option" name="deffence" value="Head">Head
+                  </ol>
+                  <ol>
+                    <input type="checkbox" class="option" name="deffence" value="Neck">Neck
+                  </ol>
+                  <ol>
+                    <input type="checkbox" class="option" name="deffence" value="Body">Body
+                  </ol>
+                  <ol>
+                    <input type="checkbox" class="option" name="deffence" value="Belly">Belly
+                  </ol>
+                  <ol>
+                    <input type="checkbox" class="option" name="deffence" value="Legs">Legs
+                  </ol>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
+        
         <!-- Блок с врагом -->
         <div class="fight-page-enemy">
           <div class="fight-page-enemy-name">NAME</div>
           <div class="fight-page-enemy-ava"></div>
           <div class="fight-page-enemy-hp"></div>
         </div>
+
       </div>
-
-
-
-
 
       <!-- Страница аккаунт -->
       <div class="account-page">
@@ -90,17 +137,21 @@
             <div class="account-page-info-lose-count"></div>
           </div>
         </div>
-        <!-- Моальное окно -->
+
+        <!-- Модальное окно -->
         <dialog id="dialog">
+          
           <div class="account-page-galary">
             <img src="img/p1.png" alt="" class="account-page-galary-ava">
             <img src="img/p2.png" alt="" class="account-page-galary-ava">
             <img src="img/p3.png" alt="" class="account-page-galary-ava">
           </div>
+
           <div class="account-page-galary-btns">
             <div class="account-page-galary-btns-exit">Exit</div>
             <div class="account-page-galary-btns-accept">Accept</div>
           </div>
+
         </dialog>
       </div>
 
