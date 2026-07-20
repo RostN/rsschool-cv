@@ -1,14 +1,17 @@
 [
     {
         "img":"img/e1.png",
-        "name": "Spider"
+        "name": "Spider",
+        "power": 8
     },
     {
         "img": "img/e2.png",
-        "name": "Troll"
+        "name": "Troll",
+        "power": 12
     },
     {
         "img": "img/e3.png",
-        "name": "Ursulla"
+        "name": "Ursulla",
+        "power": 10
     }  
 ]

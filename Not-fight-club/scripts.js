@@ -38,6 +38,7 @@ let fightHpEnemyLine = document.createElement('div'); // Создание пол
 let fightHpEnemyLineText = document.createElement('div'); // Создание полоски жизнь
 fightHpEnemyLine.classList.add('fightHpLine');
 fightHpEnemyLineText.classList.add('fightHpLineText');
+let zones = ['Head', 'Neck', 'Body', 'Belly', 'Legs'];
 
 // Страница аккаунта
 let accountPage = document.querySelector('.account-page');
@@ -68,9 +69,40 @@ let picPlayer = ''; // Аватарка игрока
 let winPlayer = 0; // Количество побед игрока
 let losePlayer = 0; // Количество поражений игрока
 let hpPlayer = 0; // Здоровье игрока 
+let powerPlayer = 10; // Сила игрока
 let enemyHP = 100; // Здоровье врага
 
 /* Исполняемый код */
+// Кнопка атаки
+fightAttackBtn.addEventListener("click", function(){
+    let enemyPower = dataEnemy[R].power; // Взятие силы противника
+    // Выбранные позиции атаки и защиты
+    let chosedPlayerDef = Array.from(document.querySelectorAll('.option:checked')).map(cb => cb.value);
+    let chosedPlayerAt = Array.from(document.querySelectorAll('.optionAt:checked')).map(cb => cb.value);
+    
+    let chosedEnemyDef = getRandomItemsSecure(zones, Math.floor(Math.random() * 3) + 1);
+    let chosedEnemyAt = getRandomItemsSecure(zones, Math.floor(Math.random() * 2) + 1);
+
+
+    console.log(chosedEnemyDef, "def");
+    console.log(chosedEnemyAt, "at");    
+})
+
+// Функция перемешивания элементов
+function shuffle(array) {
+  const arr = [...array]; // клонируем, чтобы не менять оригинал
+  for (let i = arr.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1));
+    [arr[i], arr[j]] = [arr[j], arr[i]]; // меняем местами
+  }
+  return arr;
+}
+
+// Взятие нужного количества перемешанных элементов
+function getRandomItemsSecure(array, count) {
+  return shuffle(array).slice(0, count);
+}
+
 // Контроль выбранных элементов атаки
 checkbboxesAt.forEach(cb =>{
     cb.addEventListener('change', () => {
@@ -96,12 +128,13 @@ checkboxes.forEach(cb => {
     } else {
         fightAttackBtn.classList.add('fight-page-attack-btn-no')
     }
+    console.log(count);
   });
 });
 
 // Кнопка начала боя
 mainPageBtnFight.addEventListener('click', function(){
-    let R = Math.floor(Math.random() * (dataEnemy.length));
+    R = Math.floor(Math.random() * (dataEnemy.length));
     console.log('Random:', R);
 
     fightPicPlayer.appendChild(img); // Вставка изображения
@@ -305,6 +338,7 @@ function getLocSt(){
     }
 }
 
+// Загрузка врагов
 function loadEnemy(){
     (async () => {
         dataEnemy = await (await fetch('enemy.json')).json()
