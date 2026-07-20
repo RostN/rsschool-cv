@@ -75,6 +75,7 @@ let enemyHP = 100; // Здоровье врага
 /* Исполняемый код */
 // Кнопка атаки
 fightAttackBtn.addEventListener("click", function(){
+    let crDmg = 1; // Критияеский урон
     let enemyPower = dataEnemy[R].power; // Взятие силы противника
     // Выбранные позиции атаки и защиты
     let chosedPlayerDef = Array.from(document.querySelectorAll('.option:checked')).map(cb => cb.value);
@@ -82,10 +83,30 @@ fightAttackBtn.addEventListener("click", function(){
     
     let chosedEnemyDef = getRandomItemsSecure(zones, Math.floor(Math.random() * 3) + 1);
     let chosedEnemyAt = getRandomItemsSecure(zones, Math.floor(Math.random() * 2) + 1);
+    
+    let plAtEn = chosedPlayerAt.filter(item => chosedEnemyDef.includes(item)); // Атака игрока против защиты врага
+    let enAtPl = chosedEnemyAt.filter(item => chosedPlayerDef.includes(item)); // Атака врага по игроку
+    
+    // console.log(chosedEnemyDef, "defEn");
+    console.log(chosedEnemyAt, "atEn");
+    console.log(chosedPlayerDef, "defPl");
+    // console.log(chosedPlayerAt, "atPl");
+    console.log(plAtEn);
+    console.log(enAtPl);
 
+    // Проверка атаки игрока и защиты врага
+    if (plAtEn.length < 1){
+        enemyHP = enemyHP - powerPlayer * crDmg;
+    }
+    // Проверка защиты игрока от врага
+    if (enAtPl.length < 2) {
+        hpPlayer = hpPlayer - enemyPower * crDmg * (2 - enAtPl.length);
+    }
 
-    console.log(chosedEnemyDef, "def");
-    console.log(chosedEnemyAt, "at");    
+    fightHpEnemyLine.style.width = `${enemyHP}%`; // Здоровье врага
+    fightHpEnemyLineText.textContent = `${enemyHP}%`; // Здоровье врага
+    fightHpPlayerLine.style.width = `${hpPlayer}%`; // Здоровье игрока
+    fightHpPlayerLineText.textContent = `${hpPlayer}%`; // Здоровье игрока
 })
 
 // Функция перемешивания элементов
