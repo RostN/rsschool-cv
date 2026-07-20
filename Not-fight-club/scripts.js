@@ -135,7 +135,7 @@ fightAttackBtn.addEventListener("click", function(){
     fightHpEnemyLineText.textContent = `${enemyHP}%`; // Здоровье врага
     fightHpPlayerLine.style.width = `${hpPlayer}%`; // Здоровье игрока
     fightHpPlayerLineText.textContent = `${hpPlayer}%`; // Здоровье игрока
-    footerLog.textContent = fightLog;
+    
     saveData();
     saveFightLog();
 })
@@ -222,7 +222,7 @@ mainPageBtnFight.addEventListener('click', function(){
     
     fightPage.style.display = 'flex'; // Включение окна поединков
     footer.style.display = 'block'; // Включение футера
-    footerLog.textContent = fightLog;
+    
 })
 
 // Кнопка подтверждения изменения имени
@@ -389,7 +389,7 @@ function saveData(){
 /* Взятие из localStorage */
 function getLocSt(){
     locSt = JSON.parse(localStorage.getItem('notfightclub'));
-    console.log(locSt);
+    // console.log(locSt);
     if (locSt){
         picPlayer = locSt[namePlayer].Pic;
         winPlayer = locSt[namePlayer].win;
@@ -405,6 +405,8 @@ function getLocSt(){
     }
 
     locStFightLog = JSON.parse(localStorage.getItem('fightLog')); // Загрузка журнала боя
+    footerLog.innerHTML = (locStFightLog[namePlayer].log).join('<br>');
+    console.log((locStFightLog[namePlayer].log).join('\n'))
 }
 
 // Загрузка врагов
