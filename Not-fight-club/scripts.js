@@ -6,6 +6,9 @@ let btnAccount = document.querySelector('.btnAccount');
 let btnSetting = document.querySelector('.btnSetting');
 let headerBtns = document.querySelectorAll('svg');
 
+// Журная footer
+let footer = document.querySelector('footer');
+
 // Стартовая страница (регистрация)
 let startPage = document.querySelector('.start-page');
 let startBtnCreate = document.querySelector('.start-btn-create');
@@ -19,6 +22,7 @@ let mainPage = document.querySelector('.main-page');
 let mainPageBtnFight = document.querySelector('.main-page-btnFight');
 
 // Страница сражений
+let locStFightLog = ''; //Локальное хранилище лога в переменной
 let fightAttackBtn = document.querySelector('.fight-page-attack-btn');
 let checkboxes = document.querySelectorAll('.option');
 let checkbboxesAt = document.querySelectorAll('.optionAt');
@@ -40,6 +44,7 @@ fightHpEnemyLine.classList.add('fightHpLine');
 fightHpEnemyLineText.classList.add('fightHpLineText');
 let zones = ['Head', 'Neck', 'Body', 'Belly', 'Legs'];
 let fightLog =[];
+let footerLog = document.querySelector('.footer-log');
 
 // Страница аккаунта
 let accountPage = document.querySelector('.account-page');
@@ -74,6 +79,11 @@ let powerPlayer = 10; // Сила игрока
 let enemyHP = 100; // Здоровье врага
 
 /* Исполняемый код */
+// Показать журнал боя
+footer.addEventListener('click', function(){
+    footer.classList.toggle('active');
+})
+
 // Кнопка атаки
 fightAttackBtn.addEventListener("click", function(){
     let enDmg = 0;
@@ -125,15 +135,15 @@ fightAttackBtn.addEventListener("click", function(){
     fightHpEnemyLineText.textContent = `${enemyHP}%`; // Здоровье врага
     fightHpPlayerLine.style.width = `${hpPlayer}%`; // Здоровье игрока
     fightHpPlayerLineText.textContent = `${hpPlayer}%`; // Здоровье игрока
-    
+    footerLog.textContent = fightLog;
     saveData();
+    saveFightLog();
 })
 
 // Функция сохранения информации о бои
-function saveFight(){
+function saveFightLog(){
     let jsonTMP = new Map ([
-        ['log', fightLog],
-        ['hp', enemyHP]
+        ['log', fightLog]
     ]);
     let SD = Object.fromEntries(jsonTMP);
 
@@ -142,9 +152,8 @@ function saveFight(){
         [namePlayer, SD]
     ]);
     finData = Object.fromEntries(finData);
-
-    //Сохранение в localStorage
-    localStorage.setItem('fightLog', JSON.stringify(finData));    
+    localStorage.setItem('fightLog', JSON.stringify(finData)); // Сохранение в localStorage
+    getLocSt(); // Парсинг из localStorage
 }
 
 // Функция перемешивания элементов
@@ -212,6 +221,8 @@ mainPageBtnFight.addEventListener('click', function(){
     fightHpEnemyLineText.textContent = `${enemyHP}%`; // Здоровье врага   
     
     fightPage.style.display = 'flex'; // Включение окна поединков
+    footer.style.display = 'block'; // Включение футера
+    footerLog.textContent = fightLog;
 })
 
 // Кнопка подтверждения изменения имени
@@ -285,6 +296,7 @@ btnSetting.addEventListener('click', function(){
     pageName.textContent = 'Settings'; // Смена названия страницы
     settingPage.classList.remove('hide'); //Отображение страницы настроек
     playerName.textContent = namePlayer; // Выбираем имя
+    footer.style.display = 'none'; // Сокрытие футера
 })
 
 // Кнопка аккаунт
@@ -304,6 +316,7 @@ function accountWindow(){
     accountCountWin.textContent = winPlayer; // Количество побед
     accountCountLose.textContent = losePlayer; // Количество поражений
     accountName.textContent = namePlayer; // Имя аккаунта
+    footer.style.display = 'none'; // Сокрытие футера
 }
  
 // Кнопка домой
@@ -313,6 +326,7 @@ btnHome.addEventListener('click', function(){
     settingPage.classList.add('hide'); // Сокрытие страницы настроек
     pageName.textContent = 'Main'; // Смена названия страницы
     mainPage.classList.remove('hide'); // Отображение страницы Main
+    footer.style.display = 'none'; // Сокрытие футера
 })
 
 // Кнопка создания персонажа
@@ -342,6 +356,7 @@ function startGame(){
     mainPage.classList.remove('hide'); // Отображение стартовой страницы
     head.classList.toggle('hide'); // Отображение заголовка
     btnHome.classList.add('svg-selected'); // Выделение кнопки в заголовке
+    footer.style.display = 'none'; // Сокрытие футера
     
     namePlayer = startInput.value;
     getLocSt(); // Взятие данных из локального хранилища
@@ -368,7 +383,7 @@ function saveData(){
     localStorage.setItem('notfightclub', JSON.stringify(finData));
 
     //Парсинг из localStorage
-    getLocSt(); 
+    getLocSt();
 }
 
 /* Взятие из localStorage */
@@ -388,6 +403,8 @@ function getLocSt(){
         losePlayer = 0;
         hpPlayer = 100;
     }
+
+    locStFightLog = JSON.parse(localStorage.getItem('fightLog')); // Загрузка журнала боя
 }
 
 // Загрузка врагов
@@ -409,6 +426,7 @@ accountPage.style.display = 'none'; // Сокрытие окна аккаунт�
 mainPage.classList.add('hide'); // Сокрытие основной страницы
 
 fightPage.style.display = 'none'; // Сокрытие страницы сражений 
+footer.style.display = 'none'; // Сокрытие футера
 fightAttackBtn.classList.add('fight-page-attack-btn-no');
 fightAttackBtn.classList.add('fight-page-attack-btn-no-2');
 

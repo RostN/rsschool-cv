@@ -503,4 +503,43 @@ main{
 }
 
 /* Футер\Низ */
-/* footer {} */
+footer{
+    padding: 0.3em;
+    position: fixed;
+    bottom: calc(-50% + 2.5em);
+    width: 100vw;
+    height: 50vh;
+    border: 0.1em solid white;
+    border-top-left-radius: 2em;
+    border-top-right-radius: 2em;
+    cursor: pointer;
+    box-sizing: border-box;
+    transition: transform 0.4s;
+    transform: translateY(0);
+    font-size: 1.5em;
+    z-index: 100;
+    /* Временно */
+    /* transform: translateY(calc(-100% + 2.5em)); */
+    
+    /* Заголовок в футере */
+    .footer-head{
+        width: 100%;
+        text-align: center;
+        font-weight: bold;
+        margin-bottom: 0.5em;
+        background: none;
+        z-index: 100;
+    }
+    
+    .footer-log{
+        background: none;
+        height: calc(100% - 2em);
+        padding: 0.1em;
+        overflow: auto;
+        box-sizing: border-box;
+        z-index: 100;
+    }
+}
+footer.active{
+    transform: translateY(calc(-100% + 2.5em));
+}
