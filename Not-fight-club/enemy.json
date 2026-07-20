@@ -2,16 +2,16 @@
     {
         "img":"img/e1.png",
         "name": "Spider",
-        "power": 8
+        "power": 6
     },
     {
         "img": "img/e2.png",
         "name": "Troll",
-        "power": 12
+        "power": 8
     },
     {
         "img": "img/e3.png",
         "name": "Ursulla",
-        "power": 10
+        "power": 7
     }  
 ]
