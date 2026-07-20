@@ -39,6 +39,7 @@ let fightHpEnemyLineText = document.createElement('div'); // Создание п
 fightHpEnemyLine.classList.add('fightHpLine');
 fightHpEnemyLineText.classList.add('fightHpLineText');
 let zones = ['Head', 'Neck', 'Body', 'Belly', 'Legs'];
+let fightLog =[];
 
 // Страница аккаунта
 let accountPage = document.querySelector('.account-page');
@@ -75,6 +76,8 @@ let enemyHP = 100; // Здоровье врага
 /* Исполняемый код */
 // Кнопка атаки
 fightAttackBtn.addEventListener("click", function(){
+    let enDmg = 0;
+    let plDmg = 0;
     let crDmg = 1; // Критияеский урон
     let enemyPower = dataEnemy[R].power; // Взятие силы противника
     // Выбранные позиции атаки и защиты
@@ -88,21 +91,32 @@ fightAttackBtn.addEventListener("click", function(){
     let enAtPl = chosedEnemyAt.filter(item => chosedPlayerDef.includes(item)); // Атака врага по игроку
     
     // console.log(chosedEnemyDef, "defEn");
-    console.log(chosedEnemyAt, "atEn");
-    console.log(chosedPlayerDef, "defPl");
+    // console.log(chosedEnemyAt, "atEn");
+    // console.log(chosedPlayerDef, "defPl");
     // console.log(chosedPlayerAt, "atPl");
-    console.log(plAtEn);
-    console.log(enAtPl);
+    // console.log(plAtEn);
+    // console.log(enAtPl);
 
     // Проверка атаки игрока и защиты врага
     if (plAtEn.length < 1){
-        enemyHP = enemyHP - powerPlayer * crDmg;
+        plDmg = powerPlayer * (crDmg + Math.floor(Math.random() * 2));
+        enemyHP = enemyHP - plDmg;
     }
     // Проверка защиты игрока от врага
     if (enAtPl.length < 2) {
-        hpPlayer = hpPlayer - enemyPower * crDmg * (2 - enAtPl.length);
+        enDmg = enemyPower * (crDmg + Math.floor(Math.random() * 2)) * (2 - enAtPl.length)
+        hpPlayer = hpPlayer - enDmg;
     }
 
+    // Журнал боя
+    fightLog.unshift(`Player damage: ${plDmg}, Player deffence: ${chosedPlayerDef}, Player attack: ${chosedPlayerAt}, Enemy damage: ${enDmg}, Enemy deffence: ${chosedEnemyDef}, Enemy attack: ${chosedEnemyAt};`)
+
+    console.log(fightLog);
+
+    checkbboxesAt.forEach(cb => {cb.checked = false;}); // Снятие выделений с блока атаки
+    checkboxes.forEach(cb => {cb.checked = false;}); // Снятие выделений с блока защиты
+    fightAttackBtn.classList.add('fight-page-attack-btn-no'); // Отключение кнопки атаки
+    fightAttackBtn.classList.add('fight-page-attack-btn-no-2'); // Отключение кнопки атаки 2
     fightHpEnemyLine.style.width = `${enemyHP}%`; // Здоровье врага
     fightHpEnemyLineText.textContent = `${enemyHP}%`; // Здоровье врага
     fightHpPlayerLine.style.width = `${hpPlayer}%`; // Здоровье игрока
@@ -149,7 +163,6 @@ checkboxes.forEach(cb => {
     } else {
         fightAttackBtn.classList.add('fight-page-attack-btn-no')
     }
-    console.log(count);
   });
 });
 
@@ -362,8 +375,7 @@ function getLocSt(){
 // Загрузка врагов
 function loadEnemy(){
     (async () => {
-        dataEnemy = await (await fetch('enemy.json')).json()
-        console.log(dataEnemy);
+        dataEnemy = await (await fetch('enemy.json')).json();
     })().catch(console.error)
 }
 
