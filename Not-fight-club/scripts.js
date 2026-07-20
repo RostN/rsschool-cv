@@ -79,6 +79,7 @@ fightAttackBtn.addEventListener("click", function(){
     let enDmg = 0;
     let plDmg = 0;
     let crDmg = 1; // Критияеский урон
+    let finTxt =''; // Финишный текст
     let enemyPower = dataEnemy[R].power; // Взятие силы противника
     // Выбранные позиции атаки и защиты
     let chosedPlayerDef = Array.from(document.querySelectorAll('.option:checked')).map(cb => cb.value);
@@ -89,28 +90,31 @@ fightAttackBtn.addEventListener("click", function(){
     
     let plAtEn = chosedPlayerAt.filter(item => chosedEnemyDef.includes(item)); // Атака игрока против защиты врага
     let enAtPl = chosedEnemyAt.filter(item => chosedPlayerDef.includes(item)); // Атака врага по игроку
-    
-    // console.log(chosedEnemyDef, "defEn");
-    // console.log(chosedEnemyAt, "atEn");
-    // console.log(chosedPlayerDef, "defPl");
-    // console.log(chosedPlayerAt, "atPl");
-    // console.log(plAtEn);
-    // console.log(enAtPl);
 
     // Проверка атаки игрока и защиты врага
     if (plAtEn.length < 1){
         plDmg = powerPlayer * (crDmg + Math.floor(Math.random() * 2));
         enemyHP = enemyHP - plDmg;
+        if (enemyHP <= 0){
+            enemyHP = 100;
+            winPlayer ++;
+            finTxt = `Player is WIN of ${fightEnemyName.textContent} `;
+        }
     }
+
     // Проверка защиты игрока от врага
     if (enAtPl.length < 2) {
         enDmg = enemyPower * (crDmg + Math.floor(Math.random() * 2)) * (2 - enAtPl.length)
         hpPlayer = hpPlayer - enDmg;
+        if (hpPlayer <= 0 ){
+            hpPlayer = 100;
+            losePlayer ++;
+            finTxt = `Player is LOSE of ${fightEnemyName.textContent} `;
+        }
     }
 
     // Журнал боя
-    fightLog.unshift(`Player damage: ${plDmg}, Player deffence: ${chosedPlayerDef}, Player attack: ${chosedPlayerAt}, Enemy damage: ${enDmg}, Enemy deffence: ${chosedEnemyDef}, Enemy attack: ${chosedEnemyAt};`)
-
+    fightLog.unshift(`${finTxt}Player damage: ${plDmg}, Player deffence: ${chosedPlayerDef}, Player attack: ${chosedPlayerAt}, Enemy damage: ${enDmg}, Enemy deffence: ${chosedEnemyDef}, Enemy attack: ${chosedEnemyAt};`);
     console.log(fightLog);
 
     checkbboxesAt.forEach(cb => {cb.checked = false;}); // Снятие выделений с блока атаки
@@ -121,7 +125,27 @@ fightAttackBtn.addEventListener("click", function(){
     fightHpEnemyLineText.textContent = `${enemyHP}%`; // Здоровье врага
     fightHpPlayerLine.style.width = `${hpPlayer}%`; // Здоровье игрока
     fightHpPlayerLineText.textContent = `${hpPlayer}%`; // Здоровье игрока
+    
+    saveData();
 })
+
+// Функция сохранения информации о бои
+function saveFight(){
+    let jsonTMP = new Map ([
+        ['log', fightLog],
+        ['hp', enemyHP]
+    ]);
+    let SD = Object.fromEntries(jsonTMP);
+
+    //Добавления имени в JSON
+    let finData = new Map ([
+        [namePlayer, SD]
+    ]);
+    finData = Object.fromEntries(finData);
+
+    //Сохранение в localStorage
+    localStorage.setItem('fightLog', JSON.stringify(finData));    
+}
 
 // Функция перемешивания элементов
 function shuffle(array) {
@@ -169,7 +193,6 @@ checkboxes.forEach(cb => {
 // Кнопка начала боя
 mainPageBtnFight.addEventListener('click', function(){
     R = Math.floor(Math.random() * (dataEnemy.length));
-    console.log('Random:', R);
 
     fightPicPlayer.appendChild(img); // Вставка изображения
     fightPlayerName.textContent = namePlayer; // Вписание имени персонажа
@@ -341,12 +364,8 @@ function saveData(){
     ]);
     finData = Object.fromEntries(finData);
 
-
-    // finData = {...locSt,...finData}; // Старые данные и плюс новые сделать контроль изменения имени
-
     //Сохранение в localStorage
-    localStorage.setItem('notfightclub', JSON.stringify(finData)); 
-    console.log('saved');
+    localStorage.setItem('notfightclub', JSON.stringify(finData));
 
     //Парсинг из localStorage
     getLocSt(); 
@@ -357,7 +376,6 @@ function getLocSt(){
     locSt = JSON.parse(localStorage.getItem('notfightclub'));
     console.log(locSt);
     if (locSt){
-        console.log('Have')
         picPlayer = locSt[namePlayer].Pic;
         winPlayer = locSt[namePlayer].win;
         losePlayer = locSt[namePlayer].lose;
