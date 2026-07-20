@@ -506,7 +506,7 @@ main{
 footer{
     padding: 0.3em;
     position: fixed;
-    bottom: calc(-50% + 2.5em);
+    bottom: calc(-50% + 2em);
     width: 100vw;
     height: 50vh;
     border: 0.1em solid white;
@@ -518,8 +518,6 @@ footer{
     transform: translateY(0);
     font-size: 1.5em;
     z-index: 100;
-    /* Временно */
-    /* transform: translateY(calc(-100% + 2.5em)); */
     
     /* Заголовок в футере */
     .footer-head{
@@ -541,5 +539,5 @@ footer{
     }
 }
 footer.active{
-    transform: translateY(calc(-100% + 2.5em));
+    transform: translateY(calc(-100% + 2em));
 }
