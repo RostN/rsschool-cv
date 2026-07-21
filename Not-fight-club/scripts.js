@@ -405,8 +405,10 @@ function getLocSt(){
     }
 
     locStFightLog = JSON.parse(localStorage.getItem('fightLog')); // Загрузка журнала боя
-    footerLog.innerHTML = (locStFightLog[namePlayer].log).join('<br>');
-    console.log((locStFightLog[namePlayer].log).join('\n'))
+    if (locStFightLog) {
+        footerLog.innerHTML = (locStFightLog[namePlayer].log).join('<br>');
+        console.log((locStFightLog[namePlayer].log).join('\n'))
+    }
 }
 
 // Загрузка врагов
