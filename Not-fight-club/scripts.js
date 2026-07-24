@@ -88,22 +88,30 @@ footer.addEventListener('click', function(){
 fightAttackBtn.addEventListener("click", function(){
     let enDmg = 0;
     let plDmg = 0;
-    let crDmg = 1; // Критияеский урон
+    let crDmg = 1; // Критический урон
     let finTxt =''; // Финишный текст
     let enemyPower = dataEnemy[R].power; // Взятие силы противника
-    // Выбранные позиции атаки и защиты
+    // Выбранные позиции атаки и защиты игрока и врага
     let chosedPlayerDef = Array.from(document.querySelectorAll('.option:checked')).map(cb => cb.value);
     let chosedPlayerAt = Array.from(document.querySelectorAll('.optionAt:checked')).map(cb => cb.value);
-    
     let chosedEnemyDef = getRandomItemsSecure(zones, Math.floor(Math.random() * 3) + 1);
     let chosedEnemyAt = getRandomItemsSecure(zones, Math.floor(Math.random() * 2) + 1);
-    
+    // Сравнение нападения и атаки
     let plAtEn = chosedPlayerAt.filter(item => chosedEnemyDef.includes(item)); // Атака игрока против защиты врага
     let enAtPl = chosedEnemyAt.filter(item => chosedPlayerDef.includes(item)); // Атака врага по игроку
 
+    // Проверка пробития защиты врага критом
+    crDmg = 1; 
+    crDmg = crDmg + Math.floor(Math.random() * 2);
+    if (crDmg > 1) {
+        if (plAtEn.length === 1) {
+            plAtEn.length --;
+        }
+    }
+
     // Проверка атаки игрока и защиты врага
     if (plAtEn.length < 1){
-        plDmg = powerPlayer * (crDmg + Math.floor(Math.random() * 2));
+        plDmg = powerPlayer * crDmg;
         enemyHP = enemyHP - plDmg;
         if (enemyHP <= 0){
             enemyHP = 100;
@@ -111,10 +119,19 @@ fightAttackBtn.addEventListener("click", function(){
             finTxt = `Player is WIN of ${fightEnemyName.textContent} `;
         }
     }
-
+    
+    // Проверка пробития защиты игрока критом
+    crDmg = 1;
+    crDmg = crDmg + Math.floor(Math.random() * 2);
+    if (crDmg > 1) {
+        if (enAtPl.length > 0) {
+            enAtPl.length --;
+        }
+    }
+    
     // Проверка защиты игрока от врага
     if (enAtPl.length < 2) {
-        enDmg = enemyPower * (crDmg + Math.floor(Math.random() * 2)) * (2 - enAtPl.length)
+        enDmg = enemyPower * crDmg * (2 - enAtPl.length)
         hpPlayer = hpPlayer - enDmg;
         if (hpPlayer <= 0 ){
             hpPlayer = 100;
@@ -125,7 +142,7 @@ fightAttackBtn.addEventListener("click", function(){
 
     // Журнал боя
     fightLog.unshift(`${finTxt}Player damage: ${plDmg}, Player deffence: ${chosedPlayerDef}, Player attack: ${chosedPlayerAt}, Enemy damage: ${enDmg}, Enemy deffence: ${chosedEnemyDef}, Enemy attack: ${chosedEnemyAt};`);
-    console.log(fightLog);
+    // console.log(fightLog);
 
     checkbboxesAt.forEach(cb => {cb.checked = false;}); // Снятие выделений с блока атаки
     checkboxes.forEach(cb => {cb.checked = false;}); // Снятие выделений с блока защиты
@@ -201,7 +218,7 @@ checkboxes.forEach(cb => {
 
 // Кнопка начала боя
 mainPageBtnFight.addEventListener('click', function(){
-    R = Math.floor(Math.random() * (dataEnemy.length));
+    R = Math.floor(Math.random() * (dataEnemy.length)); // Выбор рандомного врага
 
     fightPicPlayer.appendChild(img); // Вставка изображения
     fightPlayerName.textContent = namePlayer; // Вписание имени персонажа
@@ -278,7 +295,7 @@ acceptBtn.addEventListener('click', function(){
     saveData(); // Сохранение данных
 })
 
-// Кнопка закрытия в модалке
+// Кнопка закрытия в модалки
 exitBtn.addEventListener('click', function(){
     dialog.close();
 })
@@ -363,6 +380,7 @@ function startGame(){
     saveData(); // Сохранение
 }
 
+// Сохранение данных игрока
 function saveData(){
     //Создание JSON и заполнение данными
     let jsonTMP = new Map ([
@@ -406,8 +424,9 @@ function getLocSt(){
 
     locStFightLog = JSON.parse(localStorage.getItem('fightLog')); // Загрузка журнала боя
     if (locStFightLog) {
+        // Формирование журнала боя
         footerLog.innerHTML = (locStFightLog[namePlayer].log).join('<br>');
-        console.log((locStFightLog[namePlayer].log).join('\n'))
+        // console.log((locStFightLog[namePlayer].log).join('\n'))
     }
 }
 
