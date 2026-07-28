@@ -16,6 +16,7 @@ let startInput = document.querySelector('.start-input');
 let modalOverlay = document.querySelector('.modal-overlay-start')
 let modalCloseBtn = document.querySelector('.btn-close-modalStart');
 let locSt = ''; //Локальное хранилище в переменной
+let lastNameGamer = document.querySelector('.start-input-last-name');
 
 // Основная страница
 let mainPage = document.querySelector('.main-page');
@@ -164,8 +165,7 @@ fightAttackBtn.addEventListener("click", function(){
     saveFightLog();
     } else {
         console.log ('no')
-    }
-    
+    }  
 })
 
 // Функция сохранения информации о бои
@@ -464,6 +464,17 @@ footer.style.display = 'none'; // Сокрытие футера
 fightAttackBtn.classList.add('fight-page-attack-btn-no');
 fightAttackBtn.classList.add('fight-page-attack-btn-no-2');
 
+function testGames() {
+    locSt = JSON.parse(localStorage.getItem('notfightclub'));
+    if (locSt){
+        console.log (Object.keys(locSt).join());
+        lastNameGamer.textContent = `Or enter your last name: ${Object.keys(locSt).join()}`
+    }
+}
 loadEnemy();
+testGames();
+
+// console.log(Object.keys(JSON.parse(localStorage.getItem('notfightclub'))));
+
 // startPage.classList.add('hide'); // Временно Сокрытие стартовой страницы
 // startGame(); // Временно
