@@ -84,9 +84,16 @@ footer.addEventListener('click', function(){
     footer.classList.toggle('active');
 })
 
+// fightAttackBtn.classList.add('fight-page-attack-btn-no');
+// fightAttackBtn.classList.add('fight-page-attack-btn-no-2');
+
+
 // Кнопка атаки
 fightAttackBtn.addEventListener("click", function(){
-    let enDmg = 0;
+    let classesToCheck = ['fight-page-attack-btn-no', 'fight-page-attack-btn-no-2']
+    if (fightAttackBtn  && !classesToCheck.some(cls => fightAttackBtn.classList.contains(cls))) {
+        console.log('done');
+        let enDmg = 0;
     let plDmg = 0;
     let crDmg = 1; // Критический урон
     let finTxt =''; // Финишный текст
@@ -128,7 +135,7 @@ fightAttackBtn.addEventListener("click", function(){
             enAtPl.length --;
         }
     }
-    
+
     // Проверка защиты игрока от врага
     if (enAtPl.length < 2) {
         enDmg = enemyPower * crDmg * (2 - enAtPl.length)
@@ -155,6 +162,10 @@ fightAttackBtn.addEventListener("click", function(){
     
     saveData();
     saveFightLog();
+    } else {
+        console.log ('no')
+    }
+    
 })
 
 // Функция сохранения информации о бои
