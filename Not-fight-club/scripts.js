@@ -96,7 +96,10 @@ fightAttackBtn.addEventListener("click", function(){
         console.log('done');
         let enDmg = 0;
     let plDmg = 0;
-    let crDmg = 1; // Критический урон
+    let plCrit ='';
+    let enCrit ='';
+    let crDmgPl = 1; // Критический урон
+    let crDmgEn = 1; // Критический урон
     let finTxt =''; // Финишный текст
     let enemyPower = dataEnemy[R].power; // Взятие силы противника
     // Выбранные позиции атаки и защиты игрока и врага
@@ -109,17 +112,18 @@ fightAttackBtn.addEventListener("click", function(){
     let enAtPl = chosedEnemyAt.filter(item => chosedPlayerDef.includes(item)); // Атака врага по игроку
 
     // Проверка пробития защиты врага критом
-    crDmg = 1; 
-    crDmg = crDmg + Math.floor(Math.random() * 2);
-    if (crDmg > 1) {
+    crDmgPl = 1; 
+    crDmgPl = crDmgPl + Math.floor(Math.random() * 2);
+    if (crDmgPl > 1) {
         if (plAtEn.length === 1) {
             plAtEn.length --;
         }
+        plCrit = 'HIT';
     }
 
     // Проверка атаки игрока и защиты врага
     if (plAtEn.length < 1){
-        plDmg = powerPlayer * crDmg;
+        plDmg = powerPlayer * crDmgPl;
         enemyHP = enemyHP - plDmg;
         if (enemyHP <= 0){
             enemyHP = 100;
@@ -129,17 +133,18 @@ fightAttackBtn.addEventListener("click", function(){
     }
     
     // Проверка пробития защиты игрока критом
-    crDmg = 1;
-    crDmg = crDmg + Math.floor(Math.random() * 2);
-    if (crDmg > 1) {
+    crDmgEn = 1;
+    crDmgEn = crDmgEn + Math.floor(Math.random() * 2);
+    if (crDmgEn > 1) {
         if (enAtPl.length > 0) {
             enAtPl.length --;
         }
+        enCrit = 'HIT';
     }
 
     // Проверка защиты игрока от врага
     if (enAtPl.length < 2) {
-        enDmg = enemyPower * crDmg * (2 - enAtPl.length)
+        enDmg = enemyPower * crDmgEn * (2 - enAtPl.length)
         hpPlayer = hpPlayer - enDmg;
         if (hpPlayer <= 0 ){
             hpPlayer = 100;
@@ -149,7 +154,7 @@ fightAttackBtn.addEventListener("click", function(){
     }
 
     // Журнал боя
-    fightLog.unshift(`${finTxt}Player damage: ${plDmg}, Player deffence: ${chosedPlayerDef}, Player attack: ${chosedPlayerAt}, Enemy damage: ${enDmg}, Enemy deffence: ${chosedEnemyDef}, Enemy attack: ${chosedEnemyAt};`);
+    fightLog.unshift(`${finTxt}Player damage: ${plDmg}${plCrit}, Player deffence: ${chosedPlayerDef}, Player attack: ${chosedPlayerAt}, Enemy damage: ${enDmg}${enCrit}, Enemy deffence: ${chosedEnemyDef}, Enemy attack: ${chosedEnemyAt};`);
     // console.log(fightLog);
 
     checkbboxesAt.forEach(cb => {cb.checked = false;}); // Снятие выделений с блока атаки
