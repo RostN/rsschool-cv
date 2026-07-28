@@ -85,21 +85,16 @@ footer.addEventListener('click', function(){
     footer.classList.toggle('active');
 })
 
-// fightAttackBtn.classList.add('fight-page-attack-btn-no');
-// fightAttackBtn.classList.add('fight-page-attack-btn-no-2');
-
-
 // Кнопка атаки
 fightAttackBtn.addEventListener("click", function(){
     let classesToCheck = ['fight-page-attack-btn-no', 'fight-page-attack-btn-no-2']
     if (fightAttackBtn  && !classesToCheck.some(cls => fightAttackBtn.classList.contains(cls))) {
-        console.log('done');
-        let enDmg = 0;
-    let plDmg = 0;
-    let plCrit ='';
-    let enCrit ='';
-    let crDmgPl = 1; // Критический урон
-    let crDmgEn = 1; // Критический урон
+    let enDmg = 0; // Урон врага
+    let plDmg = 0; // Урон игрока
+    let plCrit =''; // Текст крит игрока
+    let enCrit =''; // Текст крит врага
+    let crDmgPl = 1; // Критический урон игрока
+    let crDmgEn = 1; // Критический урон врага
     let finTxt =''; // Финишный текст
     let enemyPower = dataEnemy[R].power; // Взятие силы противника
     // Выбранные позиции атаки и защиты игрока и врага
@@ -155,7 +150,6 @@ fightAttackBtn.addEventListener("click", function(){
 
     // Журнал боя
     fightLog.unshift(`${finTxt}Player damage: ${plDmg}${plCrit}, Player deffence: ${chosedPlayerDef}, Player attack: ${chosedPlayerAt}, Enemy damage: ${enDmg}${enCrit}, Enemy deffence: ${chosedEnemyDef}, Enemy attack: ${chosedEnemyAt};`);
-    // console.log(fightLog);
 
     checkbboxesAt.forEach(cb => {cb.checked = false;}); // Снятие выделений с блока атаки
     checkboxes.forEach(cb => {cb.checked = false;}); // Снятие выделений с блока защиты
@@ -442,7 +436,6 @@ function getLocSt(){
     if (locStFightLog) {
         // Формирование журнала боя
         footerLog.innerHTML = (locStFightLog[namePlayer].log).join('<br>');
-        // console.log((locStFightLog[namePlayer].log).join('\n'))
     }
 }
 
@@ -469,6 +462,7 @@ footer.style.display = 'none'; // Сокрытие футера
 fightAttackBtn.classList.add('fight-page-attack-btn-no');
 fightAttackBtn.classList.add('fight-page-attack-btn-no-2');
 
+// Проверка игрока в игре
 function testGames() {
     locSt = JSON.parse(localStorage.getItem('notfightclub'));
     if (locSt){
@@ -478,8 +472,6 @@ function testGames() {
 }
 loadEnemy();
 testGames();
-
-// console.log(Object.keys(JSON.parse(localStorage.getItem('notfightclub'))));
 
 // startPage.classList.add('hide'); // Временно Сокрытие стартовой страницы
 // startGame(); // Временно
