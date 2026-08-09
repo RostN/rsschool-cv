@@ -1,60 +1,73 @@
-const fs = require('fs');
+const fs = require('fs').promises;
 const path = require('path');
 
-// Пути относительно папки, где лежит этот скрипт
+// Пути
 const baseDir = __dirname;
-const sourceFolder = path.join(baseDir, 'styles');
-const distFolder = path.join(baseDir, 'project-dist');
-const outputFile = path.join(distFolder, 'bundle.css');
+const sourceDir = path.join(baseDir, 'styles');
+const destDir = path.join(baseDir, 'project-dist');
+const outputFile = path.join(destDir, 'bundle.css');
 
-try {
-  // Проверка существование папки styles
-  if (!fs.existsSync(sourceFolder)) {
-    console.error(`Папка "${sourceFolder}" не найдена!`);
-    process.exit(1);
-  }
+async function compileStyles() {
+  try {
+    // Проверяем, существует ли папка styles
+    const srcStats = await fs.stat(sourceDir);
+    if (!srcStats.isDirectory()) {
+      throw new Error(`Папка "${sourceDir}" не найдена.`);
+    }
 
-  // Создаем папку project-dist, если её нет
-  if (!fs.existsSync(distFolder)) {
-    fs.mkdirSync(distFolder, { recursive: true });
-    console.log(`Папка "${distFolder}" создана.`);
-  }
+    // Создаем папку project-dist, если её нет
+    await fs.mkdir(destDir, { recursive: true });
 
-  // Читаем имена файлов в папке styles
-  const files = fs.readdirSync(sourceFolder);
+    // Получаем список файлов из styles
+    const files = await fs.readdir(sourceDir);
 
-  let cssContent = '';
-  let fileCount = 0;
+    const cssFiles = [];
 
-  files.forEach((fileName) => {
-    const filePath = path.join(sourceFolder, fileName);
+    // Фильтруем только .css файлы 
+    for (const file of files) {
+      const filePath = path.join(sourceDir, file);
+      const stats = await fs.stat(filePath);
 
-    // Проверяем, файл ли это
-    const stats = fs.statSync(filePath);
-    
-    // Игнорируем подкаталоги и файлы без расширения .css
-    if (!stats.isFile() || !fileName.endsWith('.css')) {
+      // Пропускаем, если это не файл
+      if (!stats.isFile()) continue;
+
+      const ext = path.extname(file).toLowerCase();
+      if (ext === '.css') {
+        cssFiles.push(filePath);
+      }
+    }
+
+    if (cssFiles.length === 0) {
+      console.log('CSS файлы не найдены в папке styles. Создан пустой bundle.css.');
+      await fs.writeFile(outputFile, '');
       return;
     }
 
-    // Читаем содержимое файла
-    const fileData = fs.readFileSync(filePath, 'utf8');
-    
-    // Слепляем файлы и добавляем перенос срок, чтобы стили не слипалист
-    cssContent += fileData + '\n';
-    fileCount++;
-  });
+    // Читаем содержимое всех CSS файлов параллельно
+    const contents = await Promise.all(
+      cssFiles.map(async (filePath) => {
+        const content = await fs.readFile(filePath, 'utf8');
+        // Добавляем разделитель, чтобы стили из разных файлов не слипались
+        return content + '\n'; 
+      })
+    );
 
-   if (fileCount === 0) {
-    console.warn(`В папке "${sourceFolder}" не найдено .css файлов.`);
-  } else {
-    // Записываем объединенный контент в bundle.css \перезаписывает файл
-    fs.writeFileSync(outputFile, cssContent);
-    console.log(`Объединено ${fileCount} файлов.`);
-    console.log(`Создан файл: ${outputFile}`);
+    // Объединяем все стили в одну строку
+    const bundleContent = contents.join('');
+
+    // Записываем итоговый файл (перезаписывает, если уже существует)
+    await fs.writeFile(outputFile, bundleContent, 'utf8');
+
+    console.log(`Успешно скомпилировано ${cssFiles.length} файлов в ${outputFile}`);
+
+  } catch (err) {
+    if (err.code === 'ENOENT') {
+      console.error('Ошибка: Папка "styles" не найдена.');
+    } else {
+      console.error('Произошла ошибка:', err.message);
+    }
+    throw err;
   }
-
-} catch (err) {
-  console.error('Ошибка:', err.message);
-  process.exit(1);
 }
+
+compileStyles();
