@@ -16,7 +16,7 @@ async function copyDir(sourceDir, targetDir) {
     // Создание целевой папку, если она не существует
     await fs.mkdir(targetDir, { recursive: true });
 
-    // Этап 1: копирование (или обновление) существующих файлов
+    // Копирование (или обновление) существующих файлов
     
     for (const fileName of sourceFiles) {
       const sourcePath = path.join(sourceDir, fileName);
@@ -34,8 +34,6 @@ async function copyDir(sourceDir, targetDir) {
       await fs.writeFile(targetPath, data);      
       console.log(`Копирование завершено / Copying completed : ${fileName}`);
     }
-
-    // Этап 2: удаление файлов, которых больше нет в исходной папке
 
     // Получаем текущий список файлов в целевой папке
     const targetFiles = await fs.readdir(targetDir);
