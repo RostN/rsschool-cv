@@ -10,51 +10,75 @@ copyDir(sourceFolder, targetFolder)
 
 async function copyDir(sourceDir, targetDir) {
   try {
-    // Получаем список файлов из исходной папки, если папки нет, появится ошибка ENOENT, обработаем её ниже
-    const sourceFiles = await fs.readdir(sourceDir);
+    // Проверяем, что исходная папка существует
+    const srcStats = await fs.stat(sourceDir);
+    if (!srcStats.isDirectory()) {
+      throw new Error(`Путь "${sourceDir}" не является директорией.`);
+    }
 
-    // Создание целевой папку, если она не существует
+    // Создаём целевую папку (если нет)
     await fs.mkdir(targetDir, { recursive: true });
 
-    // Копирование (или обновление) существующих файлов
-    
-    for (const fileName of sourceFiles) {
-      const sourcePath = path.join(sourceDir, fileName);
-      const targetPath = path.join(targetDir, fileName);
+    const sourceItems = await fs.readdir(sourceDir);
 
-      // Проверяем, что это файл 
+    // Массив для параллельного ожидания операций копирования подпапок
+    const subDirOperations = [];
+
+    // Копируем всё содержимое (файлы и папки)
+    for (const item of sourceItems) {
+      const sourcePath = path.join(sourceDir, item);
+      const targetPath = path.join(targetDir, item);
+
       const stats = await fs.stat(sourcePath);
-      if (!stats.isFile()) {
-        console.log(`Пропущено (не файл): ${fileName}`);
-        continue;
-      }
 
-      // Читаем файл и сразу пишем его в новую папку
-      const data = await fs.readFile(sourcePath);
-      await fs.writeFile(targetPath, data);      
-      console.log(`Копирование завершено / Copying completed : ${fileName}`);
-    }
-
-    // Получаем текущий список файлов в целевой папке
-    const targetFiles = await fs.readdir(targetDir);
-
-    for (const fileName of targetFiles) {
-      // Если файла нет в исходном списке sourceFiles, значит он был удален из source
-      if (!sourceFiles.includes(fileName)) {
-        const targetPath = path.join(targetDir, fileName);
-        await fs.unlink(targetPath); // Удаляем файл
-        console.log(`Удален: ${fileName}`);
+      if (stats.isDirectory()) {
+        // Рекурсивно копируем подпапку
+        subDirOperations.push(copyDir(sourcePath, targetPath));
+      } else if (stats.isFile()) {
+        // Копируем файл
+        const data = await fs.readFile(sourcePath);
+        await fs.writeFile(targetPath, data);
+        console.log(`Скопировано: ${item}`);
       }
     }
 
-    console.log('\nСинхронизация завершена / Synchronization completed ');
+    // Ждём завершения всех рекурсивных копий подпапок
+    await Promise.all(subDirOperations);
+
+    // Синхронизация: удаляем из целевой то, чего нет в исчтонике
+    const targetItems = await fs.readdir(targetDir);
+
+    for (const item of targetItems) {
+      const sourcePath = path.join(sourceDir, item);
+      const targetPath = path.join(targetDir, item);
+
+      try {
+        await fs.stat(sourcePath); // Проверяем существование в исходной
+      } catch (err) {
+        if (err.code === 'ENOENT') {
+          // Элемента нет в исходной, то удаляем из целевой
+          const targetStats = await fs.stat(targetPath);
+          if (targetStats.isDirectory()) {
+            await fs.rm(targetPath, { recursive: true, force: true });
+            console.log(`Удалена папка: ${item}`);
+          } else {
+            await fs.unlink(targetPath);
+            console.log(`Удален файл: ${item}`);
+          }
+        } else {
+          throw err;
+        }
+      }
+    }
+
+    console.log('\nСинхронизация завершена / Synchronization completed');
 
   } catch (err) {
     if (err.code === 'ENOENT') {
-      console.error(`Ошибка: Папка "${sourceDir}" не найдена / Error: Folder "${sourceDir}" not found`);
+      console.error(`Ошибка: Папка "${sourceFolder}" не найдена.`);
     } else {
       console.error('ERROR:', err.message);
     }
-    throw err; // Пробрасываем ошибку дальше, чтобы процесс завершился с кодом ошибки
+    throw err;
   }
 }
