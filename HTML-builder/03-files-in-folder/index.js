@@ -1,51 +1,35 @@
-const fs = require('fs');
+const fs = require('fs').promises;
 const path = require('path');
 
-// Путь к проверяемой папке secret-folder
-const folderPath = path.join(__dirname, 'secret-folder');
+// Формируем абсолютный путь к папке относительно текущего рабочего каталога (где запущен скрипт)
+const folderPath = path.join(process.cwd(), '03-files-in-folder', 'secret-folder');
 
-try {
-  // Чтение содержимое папки
-  const files = fs.readdirSync(folderPath);
+async function listFiles() {
+  try {
+    // Читаем содержимое папки
+    const entries = await fs.readdir(folderPath, { withFileTypes: true });
 
-  if (files.length === 0) {
-    console.log('В папке нет файлов.');
-    process.exit(0);
-  }
-
-  // Проходимся по каждому файлу
-  files.forEach((fileName) => {
-    const filePath = path.join(folderPath, fileName);
-
-    // Проверяем, что это именно файл, а не папка
-    const stats = fs.statSync(filePath);
-    if (!stats.isFile()) {
-      return; 
+    // Проходим по каждому элементу
+    for (const entry of entries) {
+      // Проверяем, является ли элемент именно файлом
+      if (entry.isFile()) {
+        // Получаем полную информацию о файле
+        const stats = await fs.stat(path.join(folderPath, entry.name));
+        
+        // Формируем строку вывода: <file name>-<file extension>-<file size>
+        const nameWithoutExt = path.basename(entry.name, path.extname(entry.name));
+        const ext = path.extname(entry.name).replace('.', ''); // Убираем точку из расширения
+        
+        console.log(`${nameWithoutExt} - ${ext} - ${stats.size} Kb`);
+      }
     }
-
-    // Разделяем имя и расширение
-    const nameParts = fileName.split('.');
-    let name = nameParts[0];
-    let extension = '';
-
-    if (nameParts.length > 1) {
-      extension = nameParts.pop(); 
-      name = nameParts.join('.'); 
+  } catch (error) {
+    if (error.code === 'ENOENT') {
+      console.error(`Ошибка: Папка "${folderPath}" не найдена.`);
     } else {
-      extension = ''; 
+      console.error('Произошла ошибка:', error.message);
     }
-
-    const sizeBytes = stats.size;
-
-    // Вывод по шаблону: <name> - <ext> - <size>
-    console.log(`${name} - ${extension} - ${sizeBytes} kb`);
-  });
-
-} catch (err) {
-  if (err.code === 'ENOENT') {
-    console.error(`Ошибка: Папка "${folderPath}" не найдена!`);
-  } else {
-    console.error('Ошибка:', err.message);
   }
-  process.exit(1);
 }
+
+listFiles();
