@@ -24,6 +24,9 @@
                         <a href="#Languages" class="aHead">Languages</a>
                     </li>
                     <li class="nav_item">
+                        <a href="#code" class="aHead">Code</a>
+                    </li>
+                    <li class="nav_item">
                         <a href="#contacts" class="aHead">Contacts</a>
                     </li>
                     <li class="nav_item">
@@ -140,6 +143,20 @@
                     </ul>
                 </div>
 
+                <!-- Пример кода -->
+                <div id="code">
+                    <h2>
+                        Code example:
+                    </h2>
+                    <pre><code >// Функция сокрытия панели меню при малом размере экрана
+    function hideNavMenu(){
+        console.log('Расширение экрана: ', window.innerWidth)
+        if (window.innerWidth &lt; 768){
+            navMenu.classList.toggle('.hide');
+        }
+    }</code></pre>
+ 
+                </div>
                 <!-- Раздел проектов -->
                 <div id="projects" class="projects">
                     <h2>

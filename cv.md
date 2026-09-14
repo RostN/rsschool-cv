@@ -31,3 +31,14 @@ Telegram: [@Aremill_Crauze](https://t.me/aremill_crauze)
 * Russian - Native
 * Ukranian - Intermediate
 * English - Intermediate
+
+### Code example:
+```javascript
+// Функция сокрытия панели меню при малом размере экрана
+function hideNavMenu(){
+    console.log('Расширение экрана: ', window.innerWidth)
+    if (window.innerWidth < 768){
+        navMenu.classList.toggle('.hide');
+    }
+}
+```
