@@ -1,0 +1,284 @@
+<!DOCTYPE html>
+<html lang='en'>
+
+  <head>
+    <meta charset='UTF-8'>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Coffee House</title>
+    <link rel='stylesheet' href='style.css'>
+    <link rel="icon" href="img/favicon.svg" type="image/x-icon">
+    <script src="scripts.js" defer></script>
+  </head>
+  <body>
+    
+    <!-- Голова --> 
+    <header>
+      <a href="#">
+        <img src="img/logo.svg" alt="logo">
+      </a>
+
+      <!-- Навигация -->
+      <nav>
+        <ul>
+          <li>
+            <a href="#">
+              Favorite coffee
+            </a>
+          </li>
+          <li>
+            <a href="#">
+              About
+            </a>
+          </li>
+          <li>
+            <a href="#">
+              Mobile app
+            </a>
+          </li>
+          <li>
+            <a href="#">
+              Contact us
+            </a>
+          </li>
+        </ul>
+      </nav>
+
+      <!-- Блок активного правого меню -->
+      <div class="header-actions">
+
+        <!-- Свитчер темы -->
+        <label class="theme-switcher" for="theme-toggle">
+          <!-- Скрытый чекбокс, который хранит состояние -->
+          <input type="checkbox" id="theme-toggle">
+          <!-- Визуальный ползунок -->
+          <span class="slider">
+            <!-- Бегунок -->
+            <span class="knob"></span>
+          </span>
+        </label>   
+    
+        <!-- Меню с чашкой -->
+        <a href="#" class="head-coffee-menu">
+          Menu
+          <img src="img/coffee-cup.svg" alt="coffee menu">
+        </a>
+
+      </div>
+
+    </header>
+
+    <!-- Основное тело -->
+    <main>
+      <!-- блок hero -->
+      <div class="hero">
+        
+        <!-- оффер -->
+        <div class="hero-offer">
+          
+          <!-- Заголовок -->
+          <h1>
+            <span class="accent">
+              Enjoy
+            </span>
+             premium coffee at our charming cafe
+          </h1>
+          <span class="medium">
+            With its inviting atmosphere and delicious coffee options, the Coffee House Resource is a popular destination for coffee lovers and those seeking a warm and inviting space to enjoy their favorite beverage.
+          </span>
+  
+          <!-- Кнопка -->
+          <a href="#">Menu</a>
+
+        </div>
+      </div>
+
+      <!-- favorite coffee -->
+      <div class="favorite-coffee">
+        <!-- Заголовок -->
+        <h2>
+          Choose your 
+          <span class="accent">
+            favorite
+          </span>
+          coffee
+        </h2>
+        
+        <!-- Кнопка влево -->
+        <button class="left-btn"></button>
+
+        <!-- Слайды -->
+        <div class="favorite-coffee-slidebar">
+          <!-- Карточки -->
+          <div class="favorite-coffee-card">
+            <img src="img/coffee-slider-1.svg" alt="">
+            <h3>S’mores Frappuccino</h3>
+            <span class="medium">
+              This new drink takes an espresso and mixes it with brown sugar and cinnamon before being topped with oat milk.
+            </span>
+            <h3>
+              $5.50
+            </h3>
+          </div>
+        </div>
+        
+        <!-- Кнопка вправо -->
+        <button class="right-btn"></button>
+        
+        <!-- Индикатор -->
+        <div class="favorite-coffee-indicator">
+          <button class="slider-indicator active"></button>
+          <button class="slider-indicator"></button>
+          <button class="slider-indicator"></button>
+        </div>
+
+      </div>
+
+      <!-- about -->
+      <div class="about">
+        
+        <!-- Текстовая часть -->
+        <h2>
+          Resource is 
+          <span class="accent">
+          the perfect and cozy place
+          </span>
+          where you can enjoy a variety of hot beverages, relax, catch up with friends, or get some work done.
+        </h2>  
+
+        <!-- Картинки -->
+        <div class="about-images">
+          <img src="img/about-1.svg" alt="" class="about-img">
+          <img src="img/about-3.svg" alt="" class="about-img">
+          <img src="img/about-2.svg" alt="" class="about-img">
+          <img src="img/about-4.svg" alt="" class="about-img">
+        </div>      
+      </div>
+
+      <!-- mobile app -->
+      <div class="mobile-app">
+        <div class="mobile-app-offer">
+          <ul class="mobile-app-offer-list">
+            <li>
+              <div>
+                <h2>
+                  <span class="accent">
+                    Download
+                  </span>
+                   our app to start ordering
+                </h2>
+              </div>
+            </li>
+
+            <li>
+              <span class="medium">
+                Download the Resource app today and experience the comfort of ordering your favorite coffee from wherever you are
+              </span>
+            </li>
+
+            <li>
+              <div class="mobile-app-buttons">
+                <!-- Яблоко -->
+                <a href="#">
+                  <img src="img/apple-store-icon.svg" alt="Google Play">
+                  <div class="mobile-app-button">
+                    <span class="caption">Available on the</span>
+                    <span>Apple Store</span>
+                  </div>
+                </a>
+                
+                <!-- Гугл -->
+                <a href="#">
+                  <img src="img/google-play-icon.svg" alt="Google Play">
+                  <div class="mobile-app-button">
+                    <span class="caption">Available on</span>
+                    <span>Google Play</span>
+                  </div>
+                </a>
+              </div>
+            </li>
+
+          </ul>
+        </div>
+
+        <!-- Картинка с телефонами -->
+        <img src="img/mobile-screens.svg" alt="">
+        
+      </div>
+
+    </main>
+
+    <!-- Низ -->
+    <footer>
+      <!-- Контейнер фута -->
+      <div class="footer-container">
+        
+        <!-- Заголовки -->
+        <div class="footer-container-offer">
+          <h2>
+            Sip, Savor, Smile.
+            <span>
+              <h2 class="accent">
+                It’s coffee time!
+              </h2>
+            </span>
+          </h2>
+          
+          <ul class="footer-container-offer-list">
+            <li>
+              <a href="https://twitter.com">
+                <img src="img/twitter.svg" alt="twitter" class="footer-social-img">
+              </a>
+            </li>
+
+            <li>
+              <a href="https://instagram.com">
+                <img src="img/instagram.svg" alt="twitter" class="footer-social-img">
+              </a>
+            </li>
+
+            <li>
+              <a href="https://facebook.com">
+                <img src="img/facebook.svg" alt="twitter" class="footer-social-img">
+              </a>
+            </li>
+          </ul>
+        </div>
+
+        <!-- Контактная информация -->
+        <div class="footer-container-contacts-info">
+          <h3>Contact us</h3>
+          <div class="footer-container-contacts-info-contacts">
+            
+            <ul class="footer-contacts-list">
+
+              <!-- Карта -->
+              <li>
+                <a href="https://maps.app.goo.gl/DehpsBXX7xzd6ujC8" target="_blank">
+                  <img src="img/map.svg" alt="map" class="footer-contacts-img">
+                  8558 Green Rd., LA
+                </a>
+              </li>
+
+              <!-- Телефон -->
+              <li>
+                <a href="">
+                  <img src="img/phone.svg" alt="phone" class="footer-contacts-img">
+                  +1 (603) 555-0123
+                </a>
+              </li>
+
+              <!-- Время работы -->
+              <li>
+                <img src="img/clock.svg" alt="clock" class="footer-contacts-img">
+                Mon–Sat: 9:00–23:00
+              </li>
+            </ul>
+
+          </div>
+        </div>
+
+      </div>
+    </footer>
+    
+  </body>
+</html>
