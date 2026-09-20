@@ -297,6 +297,12 @@ main {
                 align-items: center;
                 justify-content: center;
                 background-color: var(--PageBg);
+
+                /* Прячем чашку */
+                img {
+                    margin-left: 8px;
+                    display: none;
+                }
             }
 
             a:hover {
@@ -352,7 +358,7 @@ main {
             display: flex;
             height: 640px;
             flex-grow: 1;
-            margin: 0;
+            margin: 40px 0 0 0;
             padding: 0;
             justify-content: center;
 
@@ -678,13 +684,168 @@ footer {
     }
 }
 
-/* 1439 - 769px */
-@media screen and (max-width:1439px) and (min-width: 769px) {
-    
+/* 1439 - 768px */
+@media screen and (max-width:1439px) and (min-width: 768px) {
+    /* Голова */
+    header {
+        /* padding-inline: 40px; */
+        /* height: 60px; */
+        /* box-sizing: border-box; */
+        /* display: flex; */
+        /* align-items: center; */
+        /* justify-content: space-between; */
+        /* margin-top: 20px; */
+
+        /* Навигация */
+        nav {
+            /* width: 100%; */
+            ul {
+                /* margin: 0; */
+                /* padding: 0; */
+                /* list-style: none; */
+                /* display: flex; */
+                /* gap: 40px; */
+                /* justify-content: center; */
+                /* margin-right: 44px; */
+
+                /* Цвет ссылок */
+                a{
+                    /* color: var(--PrimaryText); */
+                }
+            }
+        }
+        
+        /* Часть с правыми кнопками (бегунок и кнопка меню с чашкой) */
+        .header-actions {
+            /* height: 44px; */
+            /* width: 184px; */
+            /* margin: 0; */
+            /* padding: 0; */
+            /* display: flex; */
+            /* justify-content: space-between; */
+            /* flex-shrink: 0; */
+        
+            /* Кнопка меню с чашкой */
+            a {
+                /* color: var(--PrimaryText); */
+                /* display: flex; */
+                /* align-items: center; */
+                /* margin-left: 24px; */
+                
+                img {
+                    /* margin-left: 8px; */
+                    /* width: 20px; */
+                    /* height: 20px; */
+                }
+            }
+        }
+    }
+
+    /* Основное тело */
+    main {
+        padding-inline: 40px;
+
+        /* hero */
+        .hero {
+            padding: 100px 0 100px 60px;
+        }
+
+        /* блок about */
+        .about {
+            margin-top: 100px;
+
+            /* Корректировка заголовка */
+            h2{
+                letter-spacing: 0.0em;
+            }
+            
+            /* Блок с картинками */
+            .about-images {
+                grid-template-columns: 1fr;
+                grid-template-rows: auto auto;
+                max-width: 100%;
+            }
+
+            /* Обрезка и порядок картинок */
+            .about-images .about-img:nth-child(1) {
+                grid-row: unset;
+            }
+
+            .about-images .about-img:nth-child(2) {
+                display: none;
+            }
+
+            .about-images .about-img:nth-child(3) {
+                display: none;
+            }        
+            
+            .about-images .about-img:nth-child(4) {
+                grid-row: unset;
+            }     
+        }
+
+        /* блок mobile app */
+        .mobile-app {
+            flex-wrap: wrap;
+            justify-content: center;
+            margin-bottom: 100px;
+        
+            /* Текстовое поле */
+            .mobile-app-offer{
+                margin: 100px 0 100px 0;            
+            }
+        }
+    }
+
+    /* Футер\Низ */
+    footer {
+        height: 736px;
+                
+        /* Контейнер */
+        .footer-container{
+            gap: 100px;
+            flex-wrap: wrap;
+            
+            /* Блок с надписью и соц сетями */
+            .footer-container-offer{
+                margin: 100px 60px 0px 60px;
+            }
+            
+            /* Контактная информация */
+            .footer-container-contacts-info{
+                margin: 00px 60px 00px 60px;
+            }
+        }
+    }    
+}
+
+@media screen and (max-width:768px) {
+    nav {
+        border: 1px solid red;
+    }
+
+    /* Основное тело */
+    main {
+        /* hero */
+        .hero {   
+            padding: 100px 0 100px 60px;
+                     
+            /* оффер в блоке hero */
+            .hero-offer{        
+                /* Кнопка menu */
+                a {
+                    /* Показываем чашку */
+                    img {
+                        display: block;
+                    }
+                }
+            }
+        }
+    }    
 }
 
 /* 768 и менее */
-@media screen and (max-width: 768px) {
+@media screen and (max-width: 767px) {
     /* Заголовки */
     h1 {
     font-size: 42px;
