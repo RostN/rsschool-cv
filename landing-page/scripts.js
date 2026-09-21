@@ -39,9 +39,18 @@ tabButtons.forEach(button => {
 
         // Фильтрация карточек при нажатии на таб        
         let allCard = document.querySelectorAll('article'); // Все карточки
+        let visibleCount = 0; // cчётчик видимых карт
+        let isMobileOrTablet = window.innerWidth < 1440; //Проверка ширины экрана
         allCard.forEach (card => {
             if(card.classList.contains(selectedButton)){
                 card.classList.remove('hide');
+                // Если больше 4х карточек скрываем
+                if (isMobileOrTablet && visibleCount >= 4) {
+                    card.classList.add('hide'); // Скрываем лишние на маленьких экранах
+                } else {
+                    card.classList.remove('hide'); // Показываем (на больших экранах или первые 4)
+                    visibleCount++; 
+                }
             } else {
                 card.classList.add('hide');
             }
@@ -54,7 +63,8 @@ let container = document.querySelector('#catalog'); //Блок каталога
 let template = document.querySelector('#card-template'); //Шаблон карточки
 
 // Парсинг JSON файла
-    fetch('products.json')
+function startLoad(){
+        fetch('products.json')
         .then(response => {
         if (!response.ok) {
             throw new Error('Ой, ошибка в fetch: ' + response.statusText);
@@ -65,11 +75,12 @@ let template = document.querySelector('#card-template'); //Шаблон карт
         return jsonData;
         })
         .catch(error => console.error('Ошибка при исполнении запроса: ', error));
+}
 
 // Создание карточек
 function createCard(data){
     container.innerHTML = ''; //Очистка блока с картами
-
+    let visibleCount = 0; // cчётчик видимых карт
     data.forEach (item => {
         let card = template.content.cloneNode(true); //Клонивание шаблока карточки
         let cardImg = card.querySelector('#inner-card-img'); //Выбор картинки в карточке
@@ -86,13 +97,22 @@ function createCard(data){
         cardDescription.textContent = item.description; //Вставка цены
         cardCategory = item.category; //Категория карточки
 
+        
         let article = card.querySelector('article');
         if (article) {
             article.classList.add(cardCategory); //Добавляем категорю в качестве класса
 
+            let isMobileOrTablet = window.innerWidth < 1440; //Проверка ширины экрана
+            
+
             // Стартовый фильтр на кофе
             if (cardCategory != 'coffee') {
                 article.classList.add('hide');
+            } else {
+                visibleCount++;
+                if (isMobileOrTablet && visibleCount >= 5) {
+                    article.classList.add('hide'); // Скрываем лишние на маленьких экранах
+                }
             }
         }
 
@@ -105,3 +125,11 @@ function createCard(data){
     // console.log(datajson[0].category);
     // console.log(datajson[0].img);
 }
+
+/* Контроль изменения размера окна */
+window.addEventListener('resize', () => {
+    console.log('Изменение экрана');
+    startLoad();
+});
+
+startLoad();

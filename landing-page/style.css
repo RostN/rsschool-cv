@@ -1082,11 +1082,6 @@ footer {
                 flex-wrap: wrap;     
             }
 
-            /* Сокрытие лишних элементов */
-            article:nth-child(n + 5) {
-                display: none !important;
-            }
-
             .loadMore{
                 display: flex;
             }
