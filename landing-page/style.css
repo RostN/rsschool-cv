@@ -116,7 +116,7 @@ button {
 
 /*Сокрытие ненужных элементов*/
 .hide {
-    display: none;
+    display: none !important;
 }
 
 /* Голова */
