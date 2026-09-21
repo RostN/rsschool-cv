@@ -13,8 +13,8 @@
     
     <!-- Голова --> 
     <header>
-      <a href="index.html">
-        <img src="img/logo.svg" alt="logo">
+      <a href="index.html" class="head-logo">
+        <img src="img/logo.svg" alt="logo" id="logo">
       </a>
 
       <!-- Навигация -->
@@ -60,11 +60,14 @@
         <!-- Меню с чашкой -->
         <a href="menu.html" class="head-coffee-menu">
           Menu
-          <img src="img/coffee-cup.svg" alt="coffee menu">
+          <!-- <img src="img/coffee-cup.svg" alt="coffee menu"> -->
+          <span class="img"></span>
         </a>
 
         <!-- Бургер -->
-        <button class="burger"></button>
+        <button>
+          <span></span>
+        </button>
 
       </div>
 
@@ -92,7 +95,8 @@
           <!-- Кнопка -->
           <a href="menu.html">
             Menu
-            <img src="img/coffee-cup.svg" alt="coffee menu">
+            <!-- <img src="img/coffee-cup.svg" alt="coffee menu"> -->
+            <span class="img"></span>
           </a>
 
         </div>
@@ -110,7 +114,9 @@
         </h2>
         
         <!-- Кнопка влево -->
-        <button class="left-btn"></button>
+        <button>
+          <span class="left-btn"></span>
+        </button>
 
         <!-- Слайды -->
         <div class="favorite-coffee-slidebar">
@@ -128,7 +134,9 @@
         </div>
         
         <!-- Кнопка вправо -->
-        <button class="right-btn"></button>
+        <button>
+          <span class="right-btn"></span>
+        </button>
         
         <!-- Индикатор -->
         <div class="favorite-coffee-indicator">
@@ -185,7 +193,7 @@
               <div class="mobile-app-buttons">
                 <!-- Яблоко -->
                 <a href="#">
-                  <img src="img/apple-store-icon.svg" alt="Google Play">
+                  <span class="img Apple"></span>
                   <div class="mobile-app-button">
                     <span class="caption">Available on the</span>
                     <span>Apple Store</span>
@@ -194,7 +202,7 @@
                 
                 <!-- Гугл -->
                 <a href="#">
-                  <img src="img/google-play-icon.svg" alt="Google Play">
+                  <span class="img Google"></span>
                   <div class="mobile-app-button">
                     <span class="caption">Available on</span>
                     <span>Google Play</span>
@@ -222,31 +230,30 @@
         <div class="footer-container-offer">
           <h2>
             Sip, Savor, Smile.
-            <span>
-              <h2 class="accent">
-                It’s coffee time!
-              </h2>
+            <span class="accent">              
+              It’s coffee time!              
             </span>
           </h2>
           
           <ul class="footer-container-offer-list">
             <li>
               <a href="https://twitter.com">
-                <img src="img/twitter.svg" alt="twitter" class="footer-social-img">
+                <span class="footer-social-img twitter"></span>
               </a>
             </li>
 
             <li>
               <a href="https://instagram.com">
-                <img src="img/instagram.svg" alt="twitter" class="footer-social-img">
+                <span class="footer-social-img instagram"></span>
               </a>
             </li>
 
             <li>
               <a href="https://facebook.com">
-                <img src="img/facebook.svg" alt="twitter" class="footer-social-img">
+                <span class="footer-social-img facebook"></span>
               </a>
             </li>
+            
           </ul>
         </div>
 

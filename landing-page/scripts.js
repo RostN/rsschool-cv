@@ -1,4 +1,33 @@
-// Контроль нажатой кнокпи табуляции и её переключение
+/* -- Переключение темы -- */
+let toggleCheckbox = document.querySelector('#theme-toggle'); //Переключатель темы
+let rootElement = document.documentElement; //Контроль веб страницы
+let currentTheme = localStorage.getItem('theme'); //Состояние темы
+
+// Проверка сохраненной темы в памяти
+if (currentTheme) {
+    rootElement.setAttribute('data-theme', currentTheme);
+
+    // Если сохраненная тема темная — ставим галочку в чекбокс
+    if (currentTheme === 'dark') {
+        toggleCheckbox.checked = true;
+        document.getElementById('logo').src = 'img/logo-dark.svg';
+    }
+}
+
+// Слешатель сменщика темы и её смена
+toggleCheckbox.addEventListener('change', function() {
+    if (this.checked) {
+        rootElement.setAttribute('data-theme', 'dark'); // включение темной темы
+        document.getElementById('logo').src = 'img/logo-dark.svg';
+        localStorage.setItem('theme', 'dark'); // Запоминаем
+    } else {
+        rootElement.setAttribute('data-theme', ''); //Включение светлой темы
+        document.getElementById('logo').src = 'img/logo.svg';
+        localStorage.setItem('theme', 'light'); // Запоминаем
+    }
+});
+
+/* -- Контроль нажатой кнокпи табуляции и её переключение -- */
 let tabButtons = document.querySelectorAll('.categories-button');
 
 tabButtons.forEach(button => {
@@ -8,9 +37,8 @@ tabButtons.forEach(button => {
         button.classList.add('active'); // Установка нового маркера активной кнопки
         let selectedButton = button.textContent.trim().toLowerCase(); // Название нажатой кнопки
 
-        // Фильтрация карточек при нажатии на таб
-        // Все карточки
-        let allCard = document.querySelectorAll('article');
+        // Фильтрация карточек при нажатии на таб        
+        let allCard = document.querySelectorAll('article'); // Все карточки
         allCard.forEach (card => {
             if(card.classList.contains(selectedButton)){
                 card.classList.remove('hide');
@@ -21,7 +49,7 @@ tabButtons.forEach(button => {
     });
 });
 
-// Первичная загрузка каталога
+/* -- Первичная загрузка каталога -- */
 let container = document.querySelector('#catalog'); //Блок каталога
 let template = document.querySelector('#card-template'); //Шаблон карточки
 
