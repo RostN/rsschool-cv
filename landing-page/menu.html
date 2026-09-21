@@ -13,30 +13,30 @@
     
     <!-- Голова --> 
     <header>
-      <a href="index.html">
-        <img src="img/logo.svg" alt="logo">
+      <a href="index.html" class="head-logo">
+        <img src="img/logo.svg" alt="logo" id="logo" >
       </a>
 
       <!-- Навигация -->
       <nav>
         <ul>
           <li>
-            <a href="#FavoriteCoffee">
+            <a href="index.html#FavoriteCoffee">
               Favorite coffee
             </a>
           </li>
           <li>
-            <a href="#About">
+            <a href="index.html#About">
               About
             </a>
           </li>
           <li>
-            <a href="#MobileApp">
+            <a href="index.html#MobileApp">
               Mobile app
             </a>
           </li>
           <li>
-            <a href="#ContactUs">
+            <a href="index.html#ContactUs">
               Contact us
             </a>
           </li>
@@ -58,13 +58,16 @@
         </label>   
     
         <!-- Меню с чашкой -->
-        <a href="#" class="head-coffee-menu">
+        <a href="menu.html" class="head-coffee-menu disabled">
           Menu
-          <img src="img/coffee-cup.svg" alt="coffee menu">
+          <!-- <img src="img/coffee-cup.svg" alt="coffee menu"> -->
+          <span class="img"></span>
         </a>
 
         <!-- Бургер -->
-        <button class="burger"></button>
+        <button>
+          <span></span>
+        </button>
 
       </div>
 
@@ -97,102 +100,29 @@
             Dessert
           </button>
         </div>
-        
+        <h1 class="hide">menu</h1>
         <!-- Позиции меню -->
-        <section>
-          <!-- Карточка -->
-          <article>
-
-            <!-- блок для картинки -->
-            <div>
-              <img src="img/coffee-1.svg" alt="coffee">
-            </div>
-            
-            <!-- Заголовок -->
-            <h3>Irish coffee</h3>
-            
-            <!-- Описание -->
-            <span class="medium">
-              Fragrant black coffee with Jameson Irish whiskey and whipped milk
-            </span>
-
-            <!-- Ценв -->
-            <h3>
-              $7.00
-            </h3>
-            
-          </article>
+        <section id="catalog">
+          <h2 class="hide">catalog</h2>
           
           <!-- Карточка -->
-          <article>
-
-            <!-- блок для картинки -->
-            <div>
-              <img src="img/coffee-1.svg" alt="coffee">
-            </div>
-            
-            <!-- Заголовок -->
-            <h3>Irish coffee</h3>
-            
-            <!-- Описание -->
-            <span class="medium">
-              Fragrant black coffee with Jameson Irish whiskey and whipped milk
-            </span>
-
-            <!-- Ценв -->
-            <h3>
-              $7.00
-            </h3>
-            
-          </article>
-
-          <!-- Карточка -->
-          <article>
-
-            <!-- блок для картинки -->
-            <div>
-              <img src="img/coffee-1.svg" alt="coffee">
-            </div>
-            
-            <!-- Заголовок -->
-            <h3>Irish coffee</h3>
-            
-            <!-- Описание -->
-            <span class="medium">
-              Fragrant black coffee with Jameson Irish whiskey and whipped milk
-            </span>
-
-            <!-- Ценв -->
-            <h3>
-              $7.00
-            </h3>
-            
-          </article>
-
-          <!-- Карточка -->
-          <article>
-
-            <!-- блок для картинки -->
-            <div>
-              <img src="img/coffee-1.svg" alt="coffee">
-            </div>
-            
-            <!-- Заголовок -->
-            <h3>Irish coffee</h3>
-            
-            <!-- Описание -->
-            <span class="medium">
-              Fragrant black coffee with Jameson Irish whiskey and whipped milk
-            </span>
-
-            <!-- Ценв -->
-            <h3>
-              $7.00
-            </h3>
-            
-          </article>
-
+          <template id="card-template">
+            <article id="inner-article">
+              <!-- блок для картинки -->
+              <div><img src="" alt="" id="inner-card-img"></div>            
+              <!-- Заголовок -->
+              <h3 id="inner-card-title"></h3>
+              <!-- Описание -->
+              <span class="medium" id="inner-card-description"></span>
+              <!-- Цена -->
+              <h3 id="inner-card-price"></h3>            
+            </article>
+          </template>
         </section>
+
+        <button class="loadMore">
+          <span></span>
+        </button>
 
       </div>
     </main>
@@ -206,31 +136,30 @@
         <div class="footer-container-offer">
           <h2>
             Sip, Savor, Smile.
-            <span>
-              <h2 class="accent">
-                It’s coffee time!
-              </h2>
+            <span class="accent">              
+              It’s coffee time!              
             </span>
           </h2>
           
           <ul class="footer-container-offer-list">
             <li>
               <a href="https://twitter.com">
-                <img src="img/twitter.svg" alt="twitter" class="footer-social-img">
+                <span class="footer-social-img twitter"></span>
               </a>
             </li>
 
             <li>
               <a href="https://instagram.com">
-                <img src="img/instagram.svg" alt="twitter" class="footer-social-img">
+                <span class="footer-social-img instagram"></span>
               </a>
             </li>
 
             <li>
               <a href="https://facebook.com">
-                <img src="img/facebook.svg" alt="twitter" class="footer-social-img">
+                <span class="footer-social-img facebook"></span>
               </a>
             </li>
+            
           </ul>
         </div>
 
