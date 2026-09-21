@@ -643,6 +643,7 @@ main {
         section {
             width: 100%;
             display: flex;
+            flex-wrap: wrap;
             justify-content: space-between;
             margin-top: 40px;
             gap: 40px;
@@ -657,6 +658,8 @@ main {
                 display: flex;
                 flex-wrap: wrap;
                 align-content: space-between;
+                justify-content: space-between;
+                flex-direction: column;
                 gap: 12px;
                 padding-bottom: 20px;
                 cursor: pointer;
@@ -672,14 +675,17 @@ main {
                     padding: 0;
                 }
 
-                /* Отступы */
+                /* название и цена */
                 h3 {
+                    width: 100%;
                     padding: 0 20px;
                 }
 
-                /* Отступы */
+                /* описание */
                 span {
+                    width: 100%;
                     padding: 0 20px;
+                    flex-grow: 1;
                 }
             }
         }
