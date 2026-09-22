@@ -115,7 +115,49 @@ button {
     background: none;
 }
 
-.burger {
+/* Бургер в кнопке */
+.burger{
+    position: relative;
+    padding: 0;
+    width: 44px;
+    height: 44px;
+    border-radius: 100px;
+    border: 1px solid var(--InverseBorder);
+    background-color: transparent;
+    cursor: pointer;
+    flex-wrap: wrap;
+}
+
+/* Полоски бургера */
+.bar1, .bar2 {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%); 
+    width: 16px;
+    height: 1.5px;
+    background-color: var(--PrimaryText);
+    transition: transform 0.4s ease, margin 0.4s ease;
+}
+.bar1 {
+    margin-top: -4px;
+}
+.bar2 {
+    margin-top: 4px;
+}
+
+/* Анимация полосок бургера */
+.change .bar1 {
+    margin-top: 0;
+    transform: translate(-50%, -50%) rotate(-45deg);
+}
+.change .bar2 {
+    margin-top: 0;
+    transform: translate(-50%, -50%) rotate(45deg); 
+}
+
+/* ссылки в бургере */
+.burger-link {
     font-size: 32px;
     font-weight: 600;
     line-height: 125%;    
@@ -303,7 +345,7 @@ header {
             display: none;
 
             span {
-                display: none;
+                /* display: none; */
             }
         }
     }
@@ -1113,42 +1155,14 @@ footer {
 /* Контроль бургера, кнопки меню и навигатора при чётком размере экрана */
 @media screen and (max-width:768px) {
     /* Голова почистить */
-    header {
-       
+    header {       
         /* Часть с правыми кнопками (бегунок и кнопка меню с чашкой) */
         .header-actions {
             width: 172px;
         
             /* бургер */
-             button{
-                display: flex;
-                align-items: center;
-                justify-content: center;
-                width: 44px;
-                height: 44px;
-                border-radius: 100px;
-                border: 1px solid var(--InverseBorder);
-                background-color: transparent;
-                cursor: pointer;
-                padding: 0;
-
-                /* Стрелки внутри кнопки основной формат */
-                span {
-                    background-color: var(--PrimaryText);
-                    -webkit-mask-size: contain;
-                    mask-size: contain;
-                    -webkit-mask-repeat: no-repeat;
-                    mask-repeat: no-repeat;
-                    -webkit-mask-position: center;
-                    mask-position: center;
-                    margin: 0;
-                    padding: 0;
-                    width: 16px;
-                    height: 16px;
-                    display: block;
-                    -webkit-mask-image: url(img/burger.svg);
-                    mask-image: url(img/burger.svg);
-                }
+            .burger{
+                display: block;
             }
 
             /* Кнопка меню с чашкой */

@@ -1,3 +1,13 @@
+/* -- Бургер -- */
+/* Бургер */
+let burger = document.querySelector ('.burger');
+
+// Функция смены рисунка бургера (cлушатель) и отображение боковой панели
+burger.addEventListener('click', function() {
+    burger.classList.toggle('change');
+});  
+      
+
 /* -- Переключение темы -- */
 let toggleCheckbox = document.querySelector('#theme-toggle'); //Переключатель темы
 let rootElement = document.documentElement; //Контроль веб страницы
@@ -28,7 +38,8 @@ toggleCheckbox.addEventListener('change', function() {
 });
 
 /* -- Контроль нажатой кнокпи табуляции и её переключение -- */
-let tabButtons = document.querySelectorAll('.categories-button');
+let tabButtons = document.querySelectorAll('.categories-button'); //Все кнопки таба
+let reloadButton = document.querySelector('.loadMore').style.display; //Кнопка загрузки дополнительных карт
 
 tabButtons.forEach(button => {
     button.addEventListener('click', () => {        
@@ -44,6 +55,7 @@ tabButtons.forEach(button => {
         allCard.forEach (card => {
             if(card.classList.contains(selectedButton)){
                 card.classList.remove('hide');
+                
                 // Если больше 4х карточек скрываем
                 if (isMobileOrTablet && visibleCount >= 4) {
                     card.classList.add('hide'); // Скрываем лишние на маленьких экранах
@@ -51,12 +63,14 @@ tabButtons.forEach(button => {
                     card.classList.remove('hide'); // Показываем (на больших экранах или первые 4)
                     visibleCount++; 
                 }
+
                 // Сокрытие кнопки при малом количестве элементов
-                let countCards = container.querySelectorAll(`article.${selectedButton}`).length;
-                console.log(countCards);
+                let countCards = container.querySelectorAll(`article.${selectedButton}`).length; // Количество карт
+                // console.log(countCards);
                 if (countCards <= 4) {
-                    document.querySelector('.loadMore').style.display = 'none';
-                } else { document.querySelector('.loadMore').style.display = 'flex';}
+                    reloadButton = 'none';
+                } else { reloadButton = 'flex';}
+
             } else {
                 card.classList.add('hide');
             }            
