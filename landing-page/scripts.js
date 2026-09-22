@@ -51,9 +51,15 @@ tabButtons.forEach(button => {
                     card.classList.remove('hide'); // Показываем (на больших экранах или первые 4)
                     visibleCount++; 
                 }
+                // Сокрытие кнопки при малом количестве элементов
+                let countCards = container.querySelectorAll(`article.${selectedButton}`).length;
+                console.log(countCards);
+                if (countCards <= 4) {
+                    document.querySelector('.loadMore').style.display = 'none';
+                } else { document.querySelector('.loadMore').style.display = 'flex';}
             } else {
                 card.classList.add('hide');
-            }
+            }            
         });
     });
 });
