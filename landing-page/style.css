@@ -528,7 +528,6 @@ main {
                 flex-wrap: wrap;
                 align-content: space-between;
                 transition: transform 0.4s ease-in-out;
-                flex: 0 0 100%;
                 max-width: 480px;
                 gap: 16;
 
@@ -537,8 +536,7 @@ main {
                     padding: 0;
                 }
 
-                span {
-                    
+                span {                    
                     text-align: center;
                 }
             }
@@ -1329,6 +1327,8 @@ footer {
             /* Слайды */
             .favorite-coffee-slidebar {
                 height: 532px;
+                max-width: 480px;
+                width: 100%;
 
                 /* Карточка */
                 .favorite-coffee-card{
@@ -1359,7 +1359,11 @@ footer {
                     
             .about-images .about-img:nth-child(4) {
                 height: 590px;
-            }     
+            }
+            .about-img-src{
+                object-fit: cover;
+                height: 590px;
+            }
         }
 
         /* блок mobile app */
