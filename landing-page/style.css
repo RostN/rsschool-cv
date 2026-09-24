@@ -436,6 +436,7 @@ main {
     
     /* блок favorite coffee */
     .favorite-coffee {
+        width: 100%;
         margin: 0;
         margin-top: 100px;
         padding: 0;
@@ -443,6 +444,7 @@ main {
         grid-template-columns: 60px 4fr 60px;
         justify-content: center;
         align-items: center;
+        justify-items: center;
         
         /* Растягивание заголовка на всю */
         h2 {
@@ -506,36 +508,37 @@ main {
             flex-grow: 1;
             margin: 40px 0 0 0;
             padding: 0;
-            justify-content: center;
-
+            overflow: hidden;
+            justify-content: flex-start;
+            align-items: center;
+            width: 480px;
+            
             /* Окрашивание текста */
             span {
                 color: var(--PrimaryText);
             }
-
+            
             /* Карточка */
             .favorite-coffee-card{
-                width: 480px;
+                justify-content: center;
                 height: 100%;
                 margin: 0;
                 padding: 0;
                 display: flex;
                 flex-wrap: wrap;
                 align-content: space-between;
-                justify-content: center;
+                transition: transform 0.4s ease-in-out;
+                flex: 0 0 100%;
+                max-width: 480px;
+                gap: 16;
 
-
-                img {
-                    margin: 0;
-                    padding: 0;
-                }
-
-                h3 {
+                img, h3{
                     margin: 0;
                     padding: 0;
                 }
 
                 span {
+                    
                     text-align: center;
                 }
             }

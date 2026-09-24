@@ -1,3 +1,53 @@
+/* --Карусель -- */
+let nextBtn = document.querySelector('.btn-next');
+let prevBtn = document.querySelector('.btn-prev');
+let slides = document.querySelectorAll('.favorite-coffee-card');
+let indicators = document.querySelectorAll('.slider-indicator');
+let currentIndex = 0; // Активный слайд 0-2
+
+// Движение слайда и смена индикатора
+function changeSlide() {
+    // Сдвижение карточки
+    slides.forEach((slide) => {
+        slide.style.transform = `translateX(-${currentIndex * 100}%)`;
+    });
+
+    // Обновление индикатора
+    indicators.forEach((dot, index) => {
+        if (index === currentIndex) {
+            dot.classList.add('active');
+        } else {
+            dot.classList.remove('active');
+        }
+    });
+}
+
+// Кнопка вправо с бесконечным циклом
+nextBtn.addEventListener('click', () => {
+    currentIndex++;
+    if (currentIndex >= slides.length) {
+        currentIndex = 0; // При достижении конца возвращаем 1й слайд
+    }
+    changeSlide();
+});
+
+// Кнопка влево с бесконечным циклом
+prevBtn.addEventListener('click', () => {
+    currentIndex--;
+    if (currentIndex < 0) {
+        currentIndex = slides.length - 1; // При минусе возвращаем последний слайд
+    }
+    changeSlide();
+});
+
+// Переключение по индикатору
+indicators.forEach((dot, index) => {
+    dot.addEventListener('click', () => {
+        currentIndex = index;
+        changeSlide();
+    });
+});
+
 /* -- Бургер -- */
 let burger = document.querySelector ('.burger');
 let nav = document.querySelector('nav');
