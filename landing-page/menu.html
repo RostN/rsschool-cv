@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang='en'>
+
+  <head>
+    <meta charset='UTF-8'>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Coffee House</title>
+    <link rel='stylesheet' href='style.css'>
+    <link rel="icon" href="img/favicon.svg" type="image/x-icon">
+    <script src="scripts.js" defer></script>
+  </head>
+  <body>
+    
+    <!-- Голова --> 
+    <header>
+      <a href="index.html" class="head-logo">
+        <img src="img/logo.svg" alt="logo" id="logo" >
+      </a>
+
+      <!-- Навигация -->
+      <nav>
+        <ul>
+          <li>
+            <a href="index.html#FavoriteCoffee">
+              Favorite coffee
+            </a>
+          </li>
+          <li>
+            <a href="index.html#About">
+              About
+            </a>
+          </li>
+          <li>
+            <a href="index.html#MobileApp">
+              Mobile app
+            </a>
+          </li>
+          <li>
+            <a href="index.html#ContactUs">
+              Contact us
+            </a>
+          </li>
+          <li class="last-menu">
+            <!-- Меню с чашкой -->
+            <a href="menu.html" class="head-coffee-menu">
+              Menu
+              <span class="img"></span>
+            </a>
+          </li>
+        </ul>
+      </nav>
+
+      <!-- Блок активного правого меню -->
+      <div class="header-actions">
+
+        <!-- Свитчер темы -->
+        <label class="theme-switcher" for="theme-toggle">
+          <!-- Скрытый чекбокс, который хранит состояние -->
+          <input type="checkbox" id="theme-toggle">
+          <!-- Визуальный ползунок -->
+          <span class="slider">
+            <!-- Бегунок -->
+            <span class="knob"></span>
+          </span>
+        </label>   
+    
+        <!-- Меню с чашкой -->
+        <a href="menu.html" class="head-coffee-menu disabled">
+          Menu
+          <span class="img"></span>
+        </a>
+
+        <!-- Бургер -->
+        <button class="burger">
+          <span class="bar1"></span>
+          <span class="bar2"></span>
+        </button>
+
+      </div>
+
+    </header>
+
+    <!-- Основное тело -->
+    <main>
+      <div class="menu-container">
+        
+        <!-- заголовок -->
+        <h2>
+          Behind each of our cups hides an 
+          <span class="accent">
+            amazing surprise
+          </span>
+        </h2>
+        
+        <!-- Кнопки -->
+        <div>
+          <button class="categories-button active">
+            <img src="img/coffee-tab.png" alt="">
+            Coffee
+          </button>
+          <button class="categories-button">
+            <img src="img/tea-tab.png" alt="">
+            Tea
+          </button>
+          <button class="categories-button">
+            <img src="img/dessert-tab.png" alt="">
+            Dessert
+          </button>
+        </div>
+        <h1 class="hide">menu</h1>
+        <!-- Позиции меню -->
+        <section id="catalog">
+          <h2 class="hide">catalog</h2>
+          
+          <!-- Карточка -->
+          <template id="card-template">
+            <article id="inner-article">
+              <!-- блок для картинки -->
+              <div><img src="" alt="" id="inner-card-img"></div>            
+              <!-- Заголовок -->
+              <h3 id="inner-card-title"></h3>
+              <!-- Описание -->
+              <span class="medium" id="inner-card-description"></span>
+              <!-- Цена -->
+              <h3 id="inner-card-price"></h3>            
+            </article>
+          </template>
+        </section>
+
+        <button class="loadMore">
+          <span></span>
+        </button>
+
+      </div>
+    </main>
+
+    <!-- Низ -->
+    <footer id="ContactUs">
+      <!-- Контейнер фута -->
+      <div class="footer-container">
+        
+        <!-- Заголовки -->
+        <div class="footer-container-offer">
+          <h2>
+            Sip, Savor, Smile.
+            <span class="accent">              
+              It’s coffee time!              
+            </span>
+          </h2>
+          
+          <ul class="footer-container-offer-list">
+            <li>
+              <a href="https://twitter.com">
+                <span class="footer-social-img twitter"></span>
+              </a>
+            </li>
+
+            <li>
+              <a href="https://instagram.com">
+                <span class="footer-social-img instagram"></span>
+              </a>
+            </li>
+
+            <li>
+              <a href="https://facebook.com">
+                <span class="footer-social-img facebook"></span>
+              </a>
+            </li>
+            
+          </ul>
+        </div>
+
+        <!-- Контактная информация -->
+        <div class="footer-container-contacts-info">
+          <h3>Contact us</h3>
+          <div class="footer-container-contacts-info-contacts">
+            
+            <ul class="footer-contacts-list">
+
+              <!-- Карта -->
+              <li>
+                <a href="https://maps.app.goo.gl/DehpsBXX7xzd6ujC8" target="_blank">
+                  <img src="img/map.svg" alt="map" class="footer-contacts-img">
+                  8558 Green Rd., LA
+                </a>
+              </li>
+
+              <!-- Телефон -->
+              <li>
+                <a href="tel:+16035550123">
+                  <img src="img/phone.svg" alt="phone" class="footer-contacts-img">
+                  +1 (603) 555-0123
+                </a>
+              </li>
+
+              <!-- Время работы -->
+              <li>
+                <img src="img/clock.svg" alt="clock" class="footer-contacts-img">
+                Mon–Sat: 9:00–23:00
+              </li>
+            </ul>
+
+          </div>
+        </div>
+
+      </div>
+    </footer>
+    
+  </body>
+</html>
