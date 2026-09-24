@@ -1,11 +1,37 @@
 /* -- Бургер -- */
 let burger = document.querySelector ('.burger');
+let nav = document.querySelector('nav');
 
 // Функция смены рисунка бургера (cлушатель) и отображение боковой панели
 burger.addEventListener('click', function() {
     burger.classList.toggle('change');
-});  
-      
+    nav.classList.toggle('On');
+
+    // Блокировка скрола страницы
+    if (nav.classList.contains('On')) {
+        document.body.style.overflow = 'hidden';
+    } else {
+        document.body.style.overflow = '';
+    }
+});
+
+// Закрытие бургера по нажатию клавиши esc
+window.addEventListener('keydown', (event) => {
+    
+    if (event.key === 'Escape') {
+        // Проверка на открытие меню бургера
+        if (nav.classList.contains('On')) {
+            // Закрытие меню бургера
+            nav.classList.remove('On');
+            burger.classList.remove('change');
+            
+            // Возвращение прокрутки страницы
+            document.body.style.overflow = '';
+            document.documentElement.style.overflow = '';
+        }
+    }
+});
+
 
 /* -- Переключение темы -- */
 let toggleCheckbox = document.querySelector('#theme-toggle'); //Переключатель темы
