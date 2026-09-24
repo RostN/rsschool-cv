@@ -5,48 +5,52 @@ let slides = document.querySelectorAll('.favorite-coffee-card');
 let indicators = document.querySelectorAll('.slider-indicator');
 let currentIndex = 0; // Активный слайд 0-2
 
-// Движение слайда и смена индикатора
-function changeSlide() {
-    // Сдвижение карточки
-    slides.forEach((slide) => {
-        slide.style.transform = `translateX(-${currentIndex * 100}%)`;
-    });
-
-    // Обновление индикатора
-    indicators.forEach((dot, index) => {
-        if (index === currentIndex) {
-            dot.classList.add('active');
-        } else {
-            dot.classList.remove('active');
+// Проверка наличия кнопок на странице, чтобы не падало
+if (prevBtn && nextBtn && slides.length > 0) {
+    // Движение слайда и смена индикатора
+    function changeSlide() {
+        // Сдвижение карточки
+        slides.forEach((slide) => {
+            slide.style.transform = `translateX(-${currentIndex * 100}%)`;
+        });
+    
+        // Обновление индикатора
+        indicators.forEach((dot, index) => {
+            if (index === currentIndex) {
+                dot.classList.add('active');
+            } else {
+                dot.classList.remove('active');
+            }
+        });
+    }
+    
+    // Кнопка вправо с бесконечным циклом
+    nextBtn.addEventListener('click', () => {
+        currentIndex++;
+        if (currentIndex >= slides.length) {
+            currentIndex = 0; // При достижении конца возвращаем 1й слайд
         }
+        changeSlide();
+    });
+    
+    // Кнопка влево с бесконечным циклом
+    prevBtn.addEventListener('click', () => {
+        currentIndex--;
+        if (currentIndex < 0) {
+            currentIndex = slides.length - 1; // При минусе возвращаем последний слайд
+        }
+        changeSlide();
+    });
+    
+    // Переключение по индикатору
+    indicators.forEach((dot, index) => {
+        dot.addEventListener('click', () => {
+            currentIndex = index;
+            changeSlide();
+        });
     });
 }
 
-// Кнопка вправо с бесконечным циклом
-nextBtn.addEventListener('click', () => {
-    currentIndex++;
-    if (currentIndex >= slides.length) {
-        currentIndex = 0; // При достижении конца возвращаем 1й слайд
-    }
-    changeSlide();
-});
-
-// Кнопка влево с бесконечным циклом
-prevBtn.addEventListener('click', () => {
-    currentIndex--;
-    if (currentIndex < 0) {
-        currentIndex = slides.length - 1; // При минусе возвращаем последний слайд
-    }
-    changeSlide();
-});
-
-// Переключение по индикатору
-indicators.forEach((dot, index) => {
-    dot.addEventListener('click', () => {
-        currentIndex = index;
-        changeSlide();
-    });
-});
 
 /* -- Бургер -- */
 let burger = document.querySelector ('.burger');
@@ -127,6 +131,7 @@ tabButtons.forEach(button => {
         let allCard = document.querySelectorAll('article'); // Все карточки
         let visibleCount = 0; // cчётчик видимых карт
         let isMobileOrTablet = window.innerWidth < 1440; //Проверка ширины экрана
+        
         allCard.forEach (card => {
             if(card.classList.contains(selectedButton)){
                 card.classList.remove('hide');
@@ -152,6 +157,18 @@ tabButtons.forEach(button => {
         });
     });
 });
+
+// Стартовое положение таба
+function startTabPosition(){
+    let activeButton = document.querySelector('.categories-button.active'); // Текущий активный таб
+    let firstButton = document.querySelector('.categories-button'); // Первый таб
+
+    // Проверка активной кнопки
+    if (activeButton && firstButton && activeButton !== firstButton) {
+        activeButton.classList.remove('active'); // Снимаем класс active с текущей нажатой кнопки
+        firstButton.classList.add('active'); // Возвращаем класс active на самую первую кнопку
+    }
+}
 
 /* -- Первичная загрузка каталога -- */
 let container = document.querySelector('#catalog'); //Блок каталога
@@ -191,14 +208,12 @@ function createCard(data){
         cardPrice.textContent = "$"+item.price; //Вставка цены
         cardDescription.textContent = item.description; //Вставка цены
         cardCategory = item.category; //Категория карточки
-
         
         let article = card.querySelector('article');
         if (article) {
             article.classList.add(cardCategory); //Добавляем категорю в качестве класса
 
-            let isMobileOrTablet = window.innerWidth < 1440; //Проверка ширины экрана
-            
+            let isMobileOrTablet = window.innerWidth < 1440; //Проверка ширины экрана            
 
             // Стартовый фильтр на кофе
             if (cardCategory != 'coffee') {
@@ -225,6 +240,7 @@ function createCard(data){
 window.addEventListener('resize', () => {
     console.log('Изменение экрана');
     startLoad();
+    startTabPosition()
 });
 
 startLoad();
