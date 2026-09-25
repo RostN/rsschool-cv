@@ -51,7 +51,6 @@ if (prevBtn && nextBtn && slides.length > 0) {
     });
 }
 
-
 /* -- Бургер -- */
 let burger = document.querySelector ('.burger');
 let nav = document.querySelector('nav');
@@ -86,7 +85,6 @@ window.addEventListener('keydown', (event) => {
     }
 });
 
-
 /* -- Переключение темы -- */
 let toggleCheckbox = document.querySelector('#theme-toggle'); //Переключатель темы
 let rootElement = document.documentElement; //Контроль веб страницы
@@ -118,7 +116,24 @@ toggleCheckbox.addEventListener('change', function() {
 
 /* -- Контроль нажатой кнокпи табуляции и её переключение -- */
 let tabButtons = document.querySelectorAll('.categories-button'); //Все кнопки таба
-let reloadButton = document.querySelector('.loadMore').style.display; //Кнопка загрузки дополнительных карт
+let reloadButton = document.querySelector('.loadMore'); //Кнопка загрузки дополнительных карт
+
+reloadButton.addEventListener('click', function() {
+    let activeButton = document.querySelector('.categories-button.active').textContent.trim().toLowerCase(); //активная кнопка
+    console.log(activeButton);
+    // Фильтрация карточек при нажатии на таб        
+    let allCard = document.querySelectorAll('article'); // Все карточки
+
+    allCard.forEach (card => {
+    if(card.classList.contains(activeButton)){
+            card.classList.remove('hide');
+        } else {
+            card.classList.add('hide');
+        }
+    });
+    // Скрываем кнопку
+    reloadButton.style.display = 'none';
+});
 
 tabButtons.forEach(button => {
     button.addEventListener('click', () => {        
@@ -148,8 +163,8 @@ tabButtons.forEach(button => {
                 let countCards = container.querySelectorAll(`article.${selectedButton}`).length; // Количество карт
                 // console.log(countCards);
                 if (countCards <= 4) {
-                    reloadButton = 'none';
-                } else { reloadButton = 'flex';}
+                    reloadButton.style.display = 'none';
+                } else { reloadButton.style.display = 'flex';}
 
             } else {
                 card.classList.add('hide');
@@ -164,7 +179,7 @@ function startTabPosition(){
     let firstButton = document.querySelector('.categories-button'); // Первый таб
 
     // Проверка активной кнопки
-    if (activeButton && firstButton && activeButton !== firstButton) {
+    if (firstButton && activeButton !== firstButton) {
         activeButton.classList.remove('active'); // Снимаем класс active с текущей нажатой кнопки
         firstButton.classList.add('active'); // Возвращаем класс active на самую первую кнопку
     }
