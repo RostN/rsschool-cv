@@ -23,6 +23,10 @@
     --PageBg: #e1d4c9;
     --ContainerBg: #665f55;
     --OverlayBg: #403f3dcc;
+    
+    /* Модальное окно */
+    --modalPageBg: #e1d4c9;
+    --modalContainerBg: #665f55;
 
     /* Цвета границ */
     --PrimaryBorder: #c1b6ad; 
@@ -40,6 +44,10 @@ html[data-theme = "dark"] {
     --PageBg: #292826;
     --ContainerBg: #403f3d;
     --OverlayBg: #292826cc;
+    
+    /* Модальное окно */
+    --modalPageBg: #403f3d;
+    --modalContainerBg: #292826;
 
     /* Цвета границ */ 
     --PrimaryBorder: #665f55; 
@@ -829,7 +837,6 @@ main {
 
             /* Карточка */
             article {
-                /* border: 1px solid blue;  */
                 border: 1px solid var(--PrimaryBorder);
                 width: 310px;
                 height: 506px;
@@ -859,13 +866,9 @@ main {
                         transform: scale(1.1); 
                         transition: transform 0.3s ease-in-out;
                     }
-
-                    /* Уменьшение картинки при наведении */
-                    img:hover{
-                        transform: scale(1); 
-                    }
                 }
-
+                
+                
                 /* название и цена */
                 h3 {
                     width: 100%;
@@ -877,6 +880,15 @@ main {
                     width: 100%;
                     padding: 0 20px;
                     flex-grow: 1;
+                }
+            }
+
+            /* Уменьшение картинки при наведении на карточку */
+            article:hover{
+                div{
+                    img{
+                        transform: scale(1); 
+                    }
                 }
             }
         }
@@ -927,7 +939,7 @@ main {
     dialog[open]{
         width: 800px;
         height: 504px;
-        background-color: var(--PageBg);
+        background-color: var(--modalPageBg);
         border-radius: 40px;
         display: flex;
         justify-self: center;
@@ -1028,7 +1040,7 @@ main {
                 /* Выбранная кнопка */
                 .size-options input[type="radio"]:checked + label,
                 .size-options input[type="checkbox"]:checked + label  {
-                    background-color: var(--ContainerBg);
+                    background-color: var(--modalContainerBg);
 
                     /* Текст */
                     .volume {
@@ -1037,13 +1049,13 @@ main {
 
                     /* Кружок */
                     .badge {
-                       background-color: var(--PageBg);
+                       background-color: var(--modalPageBg);
                     }
                 }
 
                 /* Наведение (hover) на кнопки размеров и добавок */
                 .size-options label:hover {
-                    background-color: var(--ContainerBg);
+                    background-color: var(--modalContainerBg);
                     
                     /* Текст */
                     .volume{
@@ -1052,7 +1064,7 @@ main {
 
                     /* Кружок */
                     .badge {
-                        background-color: var(--PageBg);
+                        background-color: var(--modalPageBg);
                     }
                 }
 
@@ -1110,7 +1122,7 @@ main {
                 /* Наведение на кнопку */
                 .dialog-alert-btn:hover{
                     color: var(--InverseText);
-                    background-color: var(--ContainerBg);
+                    background-color: var(--modalContainerBg);
                     border: none;
                 }
             }
@@ -1601,6 +1613,11 @@ footer {
             /* Картинка товара */
             .dialogImg{
                 display: none;
+            }
+
+            /* Текстовое поле */
+            .dialogText {
+                padding-left: 0;
             }
 
             /* Предупреждение */
