@@ -122,25 +122,20 @@ if (container && dialog) {
     dialog.addEventListener('click', (event) => {
         if (event.target === dialog) {
             dialog.close();
+            // Возвращение прокрутки страницы
+            document.body.style.overflow = '';
+            document.documentElement.style.overflow = '';
         }
     });
 
     // Закрытие модального окна с помощью кнопки CLOSE
     modalCloseBtn.addEventListener('click', () => {
         dialog.close()
+        // Возвращение прокрутки страницы
+        document.body.style.overflow = '';
+        document.documentElement.style.overflow = '';
     });
 };
-
-
-
-
-//  dialog.showModal();
-
-
-
-
-
-
 
 /* --Карусель -- */
 let nextBtn = document.querySelector('.btn-next');
