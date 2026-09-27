@@ -58,7 +58,6 @@ body {
     background: var(--PageBg);
 }
 
-
 /* Заголовки */
 h1 {
     font-size: 72px;
@@ -186,6 +185,7 @@ header {
     /* Навигация */
     nav {
         width: 100%;
+
         ul {
             margin: 0;
             padding: 0;
@@ -199,6 +199,11 @@ header {
             a{
                 color: var(--PrimaryText);
             }
+
+        }
+        /* Сокрытие последнего элемента списка */
+        .last-menu{
+            display: none;
         }
     }
     
@@ -311,11 +316,10 @@ header {
         }
     
         /* Кнопка меню с чашкой */
-        a {
+        .head-coffee-menu{
             color: var(--PrimaryText);
             display: flex;
             align-items: center;
-            /* margin-left: 24px; */
             
             /* Картинка с чашкой */
             span.img {
@@ -431,6 +435,7 @@ main {
     
     /* блок favorite coffee */
     .favorite-coffee {
+        width: 100%;
         margin: 0;
         margin-top: 100px;
         padding: 0;
@@ -438,6 +443,7 @@ main {
         grid-template-columns: 60px 4fr 60px;
         justify-content: center;
         align-items: center;
+        justify-items: center;
         
         /* Растягивание заголовка на всю */
         h2 {
@@ -501,36 +507,35 @@ main {
             flex-grow: 1;
             margin: 40px 0 0 0;
             padding: 0;
-            justify-content: center;
-
+            overflow: hidden;
+            justify-content: flex-start;
+            align-items: center;
+            width: 480px;
+            
             /* Окрашивание текста */
             span {
                 color: var(--PrimaryText);
             }
-
+            
             /* Карточка */
             .favorite-coffee-card{
-                width: 480px;
+                justify-content: center;
                 height: 100%;
                 margin: 0;
                 padding: 0;
                 display: flex;
                 flex-wrap: wrap;
                 align-content: space-between;
-                justify-content: center;
+                transition: transform 0.4s ease-in-out;
+                max-width: 480px;
+                gap: 16;
 
-
-                img {
+                img, h3{
                     margin: 0;
                     padding: 0;
                 }
 
-                h3 {
-                    margin: 0;
-                    padding: 0;
-                }
-
-                span {
+                span {                    
                     text-align: center;
                 }
             }
@@ -756,6 +761,7 @@ main {
 
     /* страница menu */
     .menu-container{
+        margin-top: 20px;
 
         /* Центрирование заголовка */
         h2 {
@@ -915,7 +921,206 @@ main {
                 background-color: var(--InverseText);
             }
         }
-    }    
+    }
+
+    /* Модальное окно */
+    dialog[open]{
+        width: 800px;
+        height: 504px;
+        background-color: var(--PageBg);
+        border-radius: 40px;
+        display: flex;
+        justify-self: center;
+        align-self: center;
+        justify-content: center;
+        align-items: center;
+        padding: 16px;
+        border: none;
+        margin: 0;
+
+        /* Контейнер */
+        .dialogContainer{
+            width: 100%;
+            height: 100%;
+            display: grid;
+            grid-template-columns: auto auto;
+
+            /* Картинка товара */
+            .dialogImg{
+                width: 310px;
+                height: 310px;
+                border-radius: 40px;
+                overflow: hidden;
+            }
+
+            /* Текстовое поле */
+            .dialogText {
+                width: 100%;
+                height: 100%;
+                color: var(--PrimaryText);
+                padding-left: 20px;
+                gap: 20px;
+                display: flex;
+                flex-direction: column;
+                
+                /* Отступ от заголовка */
+                h3 {
+                    margin-bottom: 12px;
+                }
+
+                /* Уборка GAP после заголовка добавки и размера*/
+                .size-title{
+                    margin-bottom: -16px;
+                }
+
+                /* Контейнер для кнопок */
+                .size-options {
+                    display: flex;
+                    gap: 8px;
+                    flex-wrap: wrap;
+
+                    /* Пячем стандартные кружки радио-кнопок */
+                    input[type="radio"], input[type="checkbox"] {
+                        position: absolute;
+                        width: 1px;
+                        height: 1px;
+                        padding: 0;
+                        margin: -1px;
+                        overflow: hidden;
+                        clip: rect(0, 0, 0, 0);
+                        border: 0;
+                    }
+                    
+                    /* Базовый стиль для неактивной кнопки */
+                    label {
+                        display: flex;
+                        background-color: transparent;
+                        padding: 8px 16px 8px 8px;
+                        align-items: center;
+                        gap: 8px;
+                        border: 1px solid var(--PrimaryBorder);
+                        transition: all 0.3s ease;
+                        border-radius: 100px;
+                        cursor: pointer;
+                        user-select: none; 
+                    }
+
+                    /* Кружочек с буквой внутри неактивной кнопки */
+                    .badge {
+                        display: flex;
+                        align-items: center;
+                        justify-content: center;
+                        background-color: var(--PrimaryBorder);
+                        border-radius: 100px;
+                        width: 30px;
+                        height: 30px;
+                        color: var(--PrimaryText);
+                        transition: all 0.3s ease;
+                    }
+
+                    /* Текст объема */
+                    .volume {
+                        color: var(--PrimaryText);
+                        transition: all 0.3s ease;
+                    }                
+                }
+
+                /* Выбранная кнопка */
+                .size-options input[type="radio"]:checked + label,
+                .size-options input[type="checkbox"]:checked + label  {
+                    background-color: var(--ContainerBg);
+
+                    /* Текст */
+                    .volume {
+                        color: var(--InverseText)
+                    }
+
+                    /* Кружок */
+                    .badge {
+                       background-color: var(--PageBg);
+                    }
+                }
+
+                /* Наведение (hover) на кнопки размеров и добавок */
+                .size-options label:hover {
+                    background-color: var(--ContainerBg);
+                    
+                    /* Текст */
+                    .volume{
+                        color: var(--InverseText);
+                    }
+
+                    /* Кружок */
+                    .badge {
+                        background-color: var(--PageBg);
+                    }
+                }
+
+                /* Итоговая цена */
+                .total-price {
+                    display: flex;
+                    justify-content: space-between;
+                }
+
+                /* Предупреждение */
+                .dialog-alert{
+                    height: 100%;
+                    width: 100%;
+                    max-height: 52px;
+                    gap: 8;
+                    margin: 0;
+                    padding: 0;
+                    display: grid;
+                    grid-template-columns: auto auto;
+                    align-items: center;
+                    border-top: 1px solid var(--InverseBorder);
+
+                    /* Кружок с буквой i */
+                    .dialog-alert-img{
+                        margin: 0;
+                        padding: 0;
+                        width: 16px;
+                        height: 16px;
+                        -webkit-mask-size: contain;
+                        mask-size: contain;
+                        -webkit-mask-repeat: no-repeat;
+                        mask-repeat: no-repeat;
+                        -webkit-mask-position: center;
+                        mask-position: center;
+                        -webkit-mask-image: url(img/info-empty.svg);
+                        mask-image: url(img/info-empty.svg);
+                        background-color: var(--PrimaryText);
+                        margin-right: 8px;
+                        margin-top: 12px;
+                        align-self: self-start;
+                    }
+                }
+
+                /* Кнопка */
+                .dialog-alert-btn{
+                    margin: 0;
+                    padding: 0;
+                    border-radius: 100px;
+                    width: 100%;
+                    height: 44px;
+                    color: var(--PrimaryText);
+                    border: 1px solid var(--InverseBorder);
+                }
+
+                /* Наведение на кнопку */
+                .dialog-alert-btn:hover{
+                    color: var(--InverseText);
+                    background-color: var(--ContainerBg);
+                    border: none;
+                }
+            }
+        }
+    }
+
+    /* Фон под модальным окном */
+    dialog[open]::backdrop{
+        background: var(--OverlayBg);
+    }
 }
 
 /* Футер\Низ */
@@ -1079,6 +1284,15 @@ footer {
 
 /* 1439 - 768px */
 @media screen and (max-width:1439px) and (min-width: 380px) {
+    /* Голова */
+    header{
+        nav{
+            /* Убираем лишний отступ на малом экране */
+            ul{
+                margin-right: 0;
+            }
+        }
+    }
     /* Основное тело */
     main {
         padding-inline: 40px;
@@ -1148,9 +1362,15 @@ footer {
             .loadMore{
                 display: flex;
             }
-        }  
-    }
+        }
 
+        /* Модальное окно */
+        dialog[open]{
+            width: 688px;
+            height: 626px;
+        }
+    }
+    
     /* Футер\Низ */
     footer {
         height: 736px;
@@ -1184,18 +1404,69 @@ footer {
             /* бургер */
             .burger{
                 display: block;
+                z-index: 5;
             }
 
             /* Кнопка меню с чашкой */
-            a {
+            .head-coffee-menu {
                 display: none;
             }
         }
     }
 
-    /* Сокрытия меню навигации */
+    /* Скрытие навигатора и форматирование его под использованием бургера */
     nav {
-        display: none;
+        position: fixed;
+        top: 0;
+        right: 0;
+        transition: transform 0.5s ease, visibility 0.5s;
+        background-color: var(--PageBg);
+        transform: translateX(100%) translateY(99px); 
+        visibility: hidden;
+        width: 100vw;
+        height: 100vh;
+        z-index: 4;
+        
+        ul {
+            width: 100%;
+            height: 100%;
+            max-height: calc(40px+340px+100px);
+            flex-direction: column;
+            align-items: center;
+            justify-content: space-between;
+            gap: 60px;
+
+            /* Показать последний элемент списка */
+            .last-menu{
+                display: block;
+            }
+        }
+
+        /* Кнопка меню */
+        .head-coffee-menu{
+            color: var(--PrimaryText);
+            display: flex !important;
+            align-items: center;
+            margin-top: 40px;
+
+            span.img{
+                margin: 0;
+                padding: 0;
+                width: 20px;
+                height: 20px;
+                -webkit-mask-image: url(img/coffee-cup.svg.svg);
+                mask-image: url(img/coffee-cup.svg);
+                background-color: var(--PrimaryText);
+                mask-size: contain;
+                mask-repeat: no-repeat;
+                margin-left: 8px;;
+            }
+        }
+    }
+    nav.On{
+        transform: translateX(0) translateY(99px);
+        visibility: visible;
+        margin: 0;
     }
 
     /* Основное тело */
@@ -1260,6 +1531,8 @@ footer {
             /* Слайды */
             .favorite-coffee-slidebar {
                 height: 532px;
+                max-width: 480px;
+                width: 100%;
 
                 /* Карточка */
                 .favorite-coffee-card{
@@ -1290,7 +1563,11 @@ footer {
                     
             .about-images .about-img:nth-child(4) {
                 height: 590px;
-            }     
+            }
+            .about-img-src{
+                object-fit: cover;
+                height: 590px;
+            }
         }
 
         /* блок mobile app */
@@ -1314,6 +1591,22 @@ footer {
                     }
                 }
             }
+        }
+
+        /* Модальное окно */
+        dialog[open]{
+            width: 342px;
+            height: 650px;
+
+            /* Картинка товара */
+            .dialogImg{
+                display: none;
+            }
+
+            /* Предупреждение */
+            .dialog-alert{
+                max-height: 66px;
+            }            
         }
     }
 
