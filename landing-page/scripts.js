@@ -1,3 +1,141 @@
+/* --Модальное окно-- */
+
+let dialog = document.querySelector('dialog'); // Модальное окно
+let container = document.querySelector('#catalog') // Блок с картами (каталог)
+
+let modalName = document.getElementById('inputName'); // Имя продукта
+let modalDescription = document.getElementById('inputDescription'); // Описание продукта
+let modalTotal = document.getElementById('inputTotal'); // Финальная цена
+let modalCloseBtn = document.querySelector('.dialog-alert-btn'); // Кнопка закрыть внутри модального окна
+
+let product = null; // Переменная для хранения данных продукта, который открыт в данный момент
+
+// Защита: проверка наличия элементов на странице, чтобы на других страницах не падало
+if (container && dialog) {
+
+    let modalImg = dialog.querySelector('.dialogImg img'); // Картинка в модальном окне
+    container.addEventListener('click', (event) => {
+        let card = event.target.closest('article'); // Получаем родительский article по нажатию на карточку
+        if (!card) return; // Если мимо карточки ты закрываем функцию
+        let cardIndex = card.dataset.index; // Получаем индекс нажатой карточки из data-атрибута
+
+        // проверяем, что данные из JSON загружены
+        if (typeof datajson !== 'undefined' && datajson[cardIndex]) {
+            product = datajson[cardIndex];
+            
+            // Переносим данные из JSON в модальное окно
+            if (modalImg) modalImg.src = product.img; // Картинка
+            if (modalImg) modalImg.alt = product.name; // Alt картинки
+            if (modalName) modalName.textContent = product.name; // Название
+            if (modalDescription) modalDescription.textContent = product.description; // Описаание
+            if (modalTotal) modalTotal.textContent = "$" + Number(product.price).toFixed(2); // Цена
+
+            // Динамическое изменение текстов кнопок размера
+            let sizes = ['s', 'm', 'l'];
+            sizes.forEach(sizeCode => {
+                let radioInput = document.getElementById(`size-${sizeCode}`);
+                if (radioInput && product.sizes && product.sizes[sizeCode]) {
+                    // Находим связанный label по селектору
+                    let labelVolume = dialog.querySelector(`label[for="size-${sizeCode}"] .volume`);
+                    if (labelVolume) {
+                        labelVolume.textContent = product.sizes[sizeCode].size; // Подставляем размер
+                    }
+                }
+            });
+
+            // Динамическое изменение текстов кнопок добавок
+            let checkboxesAdd = dialog.querySelectorAll('input[type="checkbox"]');
+            checkboxesAdd.forEach((checkbox, index) => {
+                checkbox.checked = false; // Сбрасываем галочку
+                
+                if (product.additives && product.additives[index]) {
+                    let labelVolume = dialog.querySelector(`label[for="${checkbox.id}"] .volume`);
+                    if (labelVolume) {
+                        labelVolume.textContent = product.additives[index].name; // Подставляем название добавки
+                    }
+                }
+            });
+            
+            // Сбрасываем чекбоксы добавок при каждом новом открытии
+            let checkboxes = dialog.querySelectorAll('input[type="checkbox"]');
+            checkboxes.forEach(cb => cb.checked = false);
+            
+            // Возвращаем радио-кнопку размера на дефолтный S
+            let defaultRadio = document.getElementById('size-s');
+            if (defaultRadio) defaultRadio.checked = true;
+
+            updateTotalPrice(); // Функция подсчёта финальной цены
+            dialog.showModal(); // Открываем модальное окно
+        };
+     });
+
+    // Динамический пересчёт цены
+    dialog.addEventListener('change', (event) => {
+        // Если изменился размер или добавка — пересчитываем цену
+        if (event.target.name === 'coffee-size' || event.target.name === 'additives') {
+            updateTotalPrice();
+        }
+    });
+    
+    // Функция подсчета итоговой стоимости
+    function updateTotalPrice() {
+        if (!product) return;
+
+        // Базовая цена товара (превращаем в число на всякий случай)
+        let basePrice = Number(product.price);
+        let additionalPrice = 0;
+
+        // Получаем надбавку за выбранный размер
+        let selectedSizeInput = dialog.querySelector('input[name="coffee-size"]:checked');
+        if (selectedSizeInput && product.sizes && product.sizes[selectedSizeInput.value]) {
+            additionalPrice += Number(product.sizes[selectedSizeInput.value]['add-price']);
+        }
+
+        // Получаем надбавку за все выбранные добавки
+        let checkedBoxes = dialog.querySelectorAll('input[name="additives"]:checked');
+        checkedBoxes.forEach(checkbox => {
+            // Ищем соответствующую добавку в массиве по ее имени
+            let labelText = dialog.querySelector(`label[for="${checkbox.id}"] .volume`).textContent;
+            let additiveData = product.additives.find(item => item.name === labelText);
+            
+            if (additiveData) {
+                additionalPrice += Number(additiveData['add-price']);
+            }
+        });
+
+        // Выводим финальную сумму округленную до 2 знаков после запятой
+        let finalTotal = basePrice + additionalPrice;
+        if (modalTotal) {
+            console.log(finalTotal);
+            modalTotal.textContent = "\$" + finalTotal.toFixed(2);
+        }
+    }
+
+    // Закрытие модального окна при клике вне окна
+    dialog.addEventListener('click', (event) => {
+        if (event.target === dialog) {
+            dialog.close();
+        }
+    });
+
+    // Закрытие модального окна с помощью кнопки CLOSE
+    modalCloseBtn.addEventListener('click', () => {
+        dialog.close()
+    });
+};
+
+
+
+
+dialog.showModal();
+
+
+
+
+
+
+
+
 /* --Карусель -- */
 let nextBtn = document.querySelector('.btn-next');
 let prevBtn = document.querySelector('.btn-prev');
@@ -118,22 +256,24 @@ toggleCheckbox.addEventListener('change', function() {
 let tabButtons = document.querySelectorAll('.categories-button'); //Все кнопки таба
 let reloadButton = document.querySelector('.loadMore'); //Кнопка загрузки дополнительных карт
 
-reloadButton.addEventListener('click', function() {
-    let activeButton = document.querySelector('.categories-button.active').textContent.trim().toLowerCase(); //активная кнопка
-    console.log(activeButton);
-    // Фильтрация карточек при нажатии на таб        
-    let allCard = document.querySelectorAll('article'); // Все карточки
-
-    allCard.forEach (card => {
-    if(card.classList.contains(activeButton)){
-            card.classList.remove('hide');
-        } else {
-            card.classList.add('hide');
-        }
+if (container && reloadButton) {
+    reloadButton.addEventListener('click', function() {
+        let activeButton = document.querySelector('.categories-button.active').textContent.trim().toLowerCase(); //активная кнопка
+        // console.log(activeButton);
+        // Фильтрация карточек при нажатии на таб        
+        let allCard = document.querySelectorAll('article'); // Все карточки
+    
+        allCard.forEach (card => {
+        if(card.classList.contains(activeButton)){
+                card.classList.remove('hide');
+            } else {
+                card.classList.add('hide');
+            }
+        });
+        // Скрываем кнопку
+        reloadButton.style.display = 'none';
     });
-    // Скрываем кнопку
-    reloadButton.style.display = 'none';
-});
+}
 
 tabButtons.forEach(button => {
     button.addEventListener('click', () => {        
@@ -186,7 +326,6 @@ function startTabPosition(){
 }
 
 /* -- Первичная загрузка каталога -- */
-let container = document.querySelector('#catalog'); //Блок каталога
 let template = document.querySelector('#card-template'); //Шаблон карточки
 
 // Парсинг JSON файла
@@ -198,7 +337,10 @@ function startLoad(){
         } return response.json();})
         .then(jsonData => {
         datajson = jsonData;
-        createCard(datajson);
+        // Защита от падения
+        if (container && reloadButton) {
+            createCard(datajson);
+        }
         return jsonData;
         })
         .catch(error => console.error('Ошибка при исполнении запроса: ', error));
@@ -208,7 +350,7 @@ function startLoad(){
 function createCard(data){
     container.innerHTML = ''; //Очистка блока с картами
     let visibleCount = 0; // cчётчик видимых карт
-    data.forEach (item => {
+    data.forEach ((item, index) => {
         let card = template.content.cloneNode(true); //Клонивание шаблока карточки
         let cardImg = card.querySelector('#inner-card-img'); //Выбор картинки в карточке
         let cardName = card.querySelector('#inner-card-title'); //Название блюда
@@ -227,8 +369,9 @@ function createCard(data){
         let article = card.querySelector('article');
         if (article) {
             article.classList.add(cardCategory); //Добавляем категорю в качестве класса
+            article.dataset.index = index; // привязываем индекс элемента из JSON к карточке
 
-            let isMobileOrTablet = window.innerWidth < 1440; //Проверка ширины экрана            
+            let isMobileOrTablet = window.innerWidth < 1440; //Проверка ширины экрана          
 
             // Стартовый фильтр на кофе
             if (cardCategory != 'coffee') {
@@ -243,12 +386,6 @@ function createCard(data){
 
         container.appendChild(card); //Отрисовка карточек
     });
-
-    // console.log(datajson[0].name);
-    // console.log(datajson[0].description);
-    // console.log(datajson[0].price);
-    // console.log(datajson[0].category);
-    // console.log(datajson[0].img);
 }
 
 /* Контроль изменения размера окна */
