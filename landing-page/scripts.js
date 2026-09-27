@@ -66,6 +66,13 @@ if (container && dialog) {
 
             updateTotalPrice(); // Функция подсчёта финальной цены
             dialog.showModal(); // Открываем модальное окно
+
+            // Блокировка скрола страницы
+            if (dialog) {
+                document.body.style.overflow = 'hidden';
+            } else {
+                document.body.style.overflow = '';
+            }
         };
      });
 
@@ -127,8 +134,7 @@ if (container && dialog) {
 
 
 
-dialog.showModal();
-
+//  dialog.showModal();
 
 
 
@@ -210,6 +216,13 @@ burger.addEventListener('click', function() {
 window.addEventListener('keydown', (event) => {
     
     if (event.key === 'Escape') {
+        // Проверка на наличие открытого модального окна
+        if (dialog){
+            dialog.close();
+            // Возвращение прокрутки страницы
+            document.body.style.overflow = '';
+            document.documentElement.style.overflow = '';
+        }
         // Проверка на открытие меню бургера
         if (nav.classList.contains('On')) {
             // Закрытие меню бургера
@@ -257,6 +270,7 @@ let tabButtons = document.querySelectorAll('.categories-button'); //Все кн�
 let reloadButton = document.querySelector('.loadMore'); //Кнопка загрузки дополнительных карт
 
 if (container && reloadButton) {
+
     reloadButton.addEventListener('click', function() {
         let activeButton = document.querySelector('.categories-button.active').textContent.trim().toLowerCase(); //активная кнопка
         // console.log(activeButton);
@@ -286,7 +300,8 @@ tabButtons.forEach(button => {
         let allCard = document.querySelectorAll('article'); // Все карточки
         let visibleCount = 0; // cчётчик видимых карт
         let isMobileOrTablet = window.innerWidth < 1440; //Проверка ширины экрана
-        
+        let countCards = container.querySelectorAll(`article.${selectedButton}`).length; // Количество карт
+
         allCard.forEach (card => {
             if(card.classList.contains(selectedButton)){
                 card.classList.remove('hide');
@@ -300,9 +315,7 @@ tabButtons.forEach(button => {
                 }
 
                 // Сокрытие кнопки при малом количестве элементов
-                let countCards = container.querySelectorAll(`article.${selectedButton}`).length; // Количество карт
-                // console.log(countCards);
-                if (countCards <= 4) {
+                if (countCards >= 4) {
                     reloadButton.style.display = 'none';
                 } else { reloadButton.style.display = 'flex';}
 

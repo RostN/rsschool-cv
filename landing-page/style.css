@@ -58,7 +58,6 @@ body {
     background: var(--PageBg);
 }
 
-
 /* Заголовки */
 h1 {
     font-size: 72px;
@@ -935,11 +934,14 @@ main {
         align-self: center;
         justify-content: center;
         align-items: center;
+        padding: 16px;
+        border: none;
+        margin: 0;
 
         /* Контейнер */
         .dialogContainer{
-            width: 768px;
-            height: 472px;
+            width: 100%;
+            height: 100%;
             display: grid;
             grid-template-columns: auto auto;
 
@@ -953,7 +955,6 @@ main {
 
             /* Текстовое поле */
             .dialogText {
-                border: 1px solid green;
                 width: 100%;
                 height: 100%;
                 color: var(--PrimaryText);
@@ -969,13 +970,14 @@ main {
 
                 /* Уборка GAP после заголовка добавки и размера*/
                 .size-title{
-                    margin-bottom: calc((20px - 8px) * (-1));
+                    margin-bottom: -16px;
                 }
 
                 /* Контейнер для кнопок */
                 .size-options {
                     display: flex;
                     gap: 8px;
+                    flex-wrap: wrap;
 
                     /* Пячем стандартные кружки радио-кнопок */
                     input[type="radio"], input[type="checkbox"] {
@@ -1071,6 +1073,7 @@ main {
                     display: grid;
                     grid-template-columns: auto auto;
                     align-items: center;
+                    border-top: 1px solid var(--InverseBorder);
 
                     /* Кружок с буквой i */
                     .dialog-alert-img{
@@ -1101,7 +1104,14 @@ main {
                     width: 100%;
                     height: 44px;
                     color: var(--PrimaryText);
-                    border-color: var(--InverseBorder);
+                    border: 1px solid var(--InverseBorder);
+                }
+
+                /* Наведение на кнопку */
+                .dialog-alert-btn:hover{
+                    color: var(--InverseText);
+                    background-color: var(--ContainerBg);
+                    border: none;
                 }
             }
         }
@@ -1352,9 +1362,15 @@ footer {
             .loadMore{
                 display: flex;
             }
-        }  
-    }
+        }
 
+        /* Модальное окно */
+        dialog[open]{
+            width: 688px;
+            height: 626px;
+        }
+    }
+    
     /* Футер\Низ */
     footer {
         height: 736px;
@@ -1575,6 +1591,22 @@ footer {
                     }
                 }
             }
+        }
+
+        /* Модальное окно */
+        dialog[open]{
+            width: 342px;
+            height: 650px;
+
+            /* Картинка товара */
+            .dialogImg{
+                display: none;
+            }
+
+            /* Предупреждение */
+            .dialog-alert{
+                max-height: 66px;
+            }            
         }
     }
 
