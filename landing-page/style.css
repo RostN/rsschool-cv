@@ -1610,14 +1610,17 @@ footer {
             width: 342px;
             height: 650px;
 
-            /* Картинка товара */
-            .dialogImg{
-                display: none;
-            }
+            /* Контейнер */
+            .dialogContainer {
+                /* Картинка товара */
+                .dialogImg{
+                    display: none;
+                }
 
-            /* Текстовое поле */
-            .dialogText {
-                padding-left: 0;
+                /* Текстовое поле */
+                .dialogText {
+                    padding-left: 0;
+                }
             }
 
             /* Предупреждение */
