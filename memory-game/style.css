@@ -5,7 +5,7 @@
     --mainColor: rgb(39, 39, 49);
     --mainBodyColor: rgb(142, 142, 142);
     --headBorderRadius: 30px;
-    --cardSize: 20vmin;
+    --cardSize: 15vmin;
     --OverlayBg: rgb(39,39,49,0.3);
 }
 
@@ -65,7 +65,7 @@ button {
 }
 /* рубашка карты */
 .card-before {
-    background-color: #f4c531;
+    background-color: #73be2e;
     font-size: 60px;
     font-weight: 600;
 }
