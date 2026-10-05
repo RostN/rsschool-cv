@@ -4,3 +4,4 @@ HTML-CV: https://RostN.github.io/rsschool-cv/
 Projects:
 *  cssMemeSlider: https://RostN.github.io/rsschool-cv/cssMemeSlider
 *  landing-page: https://RostN.github.io/rsschool-cv/landing-page
+*  Memory-game: https://RostN.github.io/rsschool-cv/memory-game
