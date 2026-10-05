@@ -2,6 +2,9 @@ MD-CV: https://RostN.github.io/rsschool-cv/cv
 HTML-CV: https://RostN.github.io/rsschool-cv/  
 
 Projects:
-*  cssMemeSlider: https://RostN.github.io/rsschool-cv/cssMemeSlider
-*  landing-page: https://RostN.github.io/rsschool-cv/landing-page
+*  cssMemeSlider: https://RostN.github.io/rsschool-cv/cssMemeSlider 
+*  Shelter: https://RostN.github.io/rsschool-cv/Shelter
+*  Podcast Player: https://RostN.github.io/rsschool-cv/Podcast-player
+*  Not fight club: https://RostN.github.io/rsschool-cv/Not-fight-club
+*  HTML-builder: https://github.com/RostN/rsschool-cv/tree/HTML-builder
 *  Memory-game: https://RostN.github.io/rsschool-cv/memory-game
