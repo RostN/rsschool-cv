@@ -1,0 +1,551 @@
+/* Общее */
+*{
+    margin: 0 auto;
+    background-color: var(--MainColor);
+    color: white;
+}
+
+/* Свои цвета и переменные */
+:root{
+    /* Цвета */
+    --MainColor: rgb(39, 39, 39);
+    --headColor: rgb(53, 53, 53);
+}
+
+/*Сокрытие ненужных элементов*/
+.hide {
+    display: none;
+}
+
+/* Голова */
+header {
+    position: fixed;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100vw;
+    height: 3em;
+    background: var(--headColor);
+    box-shadow: 0 1em 2em rgba(255,255,255,0.2);
+    
+    /* Наимервание страницы */
+    .head-page-name{
+        margin: 0 3em;
+        font-size: 1.5em;
+        background: none;
+    }
+    
+    /* Кнопки справа */
+    .head-right{
+        background: none;
+        font-size: 1.5em;
+        margin: 0 3em;
+        
+        /* Картинки в заголовке */
+        svg{
+            cursor: pointer;
+            background: none;
+            fill: white;
+            margin: 0 0.3em;
+        }
+        svg:hover{
+            fill: orange;
+        }
+        svg:active{
+            fill: greenyellow;
+        }
+        .svg-selected{
+            fill: orange;
+        }
+    }
+}
+
+/* Основное тело */
+main{
+    display: flex;
+    margin: 0;
+    height: 100vh;
+    align-items: center;
+
+    h1{
+        font-size: 2.5em;
+        background: none;
+    }
+    h2{
+        margin-top: 1em;
+        background: none;
+    }
+
+    /* Стартовое окно */
+    .start-page{
+        width: 100vw;
+        justify-content: center;
+
+        /* Затемнение фона на стартовой странице (overlay) */
+        .modal-overlay-start {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(255, 255, 255, 0.2);
+            backdrop-filter: blur(4px);
+            display: none;
+            justify-content: center;
+            align-items: center;
+            z-index: 2;
+
+            /* Всплывающее окно на стартовой странице */
+            .modal-window {
+                background: rgba(39,39,39,0.95);
+                width: 30vw;
+                height: 12em;
+                padding: 1.5em;
+                border-radius: 3em;
+                text-align: center;
+
+                /* Текстовое поле в модальном окне */
+                .modal-window-text{
+                    height: calc(100% - 2em);
+                    background: none;
+                }
+            }
+
+            .btn-close-modalStart{
+                width: 15vw;
+            }
+        }
+
+        /* Кнопка создания */
+        .start-btn-create{
+            margin-top: 1em;
+        }
+
+        /* Заголовок стартового окна */
+        .start-title{
+            height: 2em;
+            text-align: center;
+            width: 100%;
+            align-self: center;
+            background: none;
+        }
+        
+        /* Подись на стартовом окне */
+        .start-title-text{
+            align-self: center;
+            width: 100%;
+            height: 2em;
+            text-align: center;
+            align-content: flex-end; 
+            margin: 0;
+            font-weight: 400;
+            font-size: 1.5em;
+            background: none;
+        }
+
+        /* блок для поля ввода */
+        .start-input-space{
+            width: 100%;
+            text-align: center;
+        }
+
+        /* Прошлое имя */
+        .start-input-last-name{
+            width: 100%;
+            text-align: center;
+            font-size: 1em;
+            margin-top: 0.5em;
+        }
+    }
+
+    /* Страница основная main */
+    .main-page{
+        width: 100vw;        
+    }
+
+    /* Страница сражений */
+    .fight-page{
+        width: 100vw;
+        display: flex;
+
+        /* Блок аккаунта */
+        .fight-page-account, .fight-page-enemy{
+            width: 300px;
+
+            /* Имя персонажа */
+            .fight-page-account-name, .fight-page-enemy-name{
+                font-size: 1.5em;
+                text-align: center;
+                align-content: center;
+            }
+
+            /* Аватарка */
+            .fight-page-account-ava, .fight-page-enemy-ava{
+            margin: 1em  0;
+            width: 100%;
+            height: 400px;
+            border-radius: 5em;
+            overflow: hidden;
+            border: 0.3em solid white;
+            }
+
+            /* Здоровье персонажа */
+            .fight-page-account-hp, .fight-page-enemy-hp{
+                height: 2em;
+                border: 0.2em solid white;
+                overflow: hidden;
+                border-radius: 2em;
+            }
+
+            /* Полоса здоровья */
+            .fightHpLine{
+                margin: 0;
+                height: 100%;
+                width: 100%;
+                font-size: 1.5em;
+                background-color: green;
+            }
+            /* Текст со здоровьем */
+            .fightHpLineText{
+                margin: 0;
+                position: fixed;
+                z-index: 100;
+                font-size: 1.5em;
+                text-align: center;
+                width: 300px;
+                background:none;
+                transform: translateY(-1.2em);
+            }
+        }
+
+        /* Блок с местом атаки*/
+        .fight-page-fight-zone{
+            width: 300px;
+            height: 400px;
+
+            /* Кнопка атаки */
+            .fight-page-attack-btn{
+                margin-top: 1em;
+                width: 150px;
+            }
+
+            /* Кнопка атаки неактивная*/
+            .fight-page-attack-btn-no, .fight-page-attack-btn-no-2{
+                background-color: gray;
+                cursor: none;
+            }
+
+            .fight-page-rules{
+                width: 100%;
+                display: flex;
+                flex-wrap: wrap;
+                
+                /* Текст */
+                .fight-page-text{
+                    width: 100%;
+                    text-align: center;
+                    font-size: 1.5em;
+                }
+
+                /* поле с выбором */
+                .fight-page-choose{
+                    width: 100%;
+                    display: flex;
+                    flex-wrap: nowrap;
+                    margin-top: 2em;
+
+                    .option {
+                        appearance: none;
+                        width: 1em;
+                        height: 1em;
+                        border-radius: 50%;
+                        border: 1px solid #fff;
+                        cursor: pointer;
+                        background-color: white;
+                        }
+                        .option:checked {
+                        background-color: #ff0000;
+                        border-color: #ff0000;
+                        }
+
+                    ul,ol{
+                        margin: 0;
+                        font-size: 1.2em;
+                        padding: 0;
+                    }
+
+                    /* Разделительная граница */
+                    .fight-page-border{
+                        width: 0.2em;
+                        height: 100%;
+                        margin: 0;
+                        background: white;
+                        flex-shrink: 0;
+                    }
+                    
+                    /* Выбор нападения */
+                    .fight-page-attack{
+                        margin: 0;
+                        flex-grow: 1;
+                        height: 100%;
+                        max-width: 50%;
+                        text-align: center;
+                        /* border: 1px solid green; */
+                    }
+                    
+                    /* Выбор защиты */
+                    .fight-page-deffence{
+                        text-align: center;
+                        margin: 0;
+                        flex-grow: 1;
+                        max-width: 50%;
+                        height: 100%;
+                        /* border: 1px solid pink; */
+                    }
+                }
+            }
+        }
+    }
+
+    /* Страница аккаунт */
+    .account-page{
+        display: flex;
+        justify-content: center;
+        width: 100vw;
+        
+        /* Модальное окно */
+        dialog{
+            border: 0.5em solid white;
+            border-radius: 2em;
+            position: fixed;
+            width: calc(100vw - 15em);
+            height: calc(100vh - 10em);
+            top: 4em;
+            flex-wrap: wrap;
+            justify-content: center;
+            align-content: center;
+            align-items: center;
+
+            /* Блок с картинками */
+            .account-page-galary{
+                text-align: center;
+                width: 100%;
+                
+                /* Картинка */
+                .account-page-galary-ava{
+                    width: 20vw;
+                    border-radius: 3em;
+                    border: 0.2em solid white;
+                }
+                
+                /* Картинка выделенная */
+                .account-page-galary-ava-selected{
+                    border: 0.2em solid green;
+                }
+            }
+            
+            /* Блок с кнопками */
+            .account-page-galary-btns{
+                margin: 1.5em  0;
+                display: flex;
+                justify-content: center;
+                width: 100%;
+                
+                .account-page-galary-btns-exit{
+                    margin: 0 1em;
+                }
+                .account-page-galary-btns-accept{
+                    margin: 0 1em;
+                }
+            }            
+        }
+
+        /* Подложка модального окна */
+        dialog::backdrop {
+            background-color: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(4px);
+        }
+
+        /* Аватарка */
+        .account-page-ava{
+            cursor: pointer;
+            margin: 0;
+            width: 300px;
+            height: 400px;
+            border-radius: 5em;
+            overflow: hidden;
+            border: 0.3em solid white;
+        }
+
+        /* Информация */
+        .account-page-info{
+            padding-left: 1em;
+            padding-top: 1em;
+            font-size: 1.5em;
+            margin: 0;
+            width: 300px;
+            height: 20vh;
+
+            /* Поле с победами */
+            .account-page-info-wins{
+                display: flex;
+                justify-self: flex-start;
+                margin: 0.2em 0;
+                padding: 0;
+
+                /* Заголовок */
+                .account-page-info-wins-title{
+                    color: green;
+                    margin: 0;
+                    padding-right: 0.2em;
+                }
+                /* Количество */
+                .account-page-info-wins-count{
+                    color: green;
+                }
+            }
+
+            /* Поле поражений */
+            .account-page-info-lose{
+                display: flex;
+                justify-self: flex-start;
+                margin: 0.2em 0;
+                padding: 0;
+
+                /* Заголовок */
+                .account-page-info-lose-title{
+                    color: red;
+                    margin: 0;
+                    padding-right: 0.2em;
+                }
+                /* Количество */
+                .account-page-info-lose-count{
+                    color: red;
+                }
+            }
+        }
+    }
+
+    /* Страница настроек */
+    .setting-page{
+        width: 100vw;
+        
+        /* Блок с именем персонажа */
+        .setting-page-player{
+            font-size: 1.5em;
+            display: flex;
+            justify-content: center;
+            justify-items: center;
+
+            /* Заголовок Player name */
+            .setting-page-player-text{
+                margin: 0 0.3em;
+            }
+
+            /* Имя персонажа */
+            .setting-page-player-name{
+                margin: 0 0.3em;
+            }
+        }
+
+        /* Поле ввода нового имени */
+        .setting-page-player-name-inp{
+            margin: 0;
+            text-align: center;
+        }
+
+        /* Кнопка смены имени */
+        .setting-page-btn{
+            margin-top: 0.5em;
+        }
+
+        /* Поле с кнопками подтверждения изменения имени */
+        .setting-page-change-btns{
+            width: 100%;
+            display: flex;
+            justify-content: center;
+            margin-top: 0.5em;
+            
+            .setting-page-btn-exit{
+                margin: 0 1em;
+            }
+            .setting-page-btn-accept{
+                margin: 0 1em;
+            }
+        }
+    }
+    
+    /* Все кнопки */
+    .start-btn-create, .main-page-btnFight, .setting-page-btn, .account-page-galary-btns-accept, .account-page-galary-btns-exit, .setting-page-btn-exit, .setting-page-btn-accept, .btn-close-modalStart, .fight-page-attack-btn{
+        cursor: pointer;
+        align-content: center;
+        color: black;
+        text-align: center;
+        border-radius: 1em;
+        background-color: white;
+        height: 1.8em;
+        font-size: 1.5em;
+        width: 15%;
+    }
+
+    /* Наведение на кнопку */
+    .start-btn-create:hover, .main-page-btnFight:hover, .setting-page-btn:hover, .account-page-galary-btns-accept:hover, .account-page-galary-btns-exit:hover, .setting-page-btn-exit:hover, .setting-page-btn-accept:hover, .btn-close-modalStart:hover, .fight-page-attack-btn:hover{
+        background-color: orange;
+    }
+
+    /* Нажатие на кнопку */
+    .start-btn-create:active, .main-page-btnFight:active, .setting-page-btn:active, .account-page-galary-btns-accept:active, .account-page-galary-btns-exit:active, .setting-page-btn-exit:active, .setting-page-btn-accept:active, .btn-close-modalStart:active, .fight-page-attack-btn:active{
+        background-color: greenyellow;
+    }
+
+    /* Поле ввода */
+    .start-input, .setting-page-player-name-input{
+        margin-top: 0.5em;
+        width: 20%;
+        font-size: 1.5em;
+        border-radius: 1em;
+        padding: 0.3em 1em;
+        background: none;
+        border: 0.2em solid white;
+    }
+}
+
+/* Футер\Низ */
+footer{
+    padding: 0.3em;
+    position: fixed;
+    bottom: calc(-50% + 2em);
+    width: 100vw;
+    height: 50vh;
+    border: 0.1em solid white;
+    border-top-left-radius: 2em;
+    border-top-right-radius: 2em;
+    cursor: pointer;
+    box-sizing: border-box;
+    transition: transform 0.4s;
+    transform: translateY(0);
+    font-size: 1.5em;
+    z-index: 100;
+    
+    /* Заголовок в футере */
+    .footer-head{
+        width: 100%;
+        text-align: center;
+        font-weight: bold;
+        margin-bottom: 0.5em;
+        background: none;
+        z-index: 100;
+    }
+    
+    .footer-log{
+        background: none;
+        height: calc(100% - 2em);
+        padding: 0.1em;
+        overflow: auto;
+        box-sizing: border-box;
+        z-index: 100;
+    }
+}
+footer.active{
+    transform: translateY(calc(-100% + 2em));
+}
