@@ -1,0 +1,78 @@
+document.addEventListener('DOMContentLoaded', () => {
+  const track = document.querySelector('.carousel-track');
+  const nextBtn = document.querySelector('.next');
+  const prevBtn = document.querySelector('.prev');
+  
+  let position = 0; // Текущий индекс (не пиксели, а номер карточки)
+  let cards = [];   // Массив наших карточек
+
+  // 1. Генерация 8 карточек (замени этот цикл на свой существующий код)
+  for (let i = 1; i <= 8; i++) {
+    const card = document.createElement('div');
+    card.classList.add('card');
+    card.textContent = `Карточка ${i}`;
+    track.appendChild(card);
+    cards.push(card);
+  }
+
+  const cardWidth = cards[0].offsetWidth;
+  const gap = 20; // Должно совпадать с CSS gap
+  const totalCards = cards.length;
+
+  // 2. ЛОГИКА БЕСКОНЕЧНОСТИ (Клонирование)
+  // Клонируем первую карточку и добавляем в конец
+  const firstClone = cards[0].cloneNode(true);
+  firstClone.classList.add('is-clone');
+  track.appendChild(firstClone);
+
+  // Клонируем последнюю карточку и добавляем в начало
+  const lastClone = cards[totalCards - 1].cloneNode(true);
+  lastClone.classList.add('is-clone');
+  track.insertBefore(lastClone, cards[0]);
+  
+  // Обновляем массив карточек, чтобы учитывать клоны
+  cards = Array.from(track.children);
+
+  // Начальная позиция (чтобы скрыть клон последней карточки слева)
+  position = 1; 
+  updateCarousel();
+
+  // Функция обновления позиции (через translate)
+  function updateCarousel() {
+    // (ширина карточки + отступ) * текущий индекс
+    const offset = -(position * (cardWidth + gap));
+    track.style.transform = `translateX(${offset}px)`;
+  }
+
+  // Обработчик кнопки ВПРАВО
+  nextBtn.addEventListener('click', () => {
+    if (position >= totalCards) return; // Защита от лишнего клика после анимации
+    
+    position++;
+    updateCarousel();
+
+    // Если мы докрутили до первого клона (позиция totalCards + 1)
+    if (position === totalCards) {
+      setTimeout(() => {
+        position = 1; // Мгновенно сбрасываем на реальную первую карточку
+        updateCarousel(); // Перерисовываем без анимации (transition уберем временно или используем setTimeout)
+      }, 400); // 400мс должно совпадать с transition в CSS
+    }
+  });
+
+  // Обработчик кнопки ВЛЕВО
+  prevBtn.addEventListener('click', () => {
+    if (position <= 1) return;
+
+    position--;
+    updateCarousel();
+
+    // Если мы ушли на клон последней карточки (позиция 0)
+    if (position === 0) {
+      setTimeout(() => {
+        position = totalCards; // Мгновенно сбрасываем на реальную последнюю карточку
+        updateCarousel();
+      }, 400);
+    }
+  });
+});

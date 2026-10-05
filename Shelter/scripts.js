@@ -1,0 +1,104 @@
+/*  */
+
+/* Пагинатор */
+let indexSliderPrev = document.getElementById('indexSliderPrev');
+let indexSliderNext = document.getElementById('indexSliderNext');
+let indexSliderPosition = 0;
+let step1 = 1080;
+let step2 = 270 * 2 + 40 * 3;
+
+    // Слушатель кнопки назад
+    indexSliderPrev.addEventListener('click', function(){
+
+        if (window.innerWidth > 768) {
+            updateCarts(step1);
+        }
+        if (window.innerWidth <= 768 && window.innerWidth > 320 ) {
+            updateCarts(step2);
+        }
+    })
+
+    // Слушатель кнопки вперёд
+    indexSliderNext.addEventListener('click', function(){
+        console.log(step1);
+        if (window.innerWidth > 768) {
+            updateCarts( (-1) * step1);
+        }
+        if (window.innerWidth <= 768 && window.innerWidth > 320) {
+            updateCarts( (-1) * step2);
+        }
+    })
+
+    // Обновление слайдера
+    function updateCarts(a){
+        indexSliderPosition += a;
+        sliderCartInd.style.transform =
+        `translate(${indexSliderPosition}px, 0px)`;
+    }
+
+/* Получение данных из JSON файла */
+let sliderCartInd = document.querySelector('.slider-container');
+let petsCartP1 = '<div class="pets-content-slider-data-cart index-page"><img src="';
+// + картинка питомца
+let petsCartP2 = '" alt=""><div class="pets-cart-text">';
+// + Имя петомца
+let petsCartP3 = '</div><button class="pets-cart-button">Learn more</button></div>';
+let slidesInd = Array.from(sliderCartInd.children); // Массив карточек стартовой страницы
+
+    fetch('pets.json')
+      .then(response => {
+        if (!response.ok) {
+            throw new Error('Ой, ошибка в fetch: ' + response.statusText);
+        } return response.json();})
+      .then(jsonData => {
+        datajson = jsonData;
+        createPetsCart()
+        return jsonData;
+        })
+        .catch(error => console.error('Ошибка при исполнении запроса: ', error));
+
+    // Функция создания карточекы
+    let testcart = '';
+    
+    function createPetsCart(){
+        for ( i = 0; i < 8; i++){
+            testcart = testcart + 
+            petsCartP1+
+            datajson[i].img +
+            petsCartP2 +
+            datajson[i].name +
+            petsCartP3;
+        }
+        sliderCartInd.insertAdjacentHTML('beforeend', testcart);
+        slidesInd = Array.from(sliderCartInd.children); //Массив созданных элементов
+
+        // console.log(slidesInd[0].clientWidth);
+        // console.log(sliderCartInd.clientWidth)
+    }
+    
+/* Контроль изменения размера окна */
+    window.addEventListener('resize', () => {
+        console.log('Изменение экрана');
+        hideNavMenu(); //Проверка размера экрана
+    });
+
+/* Бургер */
+let burger = document.querySelector ('.burger');
+let navMenu = document.querySelector('.header-nav');
+
+    // Функция смены рисунка бургера (cлушатель) и отображение боковой панели
+    burger.addEventListener('click', function() {
+        burger.classList.toggle('change'); 
+        navMenu.classList.toggle('navOn');
+    });
+
+    // Функция сокрытия панели меню при малом размере экрана
+    function hideNavMenu(){
+        console.log('Расширение экрана: ', window.innerWidth)
+        if (window.innerWidth < 768){
+            navMenu.classList.toggle('.hide');
+        }
+    }
+
+    // Сокрытие панели меню при малом размере экрана
+    hideNavMenu();
