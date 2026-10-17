@@ -1,0 +1,20 @@
+{
+  "name": "testing-intro-catalog-cart",
+  "version": "1.0.0",
+  "private": true,
+  "scripts": {
+    "test": "jest",
+    "test:catalog": "jest tests/catalog",
+    "test:cart": "jest tests/cart",
+    "test:coverage": "jest --coverage"
+  },
+  "devDependencies": {
+    "jest": "^29.7.0"
+  },
+  "jest": {
+    "collectCoverageFrom": [
+      "src/catalog.js",
+      "src/cart.js"
+    ]
+  }
+}
