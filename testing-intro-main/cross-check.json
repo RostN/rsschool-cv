@@ -1,0 +1,72 @@
+{
+  "taskName": "Testing Intro",
+  "criteria": [
+    { "type": "title", "title": "Часть 1. Тесты каталога (40)" },
+    {
+      "type": "subtask",
+      "text": "Для filterByCategory выполнены все девять обязательных тестов из таблицы задания",
+      "max": 10
+    },
+    {
+      "type": "subtask",
+      "text": "Для searchProducts выполнены все девять обязательных тестов из таблицы задания",
+      "max": 10
+    },
+    {
+      "type": "subtask",
+      "text": "Для sortProductsByPrice выполнены все девять обязательных тестов из таблицы задания",
+      "max": 10
+    },
+    {
+      "type": "subtask",
+      "text": "Для getProductById выполнены все девять обязательных тестов из таблицы задания",
+      "max": 10
+    },
+    { "type": "title", "title": "Часть 2. Корзина по готовым тестам (40)" },
+    {
+      "type": "subtask",
+      "text": "addToCart: новый товар, объединение одинаковых товаров, проверка количества и остатка",
+      "max": 10
+    },
+    {
+      "type": "subtask",
+      "text": "changeQuantity: изменение количества, проверка границ, отсутствующий товар",
+      "max": 10
+    },
+    { "type": "subtask", "text": "removeFromCart", "max": 6 },
+    { "type": "subtask", "text": "calculateCartSubtotal", "max": 6 },
+    {
+      "type": "subtask",
+      "text": "calculateOrderTotal: скидка, доставка и итоговая сумма",
+      "max": 8
+    },
+    { "type": "title", "title": "Оформление и сдача (20)" },
+    {
+      "type": "subtask",
+      "text": "Работа выполнена в личном форке, в отдельной ветке; история коммитов соответствует конвенции",
+      "max": 5
+    },
+    {
+      "type": "subtask",
+      "text": "Pull Request открыт в main личного форка, не замержен и оформлен по схеме",
+      "max": 5
+    },
+    { "type": "subtask", "text": "В PR есть скриншот успешного npm test", "max": 5 },
+    {
+      "type": "subtask",
+      "text": "В PR есть скриншот HTML-отчёта coverage",
+      "max": 5
+    },
+    { "type": "title", "title": "Штрафы" },
+    {
+      "type": "penalty",
+      "text": "Изменены src/catalog.js или src/data/products.js",
+      "max": -40
+    },
+    {
+      "type": "penalty",
+      "text": "Изменены tests/cart/cart.test.js, package.json или настройки Jest",
+      "max": -40
+    }
+  ]
+}
