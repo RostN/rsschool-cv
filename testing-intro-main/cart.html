@@ -1,0 +1,35 @@
+<!doctype html>
+<html lang="ru">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mini Shop — Корзина</title>
+    <link rel="stylesheet" href="styles.css">
+  </head>
+  <body>
+    <header class="header">
+      <a class="logo" href="index.html">Mini Shop</a>
+      <nav><a href="index.html">Каталог</a><a class="active" href="cart.html">Корзина</a></nav>
+    </header>
+    <main class="page">
+      <section class="hero">
+        <p class="eyebrow">Testing Intro · часть 2</p>
+        <h1>Корзина</h1>
+        <p>Реализуйте функции из <code>src/cart.js</code>, следуя готовым Jest-тестам.</p>
+      </section>
+      <p id="cart-status" class="status error" aria-live="polite"></p>
+      <section class="cart-layout">
+        <div><h2>Добавить из каталога</h2><div id="products-to-add" class="product-grid compact"></div></div>
+        <aside class="cart-panel">
+          <h2>Ваш заказ</h2>
+          <div id="cart-items"></div>
+          <label>Промокод <input id="promo-code" value="SAVE10"></label>
+          <div id="cart-total" class="cart-total"></div>
+        </aside>
+      </section>
+    </main>
+    <script src="src/data/products.js"></script>
+    <script src="src/cart.js"></script>
+    <script src="src/cart-app.js"></script>
+  </body>
+</html>

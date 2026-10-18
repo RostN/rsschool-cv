@@ -1,0 +1,36 @@
+<!doctype html>
+<html lang="ru">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mini Shop — Каталог</title>
+    <link rel="stylesheet" href="styles.css">
+  </head>
+  <body>
+    <header class="header">
+      <a class="logo" href="index.html">Mini Shop</a>
+      <nav><a class="active" href="index.html">Каталог</a><a href="cart.html">Корзина</a></nav>
+    </header>
+    <main class="page">
+      <section class="hero">
+        <p class="eyebrow">Testing Intro · часть 1</p>
+        <h1>Каталог</h1>
+        <p>Эти работающие функции из <code>src/catalog.js</code> нужно покрыть unit-тестами.</p>
+      </section>
+      <section class="controls" aria-label="Фильтры каталога">
+        <label>Поиск <input id="search" type="search" placeholder="Например, книга"></label>
+        <label>Категория
+          <select id="category"><option value="all">Все</option><option value="electronics">Электроника</option><option value="books">Книги</option><option value="home">Дом</option></select>
+        </label>
+        <label>Сортировка
+          <select id="sort"><option value="asc">Сначала дешевле</option><option value="desc">Сначала дороже</option></select>
+        </label>
+      </section>
+      <p id="catalog-status" class="status" aria-live="polite"></p>
+      <section id="catalog" class="product-grid"></section>
+    </main>
+    <script src="src/data/products.js"></script>
+    <script src="src/catalog.js"></script>
+    <script src="src/catalog-app.js"></script>
+  </body>
+</html>
