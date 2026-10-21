@@ -8,3 +8,4 @@ Projects:
 *  Not fight club: https://RostN.github.io/rsschool-cv/Not-fight-club
 *  HTML-builder: https://github.com/RostN/rsschool-cv/tree/HTML-builder
 *  Memory-game: https://RostN.github.io/rsschool-cv/memory-game
+*  Bug Hunting: https://RostN.github.io/rsschool-cv/fix-bugs
