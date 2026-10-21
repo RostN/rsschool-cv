@@ -18,7 +18,7 @@ const countEl = document.getElementById("count");
 
 function getFiltered() {
   let result = [...products]; 
-  const search = searchInput.value;
+  const search = searchInput.value.toLowerCase();
   const category = categorySelect.value;
   const sort = sortSelect.value;
 
