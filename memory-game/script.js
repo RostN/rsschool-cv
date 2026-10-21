@@ -239,48 +239,56 @@ function matrixGenerator (cardValues, size = 4) {
     // Заполнение игрового контейнера
     gameContainer.style.gridTemplateColumns = `repeat(${size},auto)`;
 
+    let isLocked = false; //флаг блокировки переворота карты до получения разрешения
+
     //Карточки
     cards = document.querySelectorAll(".card-container");
     cards.forEach((card) => {
 
         card.addEventListener("click", () => {
-        if (!card.classList.contains("matched")) {
-            card.classList.add("flipped"); //Переворот нажатой карты
-            // Проверка на открытую карту
-            if (!firstCard) {
-            firstCard = card;
-            firstCardValue = card.getAttribute("data-card-value");
-            } else {
-            movesCount += 1;
-            secondCard = card;
-            let secondCardValue = card.getAttribute("data-card-value");
-
-            // Сравнение 2х открытых карт, если вопадают отмечаем, либо переворачиваем назад
-            if (firstCardValue == secondCardValue) {
-                // Пометка найденных карт
-                firstCard.classList.add("matched");
-                secondCard.classList.add("matched");               
-                firstCard = false;            
-
-                pairsCount += 1;
-                updateText();
-                
-                // Проверка на завершение игры и сохранение
-                if (pairsCount === 8){
-                    saveGameResult(movesCount);
-                    finalModal();
-                }
-            } else {
-                updateText();
-                let [tempFirst, tempSecond] = [firstCard, secondCard];
-                firstCard = false;
-                secondCard = false;
-                let delay = setTimeout(() => {
-                tempFirst.classList.remove("flipped");
-                tempSecond.classList.remove("flipped");
-                }, 900);
+            if (isLocked || card.classList.contains("matched")){
+                return
             }
-        }
+
+            if (!card.classList.contains("flipped")) {
+                card.classList.add("flipped"); //Переворот нажатой карты
+                // Проверка на открытую карту
+                if (!firstCard) {
+                firstCard = card;
+                firstCardValue = card.getAttribute("data-card-value");
+                } else {
+                movesCount += 1;
+                secondCard = card;
+                let secondCardValue = card.getAttribute("data-card-value");
+
+                // Сравнение 2х открытых карт, если вопадают отмечаем, либо переворачиваем назад
+                if (firstCardValue == secondCardValue) {
+                    // Пометка найденных карт
+                    firstCard.classList.add("matched");
+                    secondCard.classList.add("matched");               
+                    firstCard = false;            
+
+                    pairsCount += 1;
+                    updateText();
+                    
+                    // Проверка на завершение игры и сохранение
+                    if (pairsCount === 8){
+                        saveGameResult(movesCount);
+                        finalModal();
+                    }
+                } else {
+                    updateText();
+                    let [tempFirst, tempSecond] = [firstCard, secondCard];
+                    firstCard = false;
+                    secondCard = false;
+                    isLocked = true; // Блокировка клика по карте
+                    let delay = setTimeout(() => {
+                    tempFirst.classList.remove("flipped");
+                    tempSecond.classList.remove("flipped");
+                    isLocked = false; // Разблокировка кликов
+                    }, 900);
+                }
+            }
     }});
     }
 );};
