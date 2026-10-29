@@ -2,40 +2,38 @@
 :root {
   --MainColor: rgb(44, 50, 61, 0.9);
 
-    background: linear-gradient(
+  background: linear-gradient(
     45deg,
     rgba(146, 228, 111, 0.6) 0%,
     rgba(72, 108, 191, 0.6) 50%,
     rgba(177, 48, 169, 0.6) 100%
   );
   background-size: 400% 400%;
-/*
-  background: linear-gradient(132deg, 
-  #000000,
-  #00ff00,
-  #0000ff,
-  #e60073,
-  #ff0000,
-  #ffffff);
-*/
   animation: BackgroundGradient 15s ease infinite;
   
-  margin: 0;
-  padding: 0;
+  margin: 5px;
+  padding: 0px;
   --bR: 25px;
 }
 
 /* Анимация заднего фона*/
-/*
-*/
 @keyframes BackgroundGradient {
   0% {background-position: 0% 50%;}
   50% {background-position: 100% 50%;}
   100% {background-position: 0% 50%;}
 }
 
+/* Сокрытие */
+.hide {
+  display: none;
+}
+
 A {
   color: white;
+}
+
+p {
+  text-indent: 3ch;
 }
 
 A :visited {
@@ -54,42 +52,6 @@ A :visited {
   border-radius: 20px;
 }
 
-/* Основной блок*/
-.container {
-  display: grid;
-  grid-template-columns: 310px 2fr;
-  background-color: var(--MainColor);
-}
-
-p {
-  text-indent: 3ch;
-}
-
-/* Блок с основным текстом */
-.right-side{
-  background-color: rgba(255,255,255,0.7);
-  border-top-left-radius: var(--bR);
-  border-top-right-radius: var(--bR);
-  border-bottom-left-radius: var(--bR);
-  padding: 0 20px;
-  margin-right: 5px;
-  text-align: justify; 
-}
-
-/* Левая сторона */
-.left-side {
-  width: 80%;
-  color: white;
-}
-
-/*Фото*/
-.myPhoto{
-  width: 300px;
-  border-radius: 15px;
-  margin: 10px 5px 5px 5px;
-  padding: 0;
-}
-
 /* Верхнее меню */
 header {
   width: 100%;
@@ -99,15 +61,198 @@ header {
   text-align: center;
   border-top-right-radius: var(--bR);
   border-top-left-radius: var(--bR);
+  
+  .nav_list {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+  }
 }
 
-.nav_list {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: space-around;
-  margin: 0;
-  padding: 0;
-  list-style: none;
+/* Основной блок*/
+.container {
+  background-color: var(--MainColor);
+  display: grid;
+  grid-template-columns: 310px 2fr;
+  margin: 0px;
+  padding: 0px;
+  width: 100%;
+  box-sizing: border-box;
+  
+  /* Картинка ссылки*/
+  .linkImg{
+    width: 0.7em;
+  }
+}
+
+/* Левая сторона */
+.left-side {
+  width: 100%;
+  color: white;
+  margin: 0px auto;
+  padding: 5px;
+  box-sizing: border-box;
+  
+  /* Контакт */
+  .contacts {
+    color: black;
+    line-height: 1.0;
+    box-sizing: border-box;
+    margin: 0px 0px;
+    padding: 5px 15px 5px 15px;
+    border-radius: 15px;
+    background-color: rgba(255,255,255,0.7);
+  }
+  
+  .contacts a{
+    color: black;
+    text-decoration: none;
+  }
+  
+  .contacts a:visited{
+    color: black;
+    text-decoration: none;
+  }
+  
+  /*Фото*/
+  .myPhoto{
+    width: 300px;
+    box-sizing: border-box;
+    border-radius: 15px;
+  }
+}
+
+/* Блок с основным текстом */
+.right-side{
+  background-color: rgba(255,255,255,0.7);
+  border-top-left-radius: var(--bR);
+  border-top-right-radius: var(--bR);
+  border-bottom-left-radius: var(--bR);
+  padding: 0 20px;
+  margin: 0px 0px 0px 0px;
+  text-align: justify;
+  box-sizing: border-box;
+  width: 100%;
+  min-width: 0;
+  border-right: 2px solid var(--MainColor);
+  
+  
+  /* Раздел сертификатов */
+  .ceftificates {
+    
+    /* Документы картинками */
+    .imgDocs {
+      width: 98%;
+    }
+    
+    /* Временно убрать маркер */
+    ul {
+      list-style: none;
+    }
+  }
+  
+  /* Раздел с кодом */
+  pre {
+    background-color: #f5f5f5;
+    padding: 16px;
+    border-radius: 6px;
+    overflow-x: auto;
+    font-size: 14px;
+    line-height: 1.5;
+    margin: 16px;
+
+    /* Шрифт кода */
+    code {
+      font-family: 'Consolas', 'Monaco', 'Courier New', monospace;
+      color: #333;
+    }
+  }
+  
+  /* Формат ссылок в проекте*/
+  .projects ul a{
+    color: black;
+  }
+
+  /* Раздел с проектами */
+  .projectsGallary {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 20px;
+    margin: 0 auto;
+  
+    .card {
+      width: 300px;
+      background: var(--MainColor);
+      border-radius: 12px;
+      overflow: hidden;
+      box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12);
+      color: white;
+      transition:
+        transform 0.2s ease,
+        box-shadow 0.2s ease;
+      
+      .cardBody {
+        padding: 16px;
+  
+        h3 {
+          font-size: 18px;
+          margin: 0;
+          margin-bottom: 12px;
+        }
+      }
+  
+      img {
+        width: 100%;
+        height: 150px;
+        object-fit: cover;
+        display: block;
+      }
+    }        
+  
+    .tags {
+      display: flex;
+      flex-direction: row;
+      gap: 8px;
+      margin-bottom: 14px;
+      
+      .tag {
+        background: #e0e7ff;
+        font-size: 12px;
+        padding: 4px 10px;
+        border-radius: 999px;
+        box-shadow: 
+          1px 1px 3px rgba(255, 255, 255, 0.3),
+          1px -1px 3px rgba(255, 255, 255, 0.3),
+          -1px 1px 3px rgba(255, 255, 255, 0.3),
+          -1px -1px 3px rgba(255, 255, 255, 0.3);
+      }
+
+      .html{
+        background: #e34c26;
+      }
+      .css{
+        background: #563d7c;        
+      }
+      .js{
+        color: #333;
+        background: #f1e05a ;
+      }
+    }  
+  
+    .card:hover {
+      transform: translateY(-8px);
+      box-shadow: 0 8px 3px rgba(0, 0, 0, 0.2);
+    }
+  
+    a{
+      text-decoration: none;
+      font-weight: 600;
+    }
+  }
 }
 
 /* Низ */
@@ -119,82 +264,15 @@ header {
   color: white;
   text-align: center;
   background-color: var(--MainColor);
-}
-
-.svgImg {
-  stroke: white;
-  fill: white;
-  transform: translateY(10px);
-  margin-right: 5px;
-}
-
-.svgText {
-  transform: translateY(-10px);
-}
-
-/* Контакт */
-.contacts {
-  color: black;
-  line-height: 1.0;
-  height: 120px;
-  width: 285px;
-  margin: 0px 5px;
-  padding: 1px 0px 0px 15px;
-  border-radius: 15px;
-  background-color: rgba(255,255,255,0.7);
-}
-
-.contacts a{
-  color: black;
-  text-decoration: none;
-}
-
-.contacts a:visited{
-  color: black;
-  text-decoration: none;
-}
-
-/* Формат ссылок в проекте*/
-.projects a{
-  color: black;
-}
-
-/* Картинка ссылки*/
-.linkImg{
-  width: 0.7em;
-}
-
-/* Сокрытие */
-.hide {
-  display: none;
-}
-
-
-/* Раздел сертификатов */
-.ceftificates {
-
-  /* Документы картинками */
-  .imgDocs {
-    width: 98%;
+  
+  .svgImg {
+    stroke: white;
+    fill: white;
+    transform: translateY(10px);
+    margin-right: 5px;
   }
-
-  /* Временно убрать маркер */
-  ul {
-    list-style: none;
+  
+  .svgText {
+    transform: translateY(-10px);
   }
-}
-
-pre {
-  background-color: #f5f5f5;
-  padding: 16px;
-  border-radius: 6px;
-  overflow-x: auto;
-  font-size: 14px;
-  line-height: 1.5;
-  margin: 16px 0;
-}
-
-code {
-  font-family: 'Consolas', 'Monaco', 'Courier New', monospace;
-  color: #333;
 }
