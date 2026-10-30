@@ -9,3 +9,4 @@ Projects:
 *  HTML-builder: https://github.com/RostN/rsschool-cv/tree/HTML-builder ✅
 *  Memory-game: https://RostN.github.io/rsschool-cv/memory-game ✅
 *  Bug Hunting: https://RostN.github.io/rsschool-cv/fix-bugs ✅
+*  Coffee House: https://RostN.github.io/rsschool-cv/landing-page ✅

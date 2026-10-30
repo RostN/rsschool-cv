@@ -1,19 +1,5 @@
 [
-  {
-    "name": "cssMemeSlider",
-    "link": "https://rostn.github.io/rsschool-cv/cssMemeSlider/",
-    "tags": [
-      {
-        "tag": "CSS"
-      },
-      {
-        "tag": "HTML"
-      }
-    ],
-    "img": "https://rostn.github.io/rsschool-cv/cssMemeSlider/img/fImg.jpg",
-    "active": "true",
-    "task": ""
-  },
+  
   {
     "name": "Bug Hunting",
     "link": "https://RostN.github.io/rsschool-cv/fix-bugs",
@@ -30,7 +16,7 @@
     ],
     "img": "img/bh.png",
     "active": "true",
-    "task": ""
+    "done": "2026/10/21"
   },
   {
     "name": "Memory Game",
@@ -48,7 +34,25 @@
     ],
     "img": "img/memory-game.png",
     "active": "true",
-    "task": ""
+    "done": "2026/10/05"
+  },
+  {
+    "name": "Coffee House",
+    "link": "https://rostn.github.io/rsschool-cv/memory-game/",
+    "tags": [
+      {
+        "tag": "CSS"
+      },
+      {
+        "tag": "HTML"
+      },
+      {
+        "tag": "JS"
+      }
+    ],
+    "img": "img/coffee-house.png",
+    "active": "true",
+    "done": "2026/09/27"
   },
   {
     "name": "Not fight club",
@@ -66,6 +70,21 @@
     ],
     "img": "img/Not-fight-club.png",
     "active": "true",
-    "task": ""
+    "done": "2026/07/28"
+  },
+  {
+    "name": "cssMemeSlider",
+    "link": "https://rostn.github.io/rsschool-cv/cssMemeSlider/",
+    "tags": [
+      {
+        "tag": "CSS"
+      },
+      {
+        "tag": "HTML"
+      }
+    ],
+    "img": "https://rostn.github.io/rsschool-cv/cssMemeSlider/img/fImg.jpg",
+    "active": "true",
+    "done": "2026/06/07"
   }
 ]

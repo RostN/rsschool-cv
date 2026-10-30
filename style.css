@@ -241,6 +241,10 @@ header {
         color: #333;
         background: #f1e05a ;
       }
+      .kotlin{
+        /* color: #333; */
+        background: #A97BFF;
+      }
     }  
   
     .card:hover {
