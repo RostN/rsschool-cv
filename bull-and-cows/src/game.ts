@@ -29,3 +29,7 @@ export function isValidGuess(guess: string, length: number, base: GameBase): boo
   const uniqueChars = new Set(chars);
   return uniqueChars.size === length;
 }
+
+export function evaluateGuess(secret: string, guess: string): { bulls: number; cows: number } {
+  return { bulls: 0, cows: 0 };
+}
