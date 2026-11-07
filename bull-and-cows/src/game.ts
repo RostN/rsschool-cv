@@ -49,5 +49,21 @@ export function evaluateGuess(secret: string, guess: string): { bulls: number; c
 }
 
 export function generateSecret(length: number, base: GameBase): string {
-  return '';
+  const baseMap: Record<GameBase, string> = {
+    bin: '01',
+    oct: '01234567',
+    dec: '0123456789',
+    hex: '0123456789abcdef',
+  };
+
+  const allowedChars = baseMap[base].split('');
+  
+  // Перемешиваем массив символов случайным образом (Алгоритм Фишера-Йетса)
+  for (let i = allowedChars.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1));
+    [allowedChars[i], allowedChars[j]] = [allowedChars[j], allowedChars[i]];
+  }
+
+  // Берем первые length символов и объединяем в строку
+  return allowedChars.slice(0, length).join('');
 }
