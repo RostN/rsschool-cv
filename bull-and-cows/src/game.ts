@@ -48,3 +48,6 @@ export function evaluateGuess(secret: string, guess: string): { bulls: number; c
   return { bulls, cows };
 }
 
+export function generateSecret(length: number, base: GameBase): string {
+  return '';
+}

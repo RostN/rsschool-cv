@@ -1,6 +1,7 @@
 import { describe, test, expect } from 'vitest';
 import { createDigitValidator, isValidGuess } from './game.js';
 import { evaluateGuess } from './game.js';
+import { generateSecret } from './game.js';
 
 describe('createDigitValidator', () => {
   test('should validate binary digits', () => {
@@ -49,5 +50,25 @@ describe('evaluateGuess', () => {
   test('should be case-insensitive for hexadecimal characters', () => {
     expect(evaluateGuess('aB1c', 'Ab1C')).toEqual({ bulls: 4, cows: 0 });
     expect(evaluateGuess('aB1c', 'cB1a')).toEqual({ bulls: 2, cows: 2 });
+  });
+});
+
+describe('generateSecret', () => {
+  test('should generate a string of correct length', () => {
+    expect(generateSecret(4, 'dec')).toHaveLength(4);
+    expect(generateSecret(2, 'bin')).toHaveLength(2);
+  });
+
+  test('should generate unique characters', () => {
+    const secret = generateSecret(8, 'oct');
+    const uniqueChars = new Set(secret.split(''));
+    expect(uniqueChars.size).toBe(8);
+  });
+
+  test('should generate valid characters for the base', () => {
+    const secret = generateSecret(10, 'hex');
+    const isValidDigit = createDigitValidator('hex');
+    const allValid = secret.split('').every(char => isValidDigit(char));
+    expect(allValid).toBe(true);
   });
 });
