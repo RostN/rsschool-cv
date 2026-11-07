@@ -68,7 +68,7 @@ describe('generateSecret', () => {
   test('should generate valid characters for the base', () => {
     const secret = generateSecret(10, 'hex');
     const isValidDigit = createDigitValidator('hex');
-    const allValid = secret.split('').every(char => isValidDigit(char));
+    const allValid = secret.split('').every((char) => isValidDigit(char));
     expect(allValid).toBe(true);
   });
 });

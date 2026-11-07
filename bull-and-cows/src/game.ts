@@ -57,7 +57,7 @@ export function generateSecret(length: number, base: GameBase): string {
   };
 
   const allowedChars = baseMap[base].split('');
-  
+
   // Перемешиваем массив символов случайным образом (Алгоритм Фишера-Йетса)
   for (let i = allowedChars.length - 1; i > 0; i--) {
     const j = Math.floor(Math.random() * (i + 1));
