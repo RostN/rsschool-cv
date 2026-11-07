@@ -31,5 +31,20 @@ export function isValidGuess(guess: string, length: number, base: GameBase): boo
 }
 
 export function evaluateGuess(secret: string, guess: string): { bulls: number; cows: number } {
-  return { bulls: 0, cows: 0 };
+  let bulls = 0;
+  let cows = 0;
+
+  const sLower = secret.toLowerCase();
+  const gLower = guess.toLowerCase();
+
+  for (let i = 0; i < gLower.length; i++) {
+    if (gLower[i] === sLower[i]) {
+      bulls++;
+    } else if (sLower.includes(gLower[i])) {
+      cows++;
+    }
+  }
+
+  return { bulls, cows };
 }
+
