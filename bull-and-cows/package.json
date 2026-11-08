@@ -8,13 +8,16 @@
     "build": "tsc && vite build",
     "preview": "vite preview",
     "lint": "eslint",
-    "format": "prettier --write src/**/*.ts",
+    "format": "prettier --write . --allow-empty",
     "test": "vitest run",
     "prepare": "husky"
   },
   "lint-staged": {
     "src/**/*.ts": [
       "eslint --fix",
+      "prettier --write"
+    ],
+    "index.html": [
       "prettier --write"
     ]
   },
