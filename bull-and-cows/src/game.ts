@@ -44,9 +44,15 @@ export function evaluateGuess(secret: string, guess: string): { bulls: number; c
 export function generateSecret(length: number, base: GameBase, random = Math.random): string {
   const chars = BASE_MAP[base].split('');
 
-  // Функциональный аналог перемешивания без явной мутации циклом: сортировка на основе переданного random источника
-  const shuffled = [...chars].sort(() => random() - 0.5);
-  return shuffled.slice(0, length).join('');
+  // Используем иммутабельный reduce для поэтапного извлечения уникальных символов
+  const selectedChars = Array.from({ length }).reduce<string[]>((acc, _) => {
+    // Фильтруем символы, которые ещё не были выбраны
+    const remaining = chars.filter((c) => !acc.includes(c));
+    const randomIndex = Math.floor(random() * remaining.length);
+    return [...acc, remaining[randomIndex]];
+  }, []);
+
+  return selectedChars.join('');
 }
 
 // Мемоизатор для рекурсивной функции расчета вариантов
