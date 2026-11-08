@@ -186,11 +186,9 @@ function updatePossibilitiesLabel() {
 baseSelect.addEventListener('change', () => {
   if (baseSelect.value === 'bin') {
     lengthInput.value = '2';
-    lengthInput.min = '2';
-    lengthInput.max = '2';
+    lengthInput.disabled = true;
   } else {
-    lengthInput.min = '2';
-    lengthInput.max = '6';
+    lengthInput.disabled = false;
   }
   updatePossibilitiesLabel();
 });
@@ -208,11 +206,19 @@ guessInput.addEventListener('input', () => {
 
 viewRecordsBtn.addEventListener('click', showLeaderboard);
 backToSetupBtn.addEventListener('click', () => {
+  baseSelect.disabled = false;
+  if (baseSelect.value !== 'bin') {
+    lengthInput.disabled = false;
+  }
   recordsScreen.style.display = 'none';
   setupScreen.style.display = 'block';
 });
 
 restartBtn.addEventListener('click', () => {
+  baseSelect.disabled = false;
+  if (baseSelect.value !== 'bin') {
+    lengthInput.disabled = false;
+  }
   gameScreen.style.display = 'none';
   setupScreen.style.display = 'block';
 });
@@ -311,6 +317,9 @@ function showLeaderboard() {
 startBtn.addEventListener('click', () => {
   gameBase = baseSelect.value as GameBase;
   codeLength = parseInt(lengthInput.value, 10);
+
+  baseSelect.disabled = true;
+  lengthInput.disabled = true;
 
   secretCode = generateSecret(codeLength, gameBase);
   startTime = Date.now();
