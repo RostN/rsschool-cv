@@ -19,10 +19,10 @@ export function isValidGuess(guess: string, length: number, base: GameBase): boo
   if (guess.length !== length) return false;
   const isDigitValid = createDigitValidator(base);
   const chars = guess.toLowerCase().split('');
-  
+
   const allValid = chars.every(isDigitValid);
   const unique = new Set(chars).size === length;
-  
+
   return allValid && unique;
 }
 
@@ -43,7 +43,7 @@ export function evaluateGuess(secret: string, guess: string): { bulls: number; c
 
 export function generateSecret(length: number, base: GameBase, random = Math.random): string {
   const chars = BASE_MAP[base].split('');
-  
+
   // Функциональный аналог перемешивания без явной мутации циклом: сортировка на основе переданного random источника
   const shuffled = [...chars].sort(() => random() - 0.5);
   return shuffled.slice(0, length).join('');

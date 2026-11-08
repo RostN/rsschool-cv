@@ -1,10 +1,10 @@
 import { describe, test, expect } from 'vitest';
-import { 
-  createDigitValidator, 
-  isValidGuess, 
-  evaluateGuess, 
-  generateSecret, 
-  countPossibleSecrets 
+import {
+  createDigitValidator,
+  isValidGuess,
+  evaluateGuess,
+  generateSecret,
+  countPossibleSecrets,
 } from './game.js';
 
 describe('createDigitValidator', () => {
@@ -34,7 +34,7 @@ describe('evaluateGuess (Functional approach)', () => {
 describe('generateSecret (Deterministic testing)', () => {
   test('should generate predictable secret using mock random source', () => {
     // Передаем кастомную функцию генерации псевдослучайных чисел
-    const mockRandom = () => 0.1; 
+    const mockRandom = () => 0.1;
     const secret = generateSecret(4, 'dec', mockRandom);
     expect(secret).toHaveLength(4);
     // Проверяем, что все символы уникальны
