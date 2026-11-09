@@ -1,0 +1,41 @@
+name: Code Quality & Testing CI
+
+on:
+  push:
+    branches:
+      - bull-and-cows # Срабатывает при пуше в вашу рабочую ветку
+
+permissions:
+  contents: read
+
+concurrency:
+  group: 'ci-${{ github.ref }}'
+  cancel-in-progress: true
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: 'npm'
+          cache-dependency-path: 'bull-and-cows/package-lock.json'
+
+      - name: Install dependencies
+        run: npm ci
+        working-directory: bull-and-cows
+
+      - name: Run Lint & Tests
+        run: |
+          npm run lint
+          npm run test
+        working-directory: bull-and-cows
+
+      - name: Build Project Check
+        run: npm run build
+        working-directory: bull-and-cows
