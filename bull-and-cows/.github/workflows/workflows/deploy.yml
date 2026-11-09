@@ -1,19 +1,19 @@
-name: Deploy to GitHub Pages
+name: Code Quality & Testing CI
 
 on:
   push:
     branches:
-      - bull-and-cows # Запуск при пуше в рабочую ветку
+      - bull-and-cows # Срабатывает при пуше в вашу рабочую ветку
 
 permissions:
-  contents: write # Обязательно даем права на запись, чтобы обновить только одну подпапку
+  contents: read
 
 concurrency:
-  group: 'pages'
+  group: 'ci-${{ github.ref }}'
   cancel-in-progress: true
 
 jobs:
-  deploy:
+  validate:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
@@ -36,15 +36,6 @@ jobs:
           npm run test
         working-directory: bull-and-cows
 
-      - name: Build Project
+      - name: Build Project Check
         run: npm run build
         working-directory: bull-and-cows
-
-      # Точечный деплой в подпапку без удаления других проектов
-      - name: Deploy Subfolder to gh-pages
-        uses: JamesIves/github-pages-deploy-action@v4
-        with:
-          branch: gh-pages # Целевая ветка, где живут все ваши проекты
-          folder: bull-and-cows/dist # Что копируем
-          target-folder: bull-and-cows # Куда именно записываем внутри ветки gh-pages
-          clean: false #false запрещает удалять другие файлы и папки в gh-pages!
