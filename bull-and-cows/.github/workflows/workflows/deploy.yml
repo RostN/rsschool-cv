@@ -1,0 +1,50 @@
+name: Deploy to GitHub Pages
+
+on:
+  push:
+    branches:
+      - bull-and-cows # Запуск при пуше в рабочую ветку
+
+permissions:
+  contents: write # Обязательно даем права на запись, чтобы обновить только одну подпапку
+
+concurrency:
+  group: 'pages'
+  cancel-in-progress: true
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: 'npm'
+          cache-dependency-path: 'bull-and-cows/package-lock.json'
+
+      - name: Install dependencies
+        run: npm ci
+        working-directory: bull-and-cows
+
+      - name: Run Lint & Tests
+        run: |
+          npm run lint
+          npm run test
+        working-directory: bull-and-cows
+
+      - name: Build Project
+        run: npm run build
+        working-directory: bull-and-cows
+
+      # Точечный деплой в подпапку без удаления других проектов
+      - name: Deploy Subfolder to gh-pages
+        uses: JamesIves/github-pages-deploy-action@v4
+        with:
+          branch: gh-pages # Целевая ветка, где живут все ваши проекты
+          folder: bull-and-cows/dist # Что копируем
+          target-folder: bull-and-cows # Куда именно записываем внутри ветки gh-pages
+          clean: false #false запрещает удалять другие файлы и папки в gh-pages!
