@@ -40,6 +40,21 @@ footer {
     font-size: 100%;
   }
 
+  /* Центрирование года */
+  a {
+    flex: 1;
+  }
+
+  a:first-of-type {
+    display: inline-flex;
+    justify-content: flex-start;
+  }
+
+  a:last-of-type {
+    display: inline-flex;
+    justify-content: flex-end;
+  }
+
   /* Картинка Гитхаба + текст */
   .svgText {
     color: white;
