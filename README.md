@@ -10,3 +10,4 @@ Projects:
 *  Memory-game: https://RostN.github.io/rsschool-cv/memory-game ✅
 *  Bug Hunting: https://RostN.github.io/rsschool-cv/fix-bugs ✅
 *  Coffee House: https://RostN.github.io/rsschool-cv/landing-page ✅
+*  Bull and Cows: https://RostN.github.io/rsschool-cv/bull-and-cows/ ✅
