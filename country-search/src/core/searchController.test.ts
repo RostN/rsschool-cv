@@ -58,11 +58,11 @@ describe('SearchController', () => {
     });
 
     const p1 = controller.search('sp');
-    expect(signals[0]).toBe(false);
+    expect(signals.at(0)?.aborted).toBe(false);
 
     const p2 = controller.search('spain');
-    expect(signals[0]).toBe(true);
-    expect(signals[1]).toBe(false);
+    expect(signals.at(0)?.aborted).toBe(true);
+    expect(signals.at(1)?.aborted).toBe(false);
 
     // Second request resolves first
     resolveSecond([mockSpain]);
