@@ -41,7 +41,7 @@ describe('searchCountries', () => {
 
     expect(fetchMock).toHaveBeenCalledTimes(1);
     expect(fetchMock).toHaveBeenCalledWith(
-      'https://countries.dev',
+      'https://countries.dev/name/Spain',
       expect.objectContaining({ signal: expect.any(AbortSignal) })
     );
     expect(result).toHaveLength(1);
