@@ -2,7 +2,7 @@ import type { Country, RawCountry } from '../types/country.js';
 import { mapCountryResponse } from '../utils/mapCountryResponse.js';
 
 const BASE_URL = 'https://countries.dev/name';
-const DEFAULT_TIMEOUT_MS = 8000;
+const DEFAULT_TIMEOUT_MS = 15000;
 
 export class HttpError extends Error {
   public readonly status: number;

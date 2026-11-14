@@ -11,6 +11,10 @@ export interface RawLanguage {
 
 export interface RawCountry {
   name: string;
+  alpha2Code?: string;
+  code?: string;
+  cca2?: string;
+  iso2?: string;
   officialName?: string;
   capital?: string;
   region?: string;

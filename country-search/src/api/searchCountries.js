@@ -1,0 +1,39 @@
+import { mapCountryResponse } from '../utils/mapCountryResponse.js';
+const BASE_URL = 'https://countries.dev/name';
+const DEFAULT_TIMEOUT_MS = 15000;
+export class HttpError extends Error {
+  status;
+  constructor(status, message) {
+    super(message ?? `HTTP Error: ${status}`);
+    this.name = 'HttpError';
+    this.status = status;
+  }
+}
+export async function searchCountries(
+  query,
+  signal,
+  timeoutMs = DEFAULT_TIMEOUT_MS
+) {
+  const trimmed = query.trim();
+  if (!trimmed) {
+    return [];
+  }
+  const timeoutSignal = AbortSignal.timeout(timeoutMs);
+  const composedSignal = AbortSignal.any([signal, timeoutSignal]);
+  const url = `${BASE_URL}/${encodeURIComponent(trimmed)}`;
+  const response = await fetch(url, { signal: composedSignal });
+  if (response.status === 404) {
+    return [];
+  }
+  if (!response.ok) {
+    throw new HttpError(
+      response.status,
+      `Ошибка сервера (${response.status}): ${response.statusText}`
+    );
+  }
+  const data = await response.json();
+  if (!Array.isArray(data)) {
+    return [];
+  }
+  return data.map(mapCountryResponse);
+}

@@ -1,7 +1,18 @@
 import type { Country, RawCountry } from '../types/country.js';
 
 export function mapCountryResponse(raw: RawCountry): Country {
-  const flagUrl = raw.flag ?? raw.flags?.png ?? raw.flags?.svg ?? '';
+  const directFlag =
+    raw.flags?.png ??
+    raw.flags?.svg ??
+    (raw.flag?.startsWith('http') ? raw.flag : '');
+
+  const countryCode = raw.alpha2Code ?? raw.code ?? raw.cca2 ?? raw.iso2;
+
+  const flagUrl =
+    directFlag ||
+    (countryCode
+      ? 'https://flagcdn.com' + `/w320/${countryCode.toLowerCase()}.png`
+      : '');
 
   const languages = Array.isArray(raw.languages)
     ? raw.languages.map((lang) => lang.name)
