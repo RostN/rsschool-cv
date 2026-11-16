@@ -12,6 +12,7 @@ function bootstrap() {
   }, DEBOUNCE_DELAY_MS);
   const view = new AppView(document.body, {
     onSearchInput: (value) => {
+      controller.cancelActiveRequest();
       if (!value.trim()) {
         void controller.search('');
         return;
