@@ -71,10 +71,8 @@ export class SearchController {
     const trimmed = rawQuery.trim();
     const normalizedKey = trimmed.toLowerCase();
 
-    this.cancelActiveRequest();
-    const requestId = this.latestRequestId;
-
     if (!trimmed) {
+      this.cancelActiveRequest();
       this.updateState({
         status: 'idle',
         query: '',
@@ -85,6 +83,7 @@ export class SearchController {
     }
 
     if (!forceRefresh && this.cache.has(normalizedKey)) {
+      this.cancelActiveRequest();
       const cached = this.cache.get(normalizedKey) ?? [];
       this.saveToHistory(trimmed);
       this.updateState({
@@ -95,6 +94,10 @@ export class SearchController {
       });
       return;
     }
+
+    const previousCleanup = this.activeCleanup;
+    this.activeCleanup = null;
+    const requestId = ++this.latestRequestId;
 
     this.updateState({
       status: 'loading',
@@ -116,6 +119,11 @@ export class SearchController {
     }
 
     entry.subscribers += 1;
+
+    if (previousCleanup) {
+      previousCleanup();
+    }
+
     let released = false;
 
     const releaseSubscriber = (shouldAbort: boolean): void => {
