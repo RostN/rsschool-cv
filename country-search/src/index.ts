@@ -16,10 +16,13 @@ function bootstrap(): void {
 
   const view = new AppView(document.body, {
     onSearchInput: (value) => {
+      controller.cancelActiveRequest();
+
       if (!value.trim()) {
         void controller.search('');
         return;
       }
+
       debouncedSearch(value);
     },
     onRetry: () => {

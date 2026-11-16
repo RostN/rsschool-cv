@@ -16,17 +16,23 @@ export type CountryFetcher = (
   signal: AbortSignal
 ) => Promise<Country[]>;
 
+interface InFlightEntry {
+  promise: Promise<Country[]>;
+  controller: AbortController;
+  subscribers: number;
+}
+
 const HISTORY_STORAGE_KEY = 'country_search_history';
 const MAX_HISTORY_ITEMS = 5;
 
 export class SearchController {
   private readonly fetcher: CountryFetcher;
   private readonly onStateChange: (state: SearchState) => void;
-  private abortController: AbortController | null = null;
+  private activeCleanup: (() => void) | null = null;
   private latestRequestId = 0;
 
   private readonly cache = new Map<string, Country[]>();
-  private readonly inFlight = new Map<string, Promise<Country[]>>();
+  private readonly inFlight = new Map<string, InFlightEntry>();
 
   private state: SearchState;
 
@@ -53,16 +59,20 @@ export class SearchController {
     return [...this.state.history];
   }
 
+  public cancelActiveRequest(): void {
+    if (this.activeCleanup) {
+      this.activeCleanup();
+      this.activeCleanup = null;
+    }
+    this.latestRequestId++;
+  }
+
   public async search(rawQuery: string, forceRefresh = false): Promise<void> {
     const trimmed = rawQuery.trim();
     const normalizedKey = trimmed.toLowerCase();
 
-    if (this.abortController) {
-      this.abortController.abort();
-      this.abortController = null;
-    }
-
-    const requestId = ++this.latestRequestId;
+    this.cancelActiveRequest();
+    const requestId = this.latestRequestId;
 
     if (!trimmed) {
       this.updateState({
@@ -92,24 +102,43 @@ export class SearchController {
       errorMessage: '',
     });
 
-    const controller = new AbortController();
-    this.abortController = controller;
+    let entry = !forceRefresh ? this.inFlight.get(normalizedKey) : undefined;
+
+    if (!entry) {
+      const controller = new AbortController();
+      const promise = this.fetcher(trimmed, controller.signal);
+      entry = {
+        promise,
+        controller,
+        subscribers: 0,
+      };
+      this.inFlight.set(normalizedKey, entry);
+    }
+
+    entry.subscribers += 1;
+    let released = false;
+
+    const releaseSubscriber = (shouldAbort: boolean): void => {
+      if (released) return;
+      released = true;
+      entry.subscribers -= 1;
+
+      if (entry.subscribers <= 0) {
+        if (this.inFlight.get(normalizedKey) === entry) {
+          this.inFlight.delete(normalizedKey);
+        }
+        if (shouldAbort) {
+          entry.controller.abort();
+        }
+      }
+    };
+
+    const cleanup = (): void => releaseSubscriber(true);
+    this.activeCleanup = cleanup;
 
     try {
-      let requestPromise = !forceRefresh
-        ? this.inFlight.get(normalizedKey)
-        : undefined;
-
-      if (!requestPromise) {
-        requestPromise = this.fetcher(trimmed, controller.signal);
-        this.inFlight.set(normalizedKey, requestPromise);
-      }
-
-      const countries = await requestPromise;
-
-      if (this.inFlight.get(normalizedKey) === requestPromise) {
-        this.inFlight.delete(normalizedKey);
-      }
+      const countries = await entry.promise;
+      releaseSubscriber(false);
 
       if (requestId !== this.latestRequestId) {
         return;
@@ -125,7 +154,7 @@ export class SearchController {
         errorMessage: '',
       });
     } catch (error: unknown) {
-      this.inFlight.delete(normalizedKey);
+      releaseSubscriber(false);
 
       if (requestId !== this.latestRequestId) {
         return;
@@ -143,8 +172,8 @@ export class SearchController {
         errorMessage: classified.message,
       });
     } finally {
-      if (this.abortController === controller) {
-        this.abortController = null;
+      if (this.activeCleanup === cleanup) {
+        this.activeCleanup = null;
       }
     }
   }
