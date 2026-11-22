@@ -25,26 +25,28 @@ function createCard(data){
         const card = template.content.cloneNode(true); //Клонивание шаблока карточки
         const cardImg = card.querySelector('#inner-card-img'); //Выбор картинки в карточке
         const cardName = card.querySelector('#inner-card-title'); //Название проекта
-        const cardTegs = card.querySelectorAll('.tag'); //Все теги сразу
-        const cardLink = card.querySelector('.link');
+        const cardLink = card.querySelector('.link'); // Cсылка
 
-        cardTegs.forEach(tagElement => {
-            const tagText = tagElement.textContent.trim().toLowerCase(); //Текущий тег верстки
+        const tagsContainer = card.querySelector('.tags'); // Контейнер для тегов
+        const tagTemplate = tagsContainer.querySelector('.tag'); // Шаблон одного тега
+        tagsContainer.innerHTML = ''; // Очищаем контейнер перед заполнением
+
+        // Динамическая картинка-заглушка Темный фон (#2b2b2b), светлый текст (#ffffff) и автоматическое название проекта
+        const defaultImg = `https://placehold.co/300x150/2b2b2b/ffffff?text=${encodeURIComponent(item.name)}`;
+
+        // Динамическое создание ярлыков с тегом
+        item.tags.forEach(t => {
+            const newTag = tagTemplate.cloneNode(true); // Клонируем пустой <span>
+            const tagName = t.tag; // Получаем название тега из JSON
             
-            const hasTag = item.tags.some(
-                t => t.tag.toLowerCase() === tagText
-            ); // Проверяем, есть ли объект с таким тегом в массиве item.tags
-
-            //Проверка совпадения с тегами из JSON
-            if (hasTag) {
-                tagElement.classList.remove('hide');
-            } else {
-                tagElement.classList.add ('hide');
-            }
+            newTag.textContent = tagName; // Записываем текст внутрь span
+            newTag.classList.add(tagName.toLowerCase()); // Добавляем класс в нижнем регистре (например, "ts")
+            
+            tagsContainer.appendChild(newTag); // Вставляем готовый тег в карточку
         });
         
         // Заполнение шаблона
-        cardImg.src = item.img; //Вставка картинки в шаблон
+        cardImg.src = item.img ? item.img : defaultImg; //Вставка картинки в шаблон либо заглушка
         cardImg.alt = item.name; //Имя
         cardName.textContent = item.name; //Вставка имени
         cardLink.href = item.link; //Ссылка на проект

@@ -11,3 +11,4 @@ Projects:
 *  Bug Hunting: https://RostN.github.io/rsschool-cv/fix-bugs ✅
 *  Coffee House: https://RostN.github.io/rsschool-cv/landing-page ✅
 *  Bull and Cows: https://RostN.github.io/rsschool-cv/bull-and-cows/ ✅
+*  Country-Search: https://RostN.github.io/rsschool-cv/country-search/ ✅

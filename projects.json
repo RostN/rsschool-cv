@@ -1,5 +1,67 @@
 [
-  
+  {
+    "name": "Country Search",
+    "link": "https://RostN.github.io/rsschool-cv/country-search/",
+    "tags": [
+      {
+        "tag": "CSS"
+      },
+      {
+        "tag": "HTML"
+      },
+      {
+        "tag": "JS"
+      },
+      {
+        "tag": "TS"
+      }
+    ],
+    "img": "https://github.com/user-attachments/assets/985a91c7-8bf7-4fc0-be57-944e74bc5b8d",
+    "active": "true",
+    "done": "2026/11/16"
+  },
+  {
+    "name": "Bulland Cows",
+    "link": "https://RostN.github.io/rsschool-cv/bull-and-cows/",
+    "tags": [
+      {
+        "tag": "CSS"
+      },
+      {
+        "tag": "HTML"
+      },
+      {
+        "tag": "JS"
+      },
+      {
+        "tag": "TS"
+      }
+    ],
+    "img": "https://github.com/user-attachments/assets/246319a1-2e6a-4117-9eca-fe7630b85a7d",
+    "active": "true",
+    "done": "2026/11/09"
+  },
+  {
+    "name": "Migration to TS",
+    "link": "https://github.com/RostN/news-JS/pull/1",
+    "tags": [
+      {
+        "tag": "CSS"
+      },
+      {
+        "tag": "HTML"
+      },
+      {
+        "tag": "JS"
+      },
+      {
+        "tag": "TS"
+      }
+    ],
+    "img": "https://github.com/user-attachments/assets/b16ed6e6-3f90-47d3-902e-e46571ce1e8a",
+    "active": "true",
+    "done": "2026/11/01"
+  },
   {
     "name": "Bug Hunting",
     "link": "https://RostN.github.io/rsschool-cv/fix-bugs",
@@ -86,5 +148,317 @@
     "img": "https://rostn.github.io/rsschool-cv/cssMemeSlider/img/fImg.jpg",
     "active": "true",
     "done": "2026/06/07"
+  },
+  {
+    "name": "Reddit",
+    "link": "https://github.com/RostN/reddit",
+    "tags": [
+      {
+        "tag": "Kotlin"
+      }
+    ],
+    "img": "",
+    "active": "true",
+    "done": "2023/06/06"
+  },
+  {
+    "name": "Unsplash",
+    "link": "https://github.com/RostN/unsplash",
+    "tags": [
+      {
+        "tag": "Kotlin"
+      }
+    ],
+    "img": "",
+    "active": "true",
+    "done": "2023/06/06"
+  },
+  {
+    "name": "Presentation patterns (MVVM)",
+    "link": "https://github.com/RostN/skillbox-homeworks-android-developer/tree/main/presentation_patterns",
+    "tags": [
+      {
+        "tag": "Kotlin"
+      }
+    ],
+    "img": "https://github.com/RostN/skillbox-homeworks-android-developer/assets/133744981/ed6253cd-90b3-4a3d-8c93-1b4db11a0c1d",
+    "active": "true",
+    "done": "2023/06/06"
+  },
+  {
+    "name": "Background works",
+    "link": "https://github.com/RostN/skillbox-homeworks-android-developer/tree/main/background_works",
+    "tags": [
+      {
+        "tag": "Kotlin"
+      }
+    ],
+    "img": "",
+    "active": "true",
+    "done": "2023/06/06"
+  },
+  {
+    "name": "Dependency injection",
+    "link": "https://github.com/RostN/skillbox-homeworks-android-developer/tree/main/dependency_injection",
+    "tags": [
+      {
+        "tag": "Kotlin"
+      }
+    ],
+    "img": "",
+    "active": "true",
+    "done": "2023/06/06"
+  },
+  {
+    "name": "Jetpack compose",
+    "link": "https://github.com/RostN/skillbox-homeworks-android-developer/tree/main/jetpack_compose",
+    "tags": [
+      {
+        "tag": "Kotlin"
+      }
+    ],
+    "img": "https://github.com/RostN/skillbox-homeworks-android-developer/assets/133744981/205baa50-637c-47a8-bb64-53649122ed29",
+    "active": "true",
+    "done": "2023/06/06"
+  },
+  {
+    "name": "Recyclerview advanced",
+    "link": "https://github.com/RostN/skillbox-homeworks-android-developer/tree/main/recyclerview_advanced",
+    "tags": [
+      {
+        "tag": "Kotlin"
+      }
+    ],
+    "img": "https://github.com/RostN/skillbox-homeworks-android-developer/assets/133744981/077390f0-6674-48a7-bd71-ee773961d3d3",
+    "active": "true",
+    "done": "2023/06/06"
+  },
+  {
+    "name": "View and animation",
+    "link": "https://github.com/RostN/skillbox-homeworks-android-developer/tree/main/views_and_animations",
+    "tags": [
+      {
+        "tag": "Kotlin"
+      }
+    ],
+    "img": "https://github.com/RostN/skillbox-homeworks-android-developer/assets/133744981/2af56281-fd26-423a-b193-bcd7f706c19f",
+    "active": "true",
+    "done": "2023/06/06"
+  },
+  {
+    "name": "Firebase",
+    "link": "https://github.com/RostN/skillbox-homeworks-android-developer/tree/main/m20_firebase",
+    "tags": [
+      {
+        "tag": "Kotlin"
+      }
+    ],
+    "img": "",
+    "active": "true",
+    "done": "2023/06/06"
+  },
+  {
+    "name": "Localization",
+    "link": "https://github.com/RostN/skillbox-homeworks-android-developer/tree/main/m19_location",
+    "tags": [
+      {
+        "tag": "Kotlin"
+      }
+    ],
+    "img": "",
+    "active": "true",
+    "done": "2023/06/06"
+  },
+  {
+    "name": "Permissions",
+    "link": "https://github.com/RostN/skillbox-homeworks-android-developer/tree/main/m18_permissions",
+    "tags": [
+      {
+        "tag": "Kotlin"
+      }
+    ],
+    "img": "",
+    "active": "true",
+    "done": "2023/06/06"
+  },
+  {
+    "name": "Recyclerview",
+    "link": "https://github.com/RostN/skillbox-homeworks-android-developer/tree/main/m17_recyclerview",
+    "tags": [
+      {
+        "tag": "Kotlin"
+      }
+    ],
+    "img": "",
+    "active": "true",
+    "done": "2023/06/06"
+  },
+  {
+    "name": "Architecture",
+    "link": "https://github.com/RostN/skillbox-homeworks-android-developer/tree/main/m16_architecture",
+    "tags": [
+      {
+        "tag": "Kotlin"
+      }
+    ],
+    "img": "https://github.com/RostN/skillbox-homeworks-android-developer/assets/133744981/98bef259-325e-4262-b6cd-425cb13fa319",
+    "active": "true",
+    "done": "2023/06/06"
+  },
+  {
+    "name": "SQL, Room",
+    "link": "https://github.com/RostN/skillbox-homeworks-android-developer/tree/main/m15_room",
+    "tags": [
+      {
+        "tag": "Kotlin"
+      }
+    ],
+    "img": "",
+    "active": "true",
+    "done": "2023/06/06"
+  },
+  {
+    "name": "Retrofit",
+    "link": "https://github.com/RostN/skillbox-homeworks-android-developer/tree/main/m14_retrofi",
+    "tags": [
+      {
+        "tag": "Kotlin"
+      }
+    ],
+    "img": "",
+    "active": "true",
+    "done": "2023/06/06"
+  },
+  {
+    "name": "MVVM",
+    "link": "https://github.com/RostN/skillbox-homeworks-android-developer/tree/main/m12_mvvm",
+    "tags": [
+      {
+        "tag": "Kotlin"
+      }
+    ],
+    "img": "",
+    "active": "true",
+    "done": "2023/06/06"
+  },
+  {
+    "name": "Timer data storage",
+    "link": "https://github.com/RostN/skillbox-homeworks-android-developer/tree/main/m11_timer_data_storage",
+    "tags": [
+      {
+        "tag": "Kotlin"
+      }
+    ],
+    "img": "",
+    "active": "true",
+    "done": "2023/06/06"
+  },
+  {
+    "name": "Timer life cycle",
+    "link": "https://github.com/RostN/skillbox-homeworks-android-developer/tree/main/m10_timer_life_cycle",
+    "tags": [
+      {
+        "tag": "Kotlin"
+      }
+    ],
+    "img": "",
+    "active": "true",
+    "done": "2023/06/06"
+  },
+  {
+    "name": "Quiz localization",
+    "link": "https://github.com/RostN/skillbox-homeworks-android-developer/tree/main/m9_quiz_localization",
+    "tags": [
+      {
+        "tag": "Kotlin"
+      }
+    ],
+    "img": "",
+    "active": "true",
+    "done": "2023/06/06"
+  },
+  {
+    "name": "Quiz animation",
+    "link": "https://github.com/RostN/skillbox-homeworks-android-developer/tree/main/m8_quiz_animation",
+    "tags": [
+      {
+        "tag": "Kotlin"
+      }
+    ],
+    "img": "",
+    "active": "true",
+    "done": "2023/06/06"
+  },
+  {
+    "name": "Quiz fragments",
+    "link": "https://github.com/RostN/skillbox-homeworks-android-developer/tree/main/m7_quiz_fragments",
+    "tags": [
+      {
+        "tag": "Kotlin"
+      }
+    ],
+    "img": "",
+    "active": "true",
+    "done": "2023/06/06"
+  },
+  {
+    "name": "Quiz resources",
+    "link": "https://github.com/RostN/skillbox-homeworks-android-developer/tree/main/m5_quiz_resources",
+    "tags": [
+      {
+        "tag": "Kotlin"
+      }
+    ],
+    "img": "",
+    "active": "true",
+    "done": "2023/06/06"
+  },
+  {
+    "name": "Constraint",
+    "link": "https://github.com/RostN/skillbox-homeworks-android-developer/tree/main/m4_constraint",
+    "tags": [
+      {
+        "tag": "Kotlin"
+      }
+    ],
+    "img": "https://github.com/RostN/skillbox-homeworks-android-developer/assets/133744981/6a2a2199-b36e-4bbc-90d9-bada36225b56",
+    "active": "true",
+    "done": "2023/06/06"
+  },
+  {
+    "name": "Components",
+    "link": "https://github.com/RostN/skillbox-homeworks-android-developer/tree/main/m3_components",
+    "tags": [
+      {
+        "tag": "Kotlin"
+      }
+    ],
+    "img": "",
+    "active": "true",
+    "done": "2023/06/06"
+  },
+  {
+    "name": "Layout",
+    "link": "https://github.com/RostN/skillbox-homeworks-android-developer/tree/main/m2_layout",
+    "tags": [
+      {
+        "tag": "Kotlin"
+      }
+    ],
+    "img": "https://github.com/RostN/skillbox-homeworks-android-developer/assets/133744981/ed6c7a3f-2eca-4cf2-abc6-cdbb9e9f71a9",
+    "active": "true",
+    "done": "2023/06/06"
+  },
+  {
+    "name": "Hello world",
+    "link": "https://github.com/RostN/skillbox-homeworks-android-developer/tree/main/m1_hello_world",
+    "tags": [
+      {
+        "tag": "Kotlin"
+      }
+    ],
+    "img": "https://github.com/RostN/skillbox-homeworks-android-developer/assets/133744981/fa294952-0621-45c4-851c-15d7f4192f4e",
+    "active": "true",
+    "done": "2023/06/06"
   }
 ]

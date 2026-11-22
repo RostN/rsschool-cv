@@ -220,7 +220,7 @@ header {
       margin-bottom: 14px;
       
       .tag {
-        background: #e0e7ff;
+        background: #5e5e5e;
         font-size: 12px;
         padding: 4px 10px;
         border-radius: 999px;
@@ -242,8 +242,10 @@ header {
         background: #f1e05a ;
       }
       .kotlin{
-        /* color: #333; */
         background: #A97BFF;
+      }
+      .ts{
+        background: #3178c6;
       }
     }  
   
