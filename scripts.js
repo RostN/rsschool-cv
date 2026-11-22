@@ -32,7 +32,20 @@ function createCard(data){
         tagsContainer.innerHTML = ''; // Очищаем контейнер перед заполнением
 
         // Динамическая картинка-заглушка Темный фон (#2b2b2b), светлый текст (#ffffff) и автоматическое название проекта
-        const defaultImg = `https://placehold.co/300x150/2b2b2b/ffffff?text=${encodeURIComponent(item.name)}`;
+
+        // Создаем SVG прямо в коде с автоматической подстановкой item.name
+        const svgCode = `
+        <svg xmlns="http://www.w3.org/2000/svg" width="300" height="150" 
+        viewBox="0 0 300 150">
+            <rect fill="#2b2b2b" width="300" height="150"/>
+            <text fill="#ffffff" font-family="sans-serif" font-size="22" 
+            font-weight="bold" x="50%" y="50%" 
+            dominant-baseline="middle" text-anchor="middle">
+                ${item.name}
+            </text>
+        </svg>`;
+
+        const defaultImg = `data:image/svg+xml,${encodeURIComponent(svgCode)}`;
 
         // Динамическое создание ярлыков с тегом
         item.tags.forEach(t => {
